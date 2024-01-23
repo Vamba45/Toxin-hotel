@@ -1,0 +1,34 @@
+@import 'vars.scss';
+
+@mixin border($border-radius: 4px, 
+              $color: $DS_25) 
+{
+    border-radius: $border-radius;
+    border-color: color;
+}
+
+@mixin h1_txt {
+    font-size: 24px;    
+    font-weight: 700;
+    color: $DS;
+}
+
+@mixin h2_txt {
+    @include h1_text();
+
+    font-size: 19px;
+}
+
+@mixin h3_txt {
+    @include h1_text();
+
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+@mixin body_txt {
+    font-size: 14px;
+    font-weight: 400;
+    color: $DS_75;
+    line-height: 24;
+}

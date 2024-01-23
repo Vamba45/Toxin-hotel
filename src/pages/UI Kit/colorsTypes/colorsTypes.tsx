@@ -1,6 +1,6 @@
 import React from "react";
-import Color from "../../components/color/color";
-import Paragraph from "../../components/paragraph/parapgraph";
+import Color from "../../../components/color/color";
+import Paragraph from "../../../components/paragraph/parapgraph";
 import './colorsTypes.scss';
 
 const ColorsTypes = () => {
@@ -26,7 +26,8 @@ const ColorsTypes = () => {
                             title="H2"/>
                 <Paragraph fontsize="12" fontweight="700"
                             text="This is a label or CTA text"
-                            title="H3"/>
+                            title="H3"
+                            uppercase="uppercase"/>
                 <Paragraph fontsize="14" fontweight="400"
                             text="This is the body text which is used for most
                             of the design, like paragraphs, lists, etc."
