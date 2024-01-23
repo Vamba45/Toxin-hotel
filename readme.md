@@ -1,1 +1,5 @@
-Webpack 5 for simple develop on React, Redux Toolkit & Type-sciprt
+Creating service for booking hotel rooms using: 
+
+React
+Redux Toolkit
+Type-script
