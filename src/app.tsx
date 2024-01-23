@@ -1,7 +1,10 @@
+import ColorsTypes from "./pages/UI Kit/colorsTypes";
+import './styles/style.scss';   
+
 export const App = () => {
     return (
         <>
-            React application!
+            <ColorsTypes/>
         </>
     )
 }
