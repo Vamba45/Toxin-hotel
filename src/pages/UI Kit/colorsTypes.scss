@@ -1,6 +1,10 @@
 .colors-types {
     margin: 145px 150px;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
     .color {
         margin-bottom: 20px;
     }
