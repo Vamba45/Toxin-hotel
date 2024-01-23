@@ -1,0 +1,1 @@
+Webpack 5 for simple develop on React, Redux Toolkit & Type-sciprt
