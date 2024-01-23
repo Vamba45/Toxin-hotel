@@ -5,7 +5,7 @@ import './colorsTypes.scss';
 
 const ColorsTypes = () => {
     return (
-        <div className="colors-types page">
+        <div className="colors-types uikit">
             <div className="colors-types__colors">
                 <Color title="Dark Shade 100%" hex="#1F2041" squareBG="#1F2041"/>
                 <Color title="Dark Shade 75%" hex="#1F2041" squareBG="rgba(31, 32, 65, 0.75)"/>
