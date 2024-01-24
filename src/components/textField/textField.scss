@@ -1,0 +1,62 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/vars.scss';
+
+.textField__input,
+.textField__subscribtion {
+    @include border();
+
+    padding: 15px 13px;
+
+    width: 100%;
+    height: 44px;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+
+    color: $DS_25;
+
+    &::placeholder {
+        color: $DS_25;
+    }
+
+    &:hover,
+    &:focus {
+        border-color: $DS_50;
+        color: $DS_75;
+    }
+
+    &:focus {
+        &::placeholder {
+            color: $DS_75;
+        } 
+    }
+}
+
+.textField__subscribtion {
+    max-width: 267px;
+    padding-right: 44px;
+}
+
+.textField__input {
+    width: 320px;
+}
+
+.textField__button {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 4px;
+
+    background: url(../../assets/img/icons/arrow_forward.svg) center no-repeat #fff;
+}
+
+.textField {
+    position: relative;
+    display: inline-block;
+}

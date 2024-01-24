@@ -1,9 +1,11 @@
+import { TextField } from '../../../components/textField/textField';
 import './formElements.scss';
 
 const FormElements = () => {
     return (
         <div className="formElements uikit">
-            FORM ELEMENTS
+            <TextField placeholder='Email' isSubscribtion={true}/>
+            <TextField placeholder='Email'/>
         </div>
     )
 }
