@@ -2,7 +2,8 @@
 @import '../../styles/vars.scss';
 
 .textField__input,
-.textField__subscribtion {
+.textField__subscribtion,
+.textField__masked {
     @include border();
 
     padding: 15px 13px;
@@ -35,12 +36,7 @@
 }
 
 .textField__subscribtion {
-    max-width: 267px;
     padding-right: 44px;
-}
-
-.textField__input {
-    width: 320px;
 }
 
 .textField__button {
@@ -58,5 +54,13 @@
 
 .textField {
     position: relative;
-    display: inline-block;
+}
+
+
+.textField__masked {
+    &:focus {
+        &::placeholder {
+            color: $DS_25;
+        } 
+    }
 }

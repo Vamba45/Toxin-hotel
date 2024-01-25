@@ -42,6 +42,7 @@
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
+    "@react-input/mask": "^1.0.20",
     "@reduxjs/toolkit": "^2.0.1",
     "axios": "^1.6.5",
     "react": "^18.2.0",
