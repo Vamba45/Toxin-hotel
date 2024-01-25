@@ -14,13 +14,13 @@
 }
 
 @mixin h2_txt {
-    @include h1_text();
+    @include h1_txt();
 
     font-size: 19px;
 }
 
 @mixin h3_txt {
-    @include h1_text();
+    @include h1_txt();
 
     font-size: 12px;
     text-transform: uppercase;
