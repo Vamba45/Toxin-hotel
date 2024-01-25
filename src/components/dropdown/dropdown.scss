@@ -4,27 +4,34 @@
     width: 222px;
 
     border: 1px solid $DS_75;
-    border-radius: 5px 5px 0 0;    
+    border-radius: 5px 5px 0 0;  
+    
+    &__text {
+
+    }
+
+    .rotate {
+        transform: rotate(-180deg);
+    }
+
+    &__arrow {
+        width: 44px;
+        height: 44px;
+
+        background: url(../../assets/img/icons/dropdown_arrow.svg) center no-repeat;
+
+        transform: rotate(0deg);
+        transition: transform 0.2s ease;
+    }
 
     &__select {
-        padding: 13px 44px 13px 15px;
+        padding-left: 15px;
 
-        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
-        &::after {
-            content: '';
-
-            width: 44px;
-            height: 44px;
-
-            background: url(../../assets/img/icons/dropdown_arrow.svg) center no-repeat;
-            position: absolute;
-
-            right: 0;
-            top: 0;
-
-            cursor: pointer;
-        }
+        border-bottom: 1px solid $DS_75;
     }
 
     &__menu {
