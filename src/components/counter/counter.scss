@@ -1,0 +1,21 @@
+@import '../../styles/mixins.scss';
+
+.counter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 92px;
+
+    &__minus, 
+    &__plus {
+        @include border($border-radius: 50%);
+        
+        width: 30px;
+        height: 30px;
+    }
+
+    &__value {
+        @include h3_txt();
+    }
+}
