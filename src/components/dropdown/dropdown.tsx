@@ -3,10 +3,11 @@ import Counter from "../counter/counter";
 import './dropdown.scss';
 
 interface IDropDown {
-    menuItems: string[]
+    menuItems: string[],
+    hasButtons?: boolean
 }
 
-const DropDown: FC<IDropDown> = ({menuItems}) => {
+const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
 
     function dropdownArrowClick(event: React.MouseEvent<HTMLButtonElement>) {
         const btn = (event.target as HTMLElement); 
@@ -19,8 +20,11 @@ const DropDown: FC<IDropDown> = ({menuItems}) => {
         }, 300)
     }
 
+    const maxWidth = hasButtons ? "320px" : "266px";
+
     return (
-        <div className="dropdown">
+        <div className="dropdown"
+            style={{maxWidth: maxWidth}}>
             <div className="dropdown__select">
                 <div className="dropdown__text"></div>
                 <button className="dropdown__arrow"
@@ -34,6 +38,12 @@ const DropDown: FC<IDropDown> = ({menuItems}) => {
                             <Counter/>
                         </li>
                     )
+                }
+                {   hasButtons && 
+                    <div className="dropdown__buttons">
+                        <button className="dropdown__resetBtn">очистить</button>
+                        <button className="dropdown__acceptBtn">применить</button>
+                    </div>
                 }
             </ul>
         </div>

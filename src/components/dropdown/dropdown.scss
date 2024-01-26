@@ -1,7 +1,8 @@
 @import '../../styles/vars.scss';
+@import '../../styles/mixins.scss';
 
 .dropdown {
-    width: 222px;
+    width: 100%;
 
     border: 1px solid $DS_75;
     border-radius: 5px 5px 0 0;  
@@ -35,9 +36,53 @@
     }
 
     &__menu {
+        @include h3_txt();
+
+        padding: 4px 7px 7px 15px;
+
         li {
+            width: 100%;
+
+            padding: 4px 0;
+
             display: flex;
             justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+
+        padding: 20px 0 7px 0;
+
+        .dropdown__acceptBtn {
+            
+            @include h3_txt();
+            color: $purple;
+
+            &:hover {
+                color: $DS_50;
+            }
+
+            &:active {
+                color: $DS;
+            }
+        }
+
+        .dropdown__resetBtn {
+            
+            @include h3_txt();
+            color: $purple;
+
+            &:hover {
+                color: $DS_50;
+            }
+
+            &:active {
+                color: $DS;
+            }
         }
     }
 }

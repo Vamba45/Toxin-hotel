@@ -10,6 +10,7 @@ const FormElements = () => {
             <TextField placeholder='Email'/>
 
             <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
+            <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
         </div>
     )
 }
