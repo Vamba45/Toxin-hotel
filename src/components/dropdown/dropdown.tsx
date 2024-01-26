@@ -15,6 +15,9 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
 
         btn.classList.toggle('rotate')
 
+        const parentDropdown = btn.closest('.dropdown')
+        parentDropdown?.querySelector('.dropdown__menu')?.classList.toggle('active')
+
         setTimeout(() => {
             btn.style.pointerEvents = "auto";
         }, 300)
@@ -26,14 +29,14 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         <div className="dropdown"
             style={{maxWidth: maxWidth}}>
             <div className="dropdown__select">
-                <div className="dropdown__text"></div>
+                <div className="dropdown__text">Сколько гостей</div>
                 <button className="dropdown__arrow"
                         onClick={dropdownArrowClick}></button>
             </div>
             <ul className="dropdown__menu">
                 {
                     menuItems.map((item) => 
-                        <li>
+                        <li key={item}>
                             {item}
                             <Counter/>
                         </li>

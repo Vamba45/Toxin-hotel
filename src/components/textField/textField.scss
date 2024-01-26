@@ -58,6 +58,9 @@
 
 
 .textField__masked {
+    &::placeholder {
+        letter-spacing: 0.75px;
+    }
     &:focus {
         &::placeholder {
             color: $DS_25;

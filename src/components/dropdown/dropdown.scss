@@ -8,7 +8,10 @@
     border-radius: 5px 5px 0 0;  
     
     &__text {
+        @include body_txt();
 
+        letter-spacing: 0.5px;
+        line-height: 18px;
     }
 
     .rotate {
@@ -31,14 +34,23 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
 
         border-bottom: 1px solid $DS_75;
+
+        height: 44px;
     }
 
     &__menu {
         @include h3_txt();
 
-        padding: 4px 7px 7px 15px;
+        max-height: 0;
+        overflow: hidden;
+
+        transition: max-height 0.5s ease-out;
+        transition: padding 0.1s ease-out;
+        
+        padding: 0;
 
         li {
             width: 100%;
@@ -49,6 +61,13 @@
             justify-content: space-between;
             align-items: center;
         }
+    }
+
+    .dropdown__menu.active {
+        max-height: 100vh;
+        
+        padding: 4px 7px 7px 15px;
+        transition: max-height 0.5s ease-out;
     }
 
     &__buttons {
