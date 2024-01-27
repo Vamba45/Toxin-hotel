@@ -10,17 +10,55 @@ interface IDropDown {
 const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
 
     function dropdownArrowClick(event: React.MouseEvent<HTMLButtonElement>) {
-        const btn = (event.target as HTMLElement); 
+        const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
+
+        parentDropdown?.querySelector('.dropdown__menu')?.classList.toggle('active')
+
+        const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
         btn.style.pointerEvents = "none";
 
         btn.classList.toggle('rotate')
 
-        const parentDropdown = btn.closest('.dropdown')
-        parentDropdown?.querySelector('.dropdown__menu')?.classList.toggle('active')
-
         setTimeout(() => {
             btn.style.pointerEvents = "auto";
         }, 300)
+    }
+
+    function acceptBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
+        dropdownArrowClick(event);
+
+        const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
+
+        const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
+        const counters = menu?.querySelectorAll('.counter');
+        
+        let sum = 0;
+
+        for(let i = 0; i < counters.length; i++) {
+            sum += Number(counters[i].querySelector(".counter__value")?.textContent);
+        }
+
+        const text = parentDropdown?.querySelector('.dropdown__text') as HTMLElement;
+
+        if(sum === 0) {
+            text.textContent = `Сколько гостей`;
+            return;
+        }
+
+        text.textContent = `${sum}`;
+    }
+
+    function resetBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
+        const counters = ( 
+                        (event.target as HTMLElement).closest('.dropdown')?.
+                        querySelector('.dropdown__menu') as HTMLElement
+                    )?.
+                    querySelectorAll('.counter');
+
+        for(let i = 0; i < counters.length; i++) {
+            (counters[i].querySelector('.counter__value') as HTMLInputElement).value = "0";
+            (counters[i].querySelector('.counter__value') as HTMLInputElement).dispatchEvent(new Event('input', {bubbles: true}))
+        }
     }
 
     const maxWidth = hasButtons ? "320px" : "266px";
@@ -44,8 +82,10 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
                 }
                 {   hasButtons && 
                     <div className="dropdown__buttons">
-                        <button className="dropdown__resetBtn">очистить</button>
-                        <button className="dropdown__acceptBtn">применить</button>
+                        <button className="dropdown__resetBtn"
+                                onClick={resetBtnClick}>очистить</button>
+                        <button className="dropdown__acceptBtn"
+                                onClick={acceptBtnClick}>применить</button>
                     </div>
                 }
             </ul>

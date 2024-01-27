@@ -17,5 +17,8 @@
 
     &__value {
         @include h3_txt();
+
+        width: 32px;
+        text-align: center;
     }
 }
