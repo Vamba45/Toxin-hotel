@@ -5,13 +5,20 @@
     width: 100%;
 
     border: 1px solid $DS_75;
-    border-radius: 5px 5px 0 0;  
+    border-radius: 5px;  
     
     &__text {
         @include body_txt();
 
         letter-spacing: 0.5px;
         line-height: 18px;
+
+        text-wrap: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        max-width: 160px;
+        width: 100%;
     }
 
     .rotate {
@@ -35,8 +42,6 @@
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-
-        border-bottom: 1px solid $DS_75;
 
         height: 44px;
     }
@@ -68,6 +73,8 @@
         
         padding: 4px 7px 7px 15px;
         transition: max-height 0.5s ease-out;
+
+        border-top: 1px solid $DS_75;
     }
 
     &__buttons {

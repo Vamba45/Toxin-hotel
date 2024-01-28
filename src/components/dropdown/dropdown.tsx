@@ -17,6 +17,26 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
         btn.style.pointerEvents = "none";
 
+        if(hasButtons === false
+            && (event.target as HTMLElement).classList.contains('rotate')) {
+            const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
+            const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
+            
+            let text: string = "";
+
+            for(let i = 0; i < counters.length; i++) {
+                let num = Number(
+                                (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
+                            );
+                
+                if(num !== 0) {
+                    text = text + `${num} ${menuItems[i].toLocaleLowerCase()}. `;
+                }
+
+                (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
+            }
+        }
+
         btn.classList.toggle('rotate')
 
         setTimeout(() => {
@@ -25,27 +45,34 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
     }
 
     function acceptBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
-        dropdownArrowClick(event);
-
         const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
 
+        const arrow = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement;
+        arrow.dispatchEvent(new Event('click', {bubbles: true}))
+
         const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
-        const counters = menu?.querySelectorAll('.counter');
-        
+        const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
+
         let sum = 0;
 
         for(let i = 0; i < counters.length; i++) {
-            sum += Number(counters[i].querySelector(".counter__value")?.textContent);
+            sum += Number(
+                            (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
+                        );
+
+            console.log(sum)
         }
 
         const text = parentDropdown?.querySelector('.dropdown__text') as HTMLElement;
 
         if(sum === 0) {
-            text.textContent = `Сколько гостей`;
+            text.innerText = `Сколько гостей`;
             return;
         }
 
-        text.textContent = `${sum}`;
+        text.innerText = `${sum} гостя(-ей)`;
+
+        console.log(text.innerText)
     }
 
     function resetBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
