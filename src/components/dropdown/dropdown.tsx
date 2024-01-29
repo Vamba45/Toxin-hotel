@@ -23,18 +23,22 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
             
             let text: string = "";
+            let sum = 0;
 
             for(let i = 0; i < counters.length; i++) {
                 let num = Number(
                                 (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
                             );
+
+                sum += num;
                 
                 if(num !== 0) {
-                    text = text + `${num} ${menuItems[i].toLocaleLowerCase()}. `;
+                    text = text + `${menuItems[i]}: ${num}. `;
                 }
-
-                (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
             }
+
+            if(sum > 0)
+                (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
         }
 
         btn.classList.toggle('rotate')
@@ -70,7 +74,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             return;
         }
 
-        text.innerText = `${sum} гостя(-ей)`;
+        text.innerText = `Гостей:${sum}`;
 
         console.log(text.innerText)
     }
@@ -94,7 +98,11 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         <div className="dropdown"
             style={{maxWidth: maxWidth}}>
             <div className="dropdown__select">
-                <div className="dropdown__text">Сколько гостей</div>
+                <div className="dropdown__text">
+                    {
+                        hasButtons === false ? "Спальни и ванные" : "Сколько гостей"
+                    }
+                </div>
                 <button className="dropdown__arrow"
                         onClick={dropdownArrowClick}></button>
             </div>
