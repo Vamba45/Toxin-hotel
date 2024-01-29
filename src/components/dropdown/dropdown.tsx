@@ -33,12 +33,15 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
                 sum += num;
                 
                 if(num !== 0) {
-                    text = text + `${menuItems[i]}: ${num}. `;
+                    text = text + `${menuItems[i]} - ${num}. `;
                 }
             }
 
-            if(sum > 0)
-                (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
+            if(sum <= 0) {
+                text = "Спальни и ванные"
+            }
+
+            (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
         }
 
         btn.classList.toggle('rotate')

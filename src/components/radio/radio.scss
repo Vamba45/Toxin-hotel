@@ -1,0 +1,55 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/vars.scss';
+
+.radio {
+    max-width: 222px;
+    
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    &__label {
+        display: inline-flex;
+        align-items: top;
+        user-select: none;
+
+        @include body_txt();
+
+        max-width: 192px;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 19px;
+            height: 19px;
+
+            flex-shrink: 0;
+            flex-grow: 0;
+        
+            border: 1px solid $purple;
+
+            border-radius: 50%;
+
+            margin-right: 10px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100%;
+        }
+    }
+}
+
+.radio__input:checked+label.radio__label::before {
+    background: url(../../assets/img/icons/radio.svg) center center no-repeat;
+}
+
+/* стили при наведении курсора на radio */
+.radio__input:not(:disabled):not(:checked)+.radio__label:hover::before {
+    border-color: $purple;
+}
+
+/* стили для чекбокса, находящегося в состоянии disabled */
+.radio__input:disabled+.radio__label::before {
+    background-color: #e9ecef;
+}
