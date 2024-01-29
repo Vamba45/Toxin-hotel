@@ -4,6 +4,7 @@ import './formelements.scss';
 import Checkbox from '../../../components/checkboxx/checkbox';
 import Radio from '../../../components/radio/radio';
 import Toggle from '../../../components/toggle/toggle';
+import Like from '../../../components/like/like';
 
 const FormElements = () => {
     return (
@@ -26,6 +27,9 @@ const FormElements = () => {
 
             <Toggle id='tg1' labeltext='Получать спецпредложения'/>
             <Toggle id='tg2' labeltext='Получать спецпредложения'/>
+
+            <Like value={2}/>
+            <Like value={12}/>
         </div>
     )
 }

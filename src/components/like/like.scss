@@ -1,0 +1,48 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/vars.scss';
+
+.like {
+    @include border();
+    @include body_txt();
+
+    cursor: pointer;
+    border-radius: 10px;
+
+    padding: 2px 8px 2px 5px;
+
+    min-width: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    width: fit-content;
+
+    user-select: none;
+
+    &.active {
+        border-color: $purple;
+        color: $purple;
+
+        .like__icon {
+            background: url(../../assets/img/icons/like_active.svg) center no-repeat;
+        }
+    }
+
+    &:hover {
+        border-color: $purple;
+        color: $purple;
+    }
+
+    &__value {
+        padding-left: 3px;
+        font-size: 10px;
+        line-height: normal;
+    }
+
+    &__icon {
+        height: 8px;
+        width: 9px;
+        background: url(../../assets/img/icons/like_passive.svg) center no-repeat;
+    }
+}
