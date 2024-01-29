@@ -1,6 +1,7 @@
 import DropDown from '../../../components/dropdown/dropdown';
 import { TextField } from '../../../components/textField/textField';
 import './formelements.scss';
+import Checkbox from '../../../components/checkboxx/checkbox';
 
 const FormElements = () => {
     return (
@@ -11,6 +12,10 @@ const FormElements = () => {
 
             <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
             <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
+
+            <Checkbox name='some' id='1' labeltext='Можно курить'/>
+            <Checkbox name='some' id='2' labeltext='Можно с питомцами'/>
+            <Checkbox name='some' id='3' labeltext='Можно пригласить гостей (до 10 человек)'/>
         </div>
     )
 }
