@@ -1,0 +1,77 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/vars.scss';
+
+.toggle {
+    max-width: 222px;
+    
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    &__label {
+        display: inline-flex;
+        align-items: top;
+        user-select: none;
+
+        @include body_txt();
+
+        max-width: 260px;
+        width: 100%;
+        padding-left: 50px;
+
+        position: relative;
+
+        &::before {
+            content: '';
+
+            position: absolute;
+            top: 4px;
+            left: 4px;
+
+            width: 12px;
+            height: 12px;
+
+            border-radius: 50%;
+
+            margin-right: 10px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100%;
+
+            background-color: $DS_25;
+            
+            transition: transform 0.2s ease;
+        }
+
+        &::after {
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 40px;
+            height: 20px;
+
+            border: 1px solid $DS_25;
+            border-radius: 10px;
+        }
+    }
+}
+
+.toggle__input:checked+label.toggle__label::before {
+    background: $purple;
+    transform: translateX(20px);
+}
+
+.toggle__input:checked+label.toggle__label::after {
+    border-color: $purple;
+}
+
+/* стили при наведении курсора на toggle */
+.toggle__input:not(:disabled):not(:checked)+.toggle__label:hover::after {
+    border-color: $purple;
+}

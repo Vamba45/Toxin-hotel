@@ -20,7 +20,7 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
         <div className="textField"
             style={{maxWidth: maxWidth}}>
             { 
-                isSubscribtion === false &&
+                isSubscribtion === false && inputmask === "" &&
                 <input type="text" 
                     className='textField__input' 
                     placeholder={placeholder}/>
@@ -35,7 +35,7 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
                 </>
             }
             {
-                inputmask !== "" && 
+                isSubscribtion === false && inputmask !== "" && 
                 <input type="text" 
                     className='textField__masked' 
                     placeholder="ДД.ММ.ГГГГ"

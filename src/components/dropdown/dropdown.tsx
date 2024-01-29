@@ -66,8 +66,6 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             sum += Number(
                             (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
                         );
-
-            console.log(sum)
         }
 
         const text = parentDropdown?.querySelector('.dropdown__text') as HTMLElement;
@@ -77,7 +75,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             return;
         }
 
-        text.innerText = `Гостей:${sum}`;
+        text.innerText = `Гостей: ${sum}`;
 
         console.log(text.innerText)
     }

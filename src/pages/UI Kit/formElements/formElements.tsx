@@ -3,6 +3,7 @@ import { TextField } from '../../../components/textField/textField';
 import './formelements.scss';
 import Checkbox from '../../../components/checkboxx/checkbox';
 import Radio from '../../../components/radio/radio';
+import Toggle from '../../../components/toggle/toggle';
 
 const FormElements = () => {
     return (
@@ -22,6 +23,9 @@ const FormElements = () => {
             <Radio name='radio-buttins' id='r1' labeltext='мужчина' value='мужчина'/>
             <Radio name='radio-buttins' id='r2' labeltext='женщина' value='женщина'/>
             <Radio name='radio-buttins' id='r3' labeltext='нечто' value='нечто' disabled={true}/>
+
+            <Toggle id='tg1' labeltext='Получать спецпредложения'/>
+            <Toggle id='tg2' labeltext='Получать спецпредложения'/>
         </div>
     )
 }
