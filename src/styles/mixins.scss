@@ -30,5 +30,85 @@
     font-size: 14px;
     font-weight: 400;
     color: $DS_75;
-    line-height: 24px;
+}
+
+
+@mixin button_standart {
+    @include h3_txt();
+    
+    background-image: linear-gradient(#BC9CFF, #8BA4F9);
+    padding: 14px 20px;
+    width: 320px;
+    line-height: normal;
+    border-radius: 25px;
+    color: #fff;
+    position: relative;
+
+    &:hover {
+        box-shadow: 0px 0px 10px 0px $purple;
+    }
+
+    &::after {
+        content: '';
+        width: 40px;
+        height: 40px;
+        
+        position: absolute;
+        right: 12px;
+        top: 3px;
+
+        background: url(../../../assets/img/icons/arrow_white.svg) right center no-repeat;
+    }
+}
+
+@mixin button_short {
+    @include h3_txt();
+    
+    background-image: linear-gradient(#BC9CFF, #8BA4F9);
+
+    padding: 14px 20px;
+    width: fit-content;
+
+    line-height: normal;
+    border-radius: 25px;
+
+    color: #fff;
+
+    position: relative;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+@mixin button_whiteBG {
+    @include h3_txt();
+    
+    background: #fff;
+    border: 2px solid;
+    border-image: #BC9CFF, #8BA4F9;
+    padding: 12px 18px;
+
+    line-height: normal;
+    border-radius: 25px;
+
+    color: $purple;
+    width: fit-content;
+
+    position: relative;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+@mixin button_noborder {
+    @include h3_txt();
+
+    color: $purple;
+    width: fit-content;
+
+    &:hover {
+        color: $DS_75;
+    }
 }

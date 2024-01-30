@@ -33,6 +33,11 @@ const FormElements = () => {
             <Like value={12}/>
 
             <Rate name='kinopoisk' starCount={5}/>
+
+            <button className='button'>Перейти к оплате</button>
+            <button className='button_1'>click me</button>
+            <button className='button_2'>click me</button>
+            <button className='button_3'>click me</button>
         </div>
     )
 }

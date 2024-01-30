@@ -1,4 +1,23 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/vars.scss';
+
 .formElements {
     display: flex;
     flex-direction: column;
+}
+
+.button {
+    @include button_standart();
+}
+
+.button_1 {
+    @include button_short();
+}
+
+.button_2 {
+    @include button_whiteBG();
+}
+
+.button_3 {
+    @include button_noborder();
 }

@@ -21,9 +21,10 @@
 
         &::before {
             content: '';
+
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
 
             flex-shrink: 0;
             flex-grow: 0;
@@ -40,6 +41,7 @@
 
 .checkbox__input:checked+label.checkbox__label::before {
     background: url(../../assets/img/icons/checkbox.svg) center no-repeat;
+    border-color: $purple;
 }
 
 /* стили при наведении курсора на checkbox */
