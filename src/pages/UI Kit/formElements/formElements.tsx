@@ -5,6 +5,7 @@ import Checkbox from '../../../components/checkboxx/checkbox';
 import Radio from '../../../components/radio/radio';
 import Toggle from '../../../components/toggle/toggle';
 import Like from '../../../components/like/like';
+import Rate from '../../../components/rate/rate';
 
 const FormElements = () => {
     return (
@@ -30,6 +31,8 @@ const FormElements = () => {
 
             <Like value={2}/>
             <Like value={12}/>
+
+            <Rate name='kinopoisk' starCount={5}/>
         </div>
     )
 }

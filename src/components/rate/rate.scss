@@ -1,0 +1,33 @@
+@import '../../styles/vars.scss';
+
+.rate {
+    width: fit-content;
+    height: 25px;
+
+    transform: rotateY(180deg);
+
+    &__input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    &__label {
+        width: 24px;
+        height: 24px;
+
+        display: inline-block;
+
+        background: url(../../assets/img/icons/star_passive.svg) center no-repeat;
+
+        &.active {
+            background: url(../../assets/img/icons/star_active.svg) center no-repeat;
+        }
+    }
+}
+
+.rate__label:hover,
+.rate__label:hover ~ .rate__label {
+    background: url(../../assets/img/icons/star_active.svg) center no-repeat;
+}
+       
