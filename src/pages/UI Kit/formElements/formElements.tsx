@@ -6,6 +6,7 @@ import Radio from '../../../components/radio/radio';
 import Toggle from '../../../components/toggle/toggle';
 import Like from '../../../components/like/like';
 import Rate from '../../../components/rate/rate';
+import CheckBoxList from '../../../components/checkboxList/checkboxList';
 
 const FormElements = () => {
     return (
@@ -38,6 +39,10 @@ const FormElements = () => {
             <button className='button_1'>click me</button>
             <button className='button_2'>click me</button>
             <button className='button_3'>click me</button>
+
+            <CheckBoxList title='expanable textbox' options={["Завтрак", "Письменный стол", 
+                                                            "Стул для кормления", "Кроватка", 
+                                                            "Телевизор", "Шампунь"]}/>
         </div>
     )
 }

@@ -1,0 +1,47 @@
+@import '../../styles/vars.scss';
+@import '../../styles/mixins.scss';
+
+.checkboxList {
+    max-width: 266px;
+    width: 100%;    
+
+    &__select {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        cursor: pointer;
+
+        @include h3_txt();
+
+        &.active {
+            .checkboxList__button {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__button {
+        width: 44px;
+        height: 44px;
+
+        display: block;
+
+        background: url(../../assets/img/icons/dropdown_arrow.svg) center no-repeat;
+
+        transform: rotate(0);
+        transition: transform 0.2s ease;
+    }
+
+    &__options {
+        max-height: 0px;
+        overflow: hidden;
+
+        transition: max-height 0.2s ease;
+
+        &.active {
+            max-height: 100vh;
+        }
+    }
+}
