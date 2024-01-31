@@ -11,6 +11,9 @@ import Advantage from '../../../components/advantage/advantage';
 
 import city from '../../../assets/img/icons/city.svg';
 import smile from '../../../assets/img/icons/smile.svg';
+import avatar from '../../../assets/img/avatar.png';
+
+import Comment from '../../../components/comment/comment';
 
 const FormElements = () => {
     return (
@@ -65,6 +68,9 @@ const FormElements = () => {
 
             <Advantage img={smile} text='Шумопоглощающие стены' title='Комфорт'/>
             <Advantage img={city} text='Окно в каждой из спален' title='Удобство'/>
+
+            <Comment avatar={avatar} likes={12} lastvisit='5 дней назад'
+                        username='Мурад Сарафанов' text='Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'/>
         </div>
     )
 }
