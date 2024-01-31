@@ -1,6 +1,10 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/vars.scss';
 
+body {
+    height: 3000px;
+}
+
 .formElements {
     display: flex;
     flex-direction: column;

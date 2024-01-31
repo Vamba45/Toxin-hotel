@@ -11,7 +11,7 @@
         justify-content: space-between;
         align-items: center;
 
-        cursor: pointer;
+        height: 44px;
 
         @include h3_txt();
 
@@ -22,11 +22,19 @@
         }
     }
 
+    &__label {
+        text-align: left;
+        flex-grow: 1;
+
+        cursor: pointer;
+    }
+
     &__button {
         width: 44px;
         height: 44px;
 
         display: block;
+        cursor: pointer;
 
         background: url(../../assets/img/icons/dropdown_arrow.svg) center no-repeat;
 
@@ -37,11 +45,33 @@
     &__options {
         max-height: 0px;
         overflow: hidden;
-
-        transition: max-height 0.2s ease;
-
+        transition: max-height 0.3s linear;
+        
         &.active {
             max-height: 100vh;
         }
     }
+
+    &__point {
+        @include body_txt();
+        color: $DS_75;
+
+        li {
+            padding-left: 20px;
+            margin-bottom: 10px;
+
+            position: relative;
+
+            &::after {
+                content: '';
+
+                border: 5px solid $DS_25;
+                border-radius: 50%;
+
+                position: absolute;
+                left: 0;
+                top: 6px;
+            }
+        }
+    } 
 }

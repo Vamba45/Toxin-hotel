@@ -6,7 +6,7 @@ import Radio from '../../../components/radio/radio';
 import Toggle from '../../../components/toggle/toggle';
 import Like from '../../../components/like/like';
 import Rate from '../../../components/rate/rate';
-import CheckBoxList from '../../../components/checkboxList/checkboxList';
+import CheckBoxList from '../../../components/checkboxExpandable/checkboxList';
 
 const FormElements = () => {
     return (
@@ -18,10 +18,10 @@ const FormElements = () => {
             <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
             <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
 
-            <Checkbox name='some' id='ch1' labeltext='Можно курить'/>
-            <Checkbox name='some' id='ch2' labeltext='Можно с питомцами'/>
-            <Checkbox name='some' id='ch3' labeltext='Можно пригласить гостей (до 10 человек)'/>
-            <Checkbox name='some' id='ch4' labeltext='Разрешено употрбление табачной продукции' disabled={true}/>
+            <Checkbox name='some' id='ch1' paragraph='Можно курить'/>
+            <Checkbox name='some' id='ch2' paragraph='Можно с питомцами'/>
+            <Checkbox name='some' id='ch3' paragraph='Можно пригласить гостей (до 10 человек)'/>
+            <Checkbox name='some' id='ch4' paragraph='Разрешено употрбление табачной продукции' disabled={true}/>
 
             <Radio name='radio-buttins' id='r1' labeltext='мужчина' value='мужчина'/>
             <Radio name='radio-buttins' id='r2' labeltext='женщина' value='женщина'/>
@@ -42,7 +42,22 @@ const FormElements = () => {
 
             <CheckBoxList title='expanable textbox' options={["Завтрак", "Письменный стол", 
                                                             "Стул для кормления", "Кроватка", 
-                                                            "Телевизор", "Шампунь"]}/>
+                                                            "Телевизор", "Шампунь"]}
+                                                            type='expanable'/>
+
+            
+            <CheckBoxList title='bullet list' options={["Нельзя с питомцами", 
+                                                            "Без вечеринок и мероприятий", 
+                                                            "Время прибытия — после 13:00, а выезд до 12:00"]}
+                                                            type="bullet"/>
+
+            <CheckBoxList title='rich checkbox buttons' options={["Широкий коридор", 
+                                                            "Помощник для инвалидов"]}
+                                                            richTitles={[
+                                                                "Ширина коридоров в номере не менее 91 см.",
+                                                                "На 1 этаже вас встретит специалист и проводит до номера."
+                                                            ]}
+                                                            type="rich"/>
         </div>
     )
 }
