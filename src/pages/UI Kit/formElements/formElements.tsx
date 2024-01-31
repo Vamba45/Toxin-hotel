@@ -7,6 +7,10 @@ import Toggle from '../../../components/toggle/toggle';
 import Like from '../../../components/like/like';
 import Rate from '../../../components/rate/rate';
 import CheckBoxList from '../../../components/checkboxExpandable/checkboxList';
+import Advantage from '../../../components/advantage/advantage';
+
+import city from '../../../assets/img/icons/city.svg';
+import smile from '../../../assets/img/icons/smile.svg';
 
 const FormElements = () => {
     return (
@@ -58,6 +62,9 @@ const FormElements = () => {
                                                                 "На 1 этаже вас встретит специалист и проводит до номера."
                                                             ]}
                                                             type="rich"/>
+
+            <Advantage img={smile} text='Шумопоглощающие стены' title='Комфорт'/>
+            <Advantage img={city} text='Окно в каждой из спален' title='Удобство'/>
         </div>
     )
 }
