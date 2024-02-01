@@ -14,6 +14,7 @@ import smile from '../../../assets/img/icons/smile.svg';
 import avatar from '../../../assets/img/avatar.png';
 
 import Comment from '../../../components/comment/comment';
+import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 
 const FormElements = () => {
     return (
@@ -71,6 +72,7 @@ const FormElements = () => {
 
             <Comment avatar={avatar} likes={12} lastvisit='5 дней назад'
                         username='Мурад Сарафанов' text='Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'/>
+            <RangeSlider/>
         </div>
     )
 }
