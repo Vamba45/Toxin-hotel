@@ -27,8 +27,14 @@ const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title,
         if(maxVal - minVal < priceGap) {
             if(target.className === "range-min") {
                 rangeMin.value = `${maxVal - priceGap}`;
+
+                progress.style.left = (Number(rangeMin.value) / Number(rangeMin.max)) * 100 + "%";
+                progress.style.right = 100 - (Number(rangeMax.value) / Number(rangeMax.max)) * 100 + "%";
             } else {
                 rangeMax.value = `${minVal + priceGap}`;
+                    
+                progress.style.left = (Number(rangeMin.value) / Number(rangeMin.max)) * 100 + "%";
+                progress.style.right = 100 - (Number(rangeMax.value) / Number(rangeMax.max)) * 100 + "%";
             }
         } else {
             inputMin.textContent = String(minVal) + "₽";
