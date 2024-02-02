@@ -72,8 +72,10 @@ const FormElements = () => {
 
             <Comment avatar={avatar} likes={12} lastvisit='5 дней назад'
                         username='Мурад Сарафанов' text='Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'/>
-            <RangeSlider/>
-        </div>
+            
+            <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
+            <RangeSlider maxValue={10000} defaultMax={7500} defaultMin={2500} priceGap={1000} title='range slider'/>
+        </div> 
     )
 }
 
