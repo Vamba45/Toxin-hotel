@@ -16,6 +16,8 @@ import avatar from '../../../assets/img/avatar.png';
 import Comment from '../../../components/comment/comment';
 import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 
+import Pagination from '../../../components/pagination/pagination';
+
 const FormElements = () => {
     return (
         <div className="formElements uikit">
@@ -75,6 +77,8 @@ const FormElements = () => {
             
             <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
             <RangeSlider maxValue={10000} defaultMax={7500} defaultMin={2500} priceGap={1000} title='range slider'/>
+
+            <Pagination/>
         </div> 
     )
 }
