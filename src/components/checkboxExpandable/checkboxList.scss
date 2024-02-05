@@ -26,6 +26,8 @@
         text-align: left;
         flex-grow: 1;
 
+        user-select: none;
+
         cursor: pointer;
     }
 
@@ -45,7 +47,7 @@
     &__options {
         max-height: 0px;
         overflow: hidden;
-        transition: max-height 0.3s linear;
+        transition: max-height 0.2s ease;
         
         &.active {
             max-height: 100vh;

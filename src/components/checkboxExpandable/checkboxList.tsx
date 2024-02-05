@@ -16,14 +16,8 @@ const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}
         const select = (owner?.querySelector('.checkboxList__select') as HTMLElement);
         const options = (owner?.querySelector('.checkboxList__options') as HTMLElement);
 
-        select.style.pointerEvents = 'none'
-
         select.classList.toggle('active')
         options.classList.toggle('active')
-
-        setTimeout(() => {
-            select.style.pointerEvents = 'auto'
-        }, 300)
     }
 
     return (

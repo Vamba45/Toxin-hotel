@@ -9,7 +9,7 @@ interface IDropDown {
 
 const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
 
-    function dropdownArrowClick(event: React.MouseEvent<HTMLElement>) {
+    function dropdownSelectClick(event: React.MouseEvent<HTMLElement>) {
         const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
 
         parentDropdown?.querySelector('.dropdown__menu')?.classList.toggle('active')
@@ -17,15 +17,8 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
         btn.classList.toggle('rotate')
 
-        const select = parentDropdown?.querySelector('.dropdown__select') as HTMLElement;
-        select.style.pointerEvents = 'none';
+        if(hasButtons === false) {
 
-        setTimeout(() => {
-            select.style.pointerEvents = 'auto';
-        }, 300)
-
-        if(hasButtons === false
-            && (event.target as HTMLElement).classList.contains('rotate')) {
             const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
             const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
             
@@ -77,8 +70,6 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         }
 
         text.innerText = `Гостей: ${sum}`;
-
-        console.log(text.innerText)
     }
 
     function resetBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
@@ -99,7 +90,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
     return (
         <div className="dropdown"
             style={{maxWidth: maxWidth}}>
-            <div className="dropdown__select" onClick={dropdownArrowClick}>
+            <div className="dropdown__select" onClick={dropdownSelectClick}>
                 <div className="dropdown__text">
                     {
                         hasButtons === false ? "Спальни и ванные" : "Сколько гостей"
