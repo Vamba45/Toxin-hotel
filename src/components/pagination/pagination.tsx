@@ -2,33 +2,65 @@ import React, { FC } from "react"
 import './pagination.scss';
 
 const Pagination: FC = () => {
-    const [page, setPage] = React.useState(1)
+    const [page, setPage] = React.useState(10)
+    const pageLimit = 10;
+    const pageRange = 2;
+    
+    function pageOnClick(e: React.MouseEvent) {
+        (e.target as HTMLElement).classList.toggle('active');
+    }
 
-    React.useEffect(() => {
-        fetch(`https://65893844324d41715258975f.mockapi.io/react/photos/photos?page=${page}`)
-        .then((res) => res.json())
-        .then((json) => {
-        })
-        .catch((err) => {
-          console.warn(err);
-          alert('Ошибка при получении данных')
-        }).finally()
-      }, [page]);
-
-      
     return(
         <div className="pagination">
             <ul className="pagination__list">
                 {
-                [... Array(5)].map((el, i) => (
-                        <li onClick={() => setPage(i + 1)}
-                            className={page === (i + 1) ? 'active' : ''}>
-                            {i + 1}
+                    page > 1 &&
+                    <>
+                        <li className="pagination__prev"></li>
+                        <li className="pagination__firstpage">
+                            1
                         </li>
-                    ))
+                        <li className="pagination__dotsbefore">
+                            ...
+                        </li>
+                    </>
+                }
+
+                {/* {   
+                    page > 1 && 
+                        <>
+                            <li className="pagination__pagenum">
+                                {
+                                    page - 1
+                                }
+                            </li>
+                            <li className="pagination__pagenum">
+                                {
+                                    page
+                                }
+                            </li>
+                            <li className="pagination__pagenum">
+                                {
+                                    page + 1
+                                }
+                            </li>
+                        </>
+                } */}
+
+                {
+                    page < pageLimit &&
+                    <>
+                        <li className="pagination__dotsafter">
+                            ...
+                        </li>
+                        <li className="pagination__lastpage">
+                            {pageLimit}
+                        </li>
+                        <li className="pagination__next"></li>
+                    </>
                 }
             </ul>
-            <div className="pagination__textbottom">1-12 из 100+ вариантов аренды</div>
+            {/* <div className="pagination__textbottom">1-12 из 100+ вариантов аренды</div> */}
         </div>
     )
 }
