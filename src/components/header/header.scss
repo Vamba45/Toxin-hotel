@@ -18,7 +18,12 @@
     }
 
     &__logo {
+        min-height: 40px;
+        width: 40px;
+        min-width: 106px;
+        width: 106px;
 
+        margin-right: 40px;
     }
 
     &__menu {
@@ -28,6 +33,8 @@
         align-items: center;
 
         font-size: 14px;
+
+        user-select: none;
 
         .menu__item {
             padding-top: 10px !important;
@@ -86,7 +93,7 @@
             color: $DS;
         }
 
-        //display: none;
+        display: none;
     }
 }   
 
@@ -147,6 +154,69 @@
         .submenu__list {
             opacity: 1;
             z-index: 1;
+        }
+    }
+
+    .burger {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header {
+
+        &__menu {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            flex-direction: column;
+        }
+
+        .burgercol {
+            position: relative;
+            max-width: 400px;
+            width: 400px;
+        }
+
+        .burger {
+            display: flex;
+            flex-direction: row;
+            justify-items: center;
+            align-items: center;
+
+            width: 100%;
+            background-color: $purple;
+
+            &__button {
+                width: 50px;
+                height: 40px;
+
+                background-color: orange;
+                position: relative;
+
+                &::after,
+                &::before,
+                span {
+                    content: '';
+
+                    width: 100%;
+                    height: 3px;
+                    left: 0;
+
+                    position: absolute;
+                    background-color: red;
+                }
+
+                &::before {
+                    top: 29%;
+                }
+                &::after {
+                    bottom: 24%;
+                }
+                span {
+                    top: 48%;
+                }
+            }
         }
     }
 }

@@ -37,7 +37,12 @@ const Header : FC = () => {
                             <img className="header__logo" src={logo} alt="logo"/>
                         </a>
                     </div>
-                    <div className="header__column">
+                    <div className="header__column burgercol">
+                        <div className="burger">
+                            <div className="burger__button">
+                                <span></span>
+                            </div>
+                        </div>
                         <ul className="header__menu menu">
                             <li className="menu__item">О нас</li>
                             <Submenu text="Услуги" options={
@@ -57,16 +62,19 @@ const Header : FC = () => {
                                 'Диплом о повышении квалификации']
                             }/>
                         </ul>
+                    </div>
+                    <div className="header__column">
                         <div className="header__buttons">
                             <button className="header__login">войти</button>
                             <button className="header__registration">зарегистрироваться</button>
                         </div>
-                        {/* <div className="header__user">
+                        <div className="header__user">
                             Юлий Цезарь
-                        </div> */}
+                        </div>
                     </div>
                 </div>
             </div>
+
         </header>
     )
 }
