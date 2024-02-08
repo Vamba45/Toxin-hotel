@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Link }from 'react-router-dom';
 import './styles/style.scss';
 import ColorsTypes from './pages/UI Kit/colorsTypes/colorsTypes';
 import FormElements from './pages/UI Kit/formElements/formElements';
+import HeadersFooters from './pages/UI Kit/headersFooters/headersFooters';
 //import { Provider } from 'react-redux';
 //import  {setupStore} from './store/store';
 
@@ -19,6 +20,7 @@ root.render(
         <Routes>
             <Route path="/" element={<ColorsTypes />} />
             <Route path="/formElements" element={<FormElements />} />
+            <Route path="/headfoot" element={<HeadersFooters />} />
             {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
     </Router>

@@ -14,6 +14,10 @@
 
 a, a:link, a:visited  {
     text-decoration: none;
+	line-height: normal;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
 }
 
 a:hover  {

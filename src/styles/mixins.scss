@@ -66,7 +66,7 @@
     
     background-image: linear-gradient(#BC9CFF, #8BA4F9);
 
-    padding: 14px 20px;
+    padding: 8px 20px;
     width: fit-content;
 
     line-height: normal;
@@ -85,17 +85,20 @@
     @include h3_txt();
     
     background: #fff;
-    border: 2px solid;
+    border: 2.5px solid;
     border-image: #BC9CFF, #8BA4F9;
-    padding: 12px 18px;
+    padding: 6px 18px;
 
-    line-height: normal;
     border-radius: 25px;
 
     color: $purple;
     width: fit-content;
 
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         opacity: 0.5;

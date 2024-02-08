@@ -1,0 +1,152 @@
+@import './../../styles/mixins.scss';
+@import './../../styles/vars.scss';
+
+.header {
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        padding: 20px 0;
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__logo {
+
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        font-size: 14px;
+
+        .menu__item {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            padding: 0 15px;
+            cursor: pointer;
+            text-wrap: nowrap;
+            color: $DS_75;
+
+            &:hover {
+                color: $purple;
+            }
+
+            &:first-child {
+                font-weight: bold;
+            }
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-size: 12px;
+
+        padding-left: 30px;
+    }
+
+    &__login {
+        @include button_whiteBG();
+        margin-right: 6px;
+    }
+
+    &__registration {
+        @include button_short();
+        margin-left: 6px;
+    }
+
+    &__user {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 14px;
+
+        padding-left: 20px;
+        margin-left: 25px;
+        border-left: 1px solid $DS_25;
+
+        color: $DS_75;
+        cursor: pointer;
+
+        text-wrap: nowrap;
+
+        &:hover {
+            color: $DS;
+        }
+
+        //display: none;
+    }
+}   
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding-right: 30px !important;
+    margin-right: 15px;
+
+    position: relative;
+
+    &::after {
+        content: '';
+
+        width: 24px;
+        height: 21px;
+
+        position: absolute;
+        top: 11px;
+        right: 0;
+
+        background: url(../../assets/img/icons/dropdown_arrow.svg) no-repeat center;
+    }
+
+    &__list {
+        position: absolute;
+        
+        top: 40px;
+        left: 15px;
+
+        opacity: 0;
+        z-index: -1;
+
+        transition: opacity 0.5s ease;
+
+        min-width: 85%;
+        width: fit-content;
+
+        background-color: $DS_5;
+
+        li {
+            font-size: 15px;
+            color: $DS_75;
+            text-align: left;
+
+            padding: 15px 30px;
+
+            &:hover {
+                color: #fff;
+                background: #b0afffa8;
+            }
+        }
+    }
+
+    &:hover {
+        .submenu__list {
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+}
