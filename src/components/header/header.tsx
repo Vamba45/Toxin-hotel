@@ -27,6 +27,16 @@ const Submenu : FC<ISubmenu> = ({text, options}) => {
     )
 }
 
+function burgerOnClick(e: React.MouseEvent) {
+    const owner = (e.target as HTMLElement).closest('.burgercol');
+
+    const menu = owner?.querySelector('.menu') as HTMLElement;
+    const burger = owner?.querySelector('.burger') as HTMLElement;
+
+    burger.classList.toggle('active')
+    menu.classList.toggle('active')
+}
+
 const Header : FC = () => {
     return (
         <header className="header">
@@ -38,7 +48,7 @@ const Header : FC = () => {
                         </a>
                     </div>
                     <div className="header__column burgercol">
-                        <div className="burger">
+                        <div className="burger" onClick={burgerOnClick}>
                             <div className="burger__button">
                                 <span></span>
                             </div>

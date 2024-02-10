@@ -7,6 +7,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
 
         padding: 20px 0;
     }
@@ -30,7 +31,6 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
 
         font-size: 14px;
 
@@ -39,7 +39,9 @@
         .menu__item {
             padding-top: 10px !important;
             padding-bottom: 10px !important;
+
             padding: 0 15px;
+
             cursor: pointer;
             text-wrap: nowrap;
             color: $DS_75;
@@ -58,6 +60,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
         font-size: 12px;
 
         padding-left: 30px;
@@ -66,11 +69,13 @@
     &__login {
         @include button_whiteBG();
         margin-right: 6px;
+        height: 40px;
     }
 
     &__registration {
         @include button_short();
-        margin-left: 6px;
+        margin-left: 6px;    
+        height: 40px;
     }
 
     &__user {
@@ -164,18 +169,60 @@
 
 @media screen and (max-width: 1000px) {
     .header {
+        .submenu .submenu__list {
+            
+        }
 
         &__menu {
-            position: absolute;
-            top: 45px;
-            left: 0;
+            max-height: 0px;
+            width: 85%;
+
+            transition: max-height 0.2s ease;
+            overflow: hidden;
+
             flex-direction: column;
+
+            position: absolute;
+            top: 55px;
+
+            z-index: 5;
+
+            background: linear-gradient(#92f5bb, #c8F3fd);
+        }
+
+        .menu .menu__item {
+            padding-left: 25px !important;
+            padding-right: 25px !important;
+
+            font-weight: 700;
+
+            &:first-child {
+                padding-top: 20px !important;
+            }
+
+            &:last-child {
+                padding-bottom: 20px !important;
+            }
+        }
+
+        .menu.active {
+            max-height: 100vh;
+            transition: max-height 0.2s ease;
+            overflow: visible;
+            background: linear-gradient(#92f5bb, #c8F3fd);
         }
 
         .burgercol {
             position: relative;
+
             max-width: 400px;
             width: 400px;
+            
+            display: flex;
+
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
         }
 
         .burger {
@@ -184,14 +231,54 @@
             justify-items: center;
             align-items: center;
 
+            
+            z-index: 10;
+
             width: 100%;
-            background-color: $purple;
+            height: 60px;
+
+            padding: 0 45px 0 25px;
+            border-radius: 25px;
+
+            background: center no-repeat linear-gradient(#6FCF97,#66D2EA);
+
+            &.active {
+                .burger__button {
+                    &::after,
+                    &::before,
+                    span {
+                        height: 3px;
+                        width: 40px;
+
+                        left: 5px;
+                    }
+
+                    &::before {
+                        transform: rotate(-45deg);
+                        top: 47%;
+                        
+                        transition: transform 0.2s ease;
+                    }
+                    &::after {
+                        transform: rotate(45deg);
+                        bottom: 47%;
+                        
+                        transition: transform 0.2s ease;
+                    }
+                    span {
+                        opacity: 0;
+                        transition: opacity 0.2s ease;
+                    }   
+                }
+            }
 
             &__button {
+                cursor: pointer;
+                margin-left: 20px;
+
                 width: 50px;
                 height: 40px;
 
-                background-color: orange;
                 position: relative;
 
                 &::after,
@@ -204,17 +291,17 @@
                     left: 0;
 
                     position: absolute;
-                    background-color: red;
+                    background-color: #FFF;
                 }
 
                 &::before {
-                    top: 29%;
+                    top: 28%;
                 }
                 &::after {
                     bottom: 24%;
                 }
                 span {
-                    top: 48%;
+                    top: 48.5%;
                 }
             }
         }
