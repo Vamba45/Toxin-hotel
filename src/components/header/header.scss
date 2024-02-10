@@ -169,8 +169,21 @@
 
 @media screen and (max-width: 1000px) {
     .header {
-        .submenu .submenu__list {
-            
+        .submenu { 
+            font-weight: 700;
+
+            .submenu__list {
+                background-color: #66d2eaaf;
+                top: 0;
+                left: 100%;
+
+                border: 3px solid #66D2EA;
+                border-radius: 10px;
+
+                .submenu__item {
+                    font-weight: 400;
+                }
+            }
         }
 
         &__menu {
@@ -183,18 +196,28 @@
             flex-direction: column;
 
             position: absolute;
-            top: 55px;
+            top: 49px;
 
             z-index: 5;
 
             background: linear-gradient(#92f5bb, #c8F3fd);
+            border: 3px solid #6FCF97;
+            border-radius: 0 0 15px 15px;
         }
 
         .menu .menu__item {
             padding-left: 25px !important;
             padding-right: 25px !important;
 
-            font-weight: 700;
+            font-weight: 400;
+
+            &.submenu {
+                font-weight: 700;
+            }
+
+            &:hover {
+                color: $DS;
+            }
 
             &:first-child {
                 padding-top: 20px !important;
