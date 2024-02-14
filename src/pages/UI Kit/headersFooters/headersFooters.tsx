@@ -4,7 +4,7 @@ import Header from "../../../components/header/header";
 
 const HeadersFooters: FC = () => {
     return (
-        <div className="headfoot uikit">
+        <div className="headfoot">
             <Header/>
         </div>
     )

@@ -9,12 +9,21 @@ interface ISubmenu {
 }
 
 const Submenu : FC<ISubmenu> = ({text, options}) => {
-    function submenuClick(e: React.MouseEvent) {
-        (e.target as HTMLElement).classList.toggle('active');
+    function submenuOnCLick(e: React.MouseEvent) {
+        if((e.target as HTMLElement).classList.contains('submenu')) {
+
+            (e.target as HTMLElement).classList.toggle('active')
+            
+        } else {
+            (e.target as HTMLElement)
+            .closest('.submenu')
+            ?.classList
+            .toggle('active')
+        }
     }
 
     return (
-        <li className="menu__item submenu" onClick={submenuClick}>
+        <li className="menu__item submenu" onClick={submenuOnCLick}>
             {text}
             <ul className="submenu__list">
                 {
@@ -28,13 +37,15 @@ const Submenu : FC<ISubmenu> = ({text, options}) => {
 }
 
 function burgerOnClick(e: React.MouseEvent) {
-    const owner = (e.target as HTMLElement).closest('.burgercol');
+    const row = (e.target as HTMLElement).closest('.header__row');
 
-    const menu = owner?.querySelector('.menu') as HTMLElement;
-    const burger = owner?.querySelector('.burger') as HTMLElement;
+    const col = row?.querySelector('.burgercol') as HTMLElement;
+    const burger = row?.querySelector('.burger__button') as HTMLElement;
 
     burger.classList.toggle('active')
-    menu.classList.toggle('active')
+    col.classList.toggle('active')
+
+    document.body.classList.toggle('lock');
 }
 
 const Header : FC = () => {
@@ -43,16 +54,11 @@ const Header : FC = () => {
             <div className="container">
                 <div className="header__row">
                     <div className="header__column">
-                        <a href="#">
-                            <img className="header__logo" src={logo} alt="logo"/>
+                        <a href="#" className="header__logo">
+                            <img src={logo} alt="logo"/>
                         </a>
                     </div>
                     <div className="header__column burgercol">
-                        <div className="burger" onClick={burgerOnClick}>
-                            <div className="burger__button">
-                                <span></span>
-                            </div>
-                        </div>
                         <ul className="header__menu menu">
                             <li className="menu__item">О нас</li>
                             <Submenu text="Услуги" options={
@@ -80,6 +86,13 @@ const Header : FC = () => {
                         </div>
                         <div className="header__user">
                             Юлий Цезарь
+                        </div>
+                    </div>
+                    <div className="header__column burger">
+                        <div className="burger__button" onClick={burgerOnClick}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </div>
                 </div>
