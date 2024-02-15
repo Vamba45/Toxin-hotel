@@ -1,0 +1,32 @@
+.footer {
+    &__widgetes {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    &__widget {
+        
+    }
+}
+
+.widget {
+    &__text {
+
+    }
+
+    &__list {
+
+    }
+
+    &__option {
+
+    }
+
+    &__title {
+
+    }
+
+    &__input {
+
+    }
+}
