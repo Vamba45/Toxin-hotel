@@ -20,7 +20,7 @@ const Footer : FC = () => {
                         <div className="footer__widget widget">
                             <ul className="widget__list">
                                 <li className="widget__option">
-                                    <a href="#">Навигация</a>
+                                    Навигация
                                 </li>
                                 <li className="widget__option">
                                     <a href="#">О нас</a>
@@ -39,7 +39,7 @@ const Footer : FC = () => {
                         <div className="footer__widget widget">
                             <ul className="widget__list">
                                 <li className="widget__option">
-                                    <a href="#">О нас</a>
+                                    О нас
                                 </li>
                                 <li className="widget__option">
                                     <a href="#">О сервисе</a>
@@ -58,7 +58,7 @@ const Footer : FC = () => {
                         <div className="footer__widget widget">
                             <ul className="widget__list">
                                 <li className="widget__option">
-                                    <a href="#">Служба поддержки</a>
+                                    Служба поддержки
                                 </li>
                                 <li className="widget__option">
                                     <a href="#">Соглашения</a>
