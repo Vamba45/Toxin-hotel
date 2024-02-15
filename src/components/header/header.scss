@@ -17,6 +17,10 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+
+        &:first-child {
+            flex-grow: 1;
+        }
     }
 
     &__logo {
@@ -98,8 +102,6 @@
         &:hover {
             color: $DS;
         }
-
-        display: none;
     }
 
     .burger {
@@ -134,14 +136,23 @@
         position: absolute;
         
         top: 40px;
-        left: 15px;
 
-        z-index: -1;
+        &.left {
+            left: 0;
+        }
+
+        &.right {
+            right: 0;
+        }
+
+        z-index: -100;
+        opacity: 0;
 
         min-width: 85%;
         width: fit-content;
 
-        background-color: #e6e6e6d4;
+        background: #ffffff91;
+        box-shadow: 0 0 15px #696969;
 
         li {
             font-size: 15px;
@@ -159,7 +170,8 @@
 
     &:hover {
         .submenu__list {
-            z-index: 1;
+            z-index: 5;
+            opacity: 1;
         }
     }
 
@@ -188,6 +200,10 @@
             z-index: 15;
         }
 
+        &__user {
+            border: none;
+        }
+
         &::after {
             content: '';
 
@@ -201,14 +217,16 @@
 
             z-index: 10;
 
-            background: linear-gradient(#ffffff, 80%, #ccb6fa);
+            background: linear-gradient(#ffffff, 80%, #d6c6f9);
+            box-shadow: 0 0 10px #d6c6f9;
         }
 
         background-color: aquamarine;
 
         &__row {
             display: grid;
-            grid-template-columns: 1fr 6fr 1fr;
+            grid-template-columns: 6fr 6fr 1fr;
+            align-items: center;
         }
 
         &__column {
@@ -222,10 +240,10 @@
             margin-left: 15px;
 
             &__button {
-                height: 40px;
-                width: 60px;
+                height: 30px;
+                width: 50px;
 
-                padding: 8px;
+                padding: 5px;
                 cursor: pointer;
                             
                 background: #fff;
@@ -238,7 +256,7 @@
                 align-items: center;
 
                 span {
-                    width: 35px;
+                    width: 22px;
                     height: 3px;
 
                     background-color: $purple;
@@ -254,16 +272,16 @@
                             transform: rotate(-45deg);
                             position: absolute;
 
-                            top: 17px;
-                            left: 11px;
+                            top: 12px;
+                            left: 13px;
                         }
                         &:nth-of-type(3) {
                             transform: rotate(45deg);
 
                             position: absolute;
 
-                            bottom: 17px;
-                            left: 11px;
+                            bottom: 12px;
+                            left: 13px;
                         }
                         &:nth-of-type(2) {
                             opacity: 0;
@@ -333,6 +351,10 @@
                 max-width: 100%;
                 width: 100%;
 
+                &::after {
+                    top: 16px;
+                }
+
                 &__list {
                     position: static;
                     max-height: 0vh;
@@ -343,13 +365,21 @@
                     max-width: 100%;
                     width: 100%;
 
+                    box-shadow: none;
+
                     background-color: transparent;
+
+                    opacity: 1;
                 }
 
                 &.active {
                     .submenu__list {
                         max-height: 100vh;
                         height: 100%;
+                    }
+
+                    &::after {
+                        transform: rotate(180deg);
                     }
                 }
 
@@ -361,25 +391,39 @@
 
                     position: relative;
 
+                    color: $DS_50;
+
+                    &::before {
+                        content: '';
+
+                        position: absolute;
+
+                        top: 22px;
+                        left: 5px;
+                        
+                        height: 8px;
+                        width: 8px;
+
+                        background-color: $DS_50;
+                    }
+
                     &:hover {
                         color: $DS;
 
                         &::before {
-                            content: '';
-
-                            position: absolute;
-
-                            top: 22px;
-                            left: 5px;
-                            
-                            height: 8px;
-                            width: 8px;
-
                             background-color: $purple;
                         }
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 700px)  {
+    .header {
+        &__registration {
+            display: none;
         }
     }
 }

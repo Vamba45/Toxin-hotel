@@ -5,11 +5,16 @@ import logo from '../../assets/img/logo.svg';
 
 interface ISubmenu {
     text: string;
-    options: string[]
+    options: string[];
+    hoverLeft?: boolean;
 }
 
-const Submenu : FC<ISubmenu> = ({text, options}) => {
+const Submenu : FC<ISubmenu> = ({text, options, hoverLeft = true}) => {
     function submenuOnCLick(e: React.MouseEvent) {
+        if(window.innerWidth > 1000) {
+            return
+        }
+
         if((e.target as HTMLElement).classList.contains('submenu')) {
 
             (e.target as HTMLElement).classList.toggle('active')
@@ -17,15 +22,14 @@ const Submenu : FC<ISubmenu> = ({text, options}) => {
         } else {
             (e.target as HTMLElement)
             .closest('.submenu')
-            ?.classList
-            .toggle('active')
+            ?.classList.toggle('active')
         }
     }
 
     return (
-        <li className="menu__item submenu" onClick={submenuOnCLick}>
+        <li className='menu__item submenu' onClick={submenuOnCLick}>
             {text}
-            <ul className="submenu__list">
+            <ul className={"submenu__list " + (hoverLeft === true ? "left" : "right")}>
                 {
                     options.map((opt) => (
                         <li className="submenu__item">{opt}</li>
@@ -48,7 +52,11 @@ function burgerOnClick(e: React.MouseEvent) {
     document.body.classList.toggle('lock');
 }
 
-const Header : FC = () => {
+interface IHeader {
+    user?: string;
+}
+
+const Header : FC<IHeader> = ({user = ""}) => {
     return (
         <header className="header">
             <div className="container">
@@ -75,18 +83,24 @@ const Header : FC = () => {
                                 "Лицензия на оказание услуг",
                                 "Справка из санпединстанции",
                                 "Регистрационный номер ИП",
-                                'Диплом о повышении квалификации']
-                            }/>
+                                'Диплом о повышении квалификации']}
+                                hoverLeft={false}/>
                         </ul>
                     </div>
                     <div className="header__column">
-                        <div className="header__buttons">
-                            <button className="header__login">войти</button>
-                            <button className="header__registration">зарегистрироваться</button>
-                        </div>
-                        <div className="header__user">
-                            Юлий Цезарь
-                        </div>
+                        {
+                            user === "" && 
+                            (<div className="header__buttons">
+                                <button className="header__login">войти</button>
+                                <button className="header__registration">зарегистрироваться</button>
+                            </div>)
+                        }
+                        {
+                            user !== "" && 
+                            (<div className="header__user">
+                                {user}
+                            </div>)
+                        }
                     </div>
                     <div className="header__column burger">
                         <div className="burger__button" onClick={burgerOnClick}>
