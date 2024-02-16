@@ -12,7 +12,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
     function dropdownSelectClick(event: React.MouseEvent<HTMLElement>) {
         const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
 
-        parentDropdown?.querySelector('.dropdown__menu')?.classList.toggle('active')
+        parentDropdown?.classList.toggle('active');
 
         const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
         btn.classList.toggle('rotate')
