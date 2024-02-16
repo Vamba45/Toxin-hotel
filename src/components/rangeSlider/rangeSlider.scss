@@ -55,12 +55,14 @@ input[type="number"]::-webkit-inner-spin-button {
     border: 1px solid $DS_25;
     border-radius: 5px;
     position: relative;
+
+    cursor: pointer;
 }
 
 .rangeSlider__slider .rangeSlider__progress {
     height: 5px;
-    // left: 25%;
-    // right: 25%;
+    left: 25%;
+    right: 25%;
     position: absolute;
     border-radius: 5px;
     background-image: linear-gradient(#6FCF97,#66D2EA);
@@ -78,6 +80,8 @@ input[type="number"]::-webkit-inner-spin-button {
     background: none;
     pointer-events: none;
     -webkit-appearance: none;
+
+    cursor: pointer;
 }
 
 input[type="range"]::-webkit-slider-thumb {
