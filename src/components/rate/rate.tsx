@@ -16,12 +16,12 @@ const Rate: FC<IRate> = ({starCount, name}) => {
 
         //Всем звёздам, идущем перед выбранной, включая выбранную
         for(let i = 0; i < value; i++) {
-            labelssCollection[i].classList.remove('active')
+            labelssCollection[i].classList.add('active')
         }
 
         //Всем звёздам, идущем после выбранной
-        for(let i = value - 1; i < labelssCollection.length; i++) {
-            labelssCollection[i].classList.add('active')
+        for(let i = value; i < labelssCollection.length; i++) {
+            labelssCollection[i].classList.remove('active')
         }
     }
 
@@ -31,7 +31,7 @@ const Rate: FC<IRate> = ({starCount, name}) => {
                 maket.map((el) => (
                     <>
                         <input className="rate__input"
-                                type="radio" 
+                                type="checkbox" 
                                 id={`${name}-${el + 1}`} 
                                 name={name} 
                                 value={`${el + 1}`}
