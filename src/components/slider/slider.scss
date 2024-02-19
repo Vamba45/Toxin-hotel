@@ -10,7 +10,13 @@
     position: relative;
 
     &__frames {
+        display: flex;
+
+        transition: transform 0.2s ease;
+
         .frame {
+            min-width: 270px;
+            height: 150px;
         }
     }
 
@@ -46,11 +52,21 @@
     &__prev,
     &__next {
         width: 44px;
-        height: 44px;
+        height: 60%;
 
         position: absolute;
 
+        opacity: 0;
+        transition: opacity 0.2s ease;
+
         top: 50%;
+    }
+
+    &:hover {
+        .slider__prev,
+        .slider__next {
+            opacity: 1;
+        }
     }
 
     &__prev {
