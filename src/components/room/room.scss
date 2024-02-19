@@ -1,0 +1,78 @@
+@import './../../styles/mixins.scss';
+@import './../../styles/vars.scss';
+
+.room {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    max-width: 270px;
+    box-shadow: 0 0 15px $DS_25;
+
+    &__slider {
+
+    }
+
+    .info {
+        padding: 22px 15px;
+
+        @include body_txt();
+        color: $DS_50;
+
+        .numeric {
+            font-weight: 700;
+        }
+
+        &__rows {
+            display: flex;
+            flex-direction: column ;
+        }
+
+        &__column {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 6px 0;
+
+            &:first-child {
+                border-bottom: 1px solid $DS_25;
+                align-items: flex-end;
+            }
+
+            &:nth-child(2) {
+                align-items: center;
+            }
+        }
+
+        &__number {
+            .num,
+            .numeric {
+                color: $DS;
+            }
+
+            .num {
+                font-weight: 700;
+            }
+            .numeric {
+                @include h2_txt();
+            }
+
+            .luxe {
+                @include h3_txt();
+                color: $purple;
+            }
+        }
+
+        &__price {
+            height: 23px;
+        }
+
+        &__rate {
+
+        }
+
+        &__reviews {
+            height: 18px;
+        }
+    }
+}
