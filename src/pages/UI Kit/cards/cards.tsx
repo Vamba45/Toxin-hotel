@@ -1,0 +1,19 @@
+import { FC } from 'react';
+import './cards.scss';
+
+import card1 from '../../../assets/img/cards/1.png';
+import card2 from '../../../assets/img/cards/2.png';
+import card3 from '../../../assets/img/cards/3.png';
+import card4 from '../../../assets/img/cards/4.png';
+
+import Slider from '../../../components/slider/slider';
+
+const Cards: FC = () => {
+    return(
+        <div className='cards uikit'>
+            <Slider items={[card1, card2, card3, card4]}/>
+        </div>
+    )
+}
+
+export default Cards;

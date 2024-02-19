@@ -6,6 +6,7 @@ import './styles/style.scss';
 import ColorsTypes from './pages/UI Kit/colorsTypes/colorsTypes';
 import FormElements from './pages/UI Kit/formElements/formElements';
 import HeadersFooters from './pages/UI Kit/headersFooters/headersFooters';
+import Cards from './pages/UI Kit/cards/cards';
 //import { Provider } from 'react-redux';
 //import  {setupStore} from './store/store';
 
@@ -21,6 +22,7 @@ root.render(
             <Route path="/" element={<ColorsTypes />} />
             <Route path="/formElements" element={<FormElements />} />
             <Route path="/headfoot" element={<HeadersFooters />} />
+            <Route path="/cards" element={<Cards />} />
             {/* <Route path="*" element={<NotFound />} /> */}
         </Routes>
     </Router>
