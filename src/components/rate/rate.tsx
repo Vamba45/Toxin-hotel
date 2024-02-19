@@ -3,10 +3,11 @@ import './rate.scss';
 
 interface IRate {
     starCount: number;
+    activeStars?: number;
     name: string;
 }
 
-const Rate: FC<IRate> = ({starCount, name}) => {
+const Rate: FC<IRate> = ({starCount, name, activeStars = 0}) => {
     let maket = Array.from(Array(starCount).keys())
 
     function rateOnClick(event: React.MouseEvent<HTMLInputElement>) {
@@ -28,15 +29,15 @@ const Rate: FC<IRate> = ({starCount, name}) => {
     return (
         <div className="rate">
             {
-                maket.map((el) => (
+                maket.map((el, i) => (
                     <>
-                        <input className="rate__input"
+                        <input className={"rate__input"}
                                 type="radio" 
                                 id={`${name}-${el + 1}`} 
                                 name={name} 
                                 value={`${el + 1}`}
                                 onClick={rateOnClick}/>
-                        <label className="rate__label" htmlFor={`${name}-${el + 1}`}>
+                        <label className={"rate__label" + " " + `${i < activeStars ? 'active' : ''}`} htmlFor={`${name}-${el + 1}`}>
                         </label>
                     </>
                 ))
