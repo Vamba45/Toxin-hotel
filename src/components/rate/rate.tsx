@@ -31,7 +31,7 @@ const Rate: FC<IRate> = ({starCount, name}) => {
                 maket.map((el) => (
                     <>
                         <input className="rate__input"
-                                type="checkbox" 
+                                type="radio" 
                                 id={`${name}-${el + 1}`} 
                                 name={name} 
                                 value={`${el + 1}`}

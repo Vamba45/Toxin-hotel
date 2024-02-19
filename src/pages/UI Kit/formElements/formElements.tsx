@@ -17,6 +17,12 @@ import Comment from '../../../components/comment/comment';
 import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 
 import Pagination from '../../../components/pagination/pagination';
+import Slider from '../../../components/slider/slider';
+
+import card1 from '../../../assets/img/cards/1.png';
+import card2 from '../../../assets/img/cards/2.png';
+import card3 from '../../../assets/img/cards/3.png';
+import card4 from '../../../assets/img/cards/4.png';
 
 const FormElements = () => {
     return (
@@ -78,6 +84,8 @@ const FormElements = () => {
             <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
 
             <Pagination pageLimit={15}/>
+
+            <Slider items={[card1, card2, card3, card4]}/>
         </div> 
     )
 }
