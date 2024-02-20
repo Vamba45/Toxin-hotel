@@ -1,7 +1,7 @@
 @import './../../styles/mixins.scss';
 @import './../../styles/vars.scss';
 
-.login {
+.registration {
     padding: 38px 30px;
     background-color: #fff;
     
@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     &__rows {
         display: flex;
         flex-direction: column;
@@ -29,16 +29,6 @@
 
             margin-top: 25px;
         }
-    }
-
-    &__title {
-        @include h1_txt();
-
-        margin-bottom: 12px;
-    }
-
-    input[placeholder="Пароль"] {
-        margin-top: 10px;
     }
 
     &__submit {
@@ -73,6 +63,12 @@
         }
     }
 
+    &__title {
+        @include h1_txt();
+
+        margin-bottom: 12px;
+    }
+
     &__createacclink {
         @include body_txt();
         color: $DS_75;
@@ -83,9 +79,55 @@
         }
     }
 
-    .login__createaccbutton {
+    .registration__createaccbutton {
         @include button_whiteBG();
 
         padding: 9px 18px;
+    }
+
+    &__radio {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0 20px;
+
+        margin-bottom: 18px;
+        margin-top: 3px;
+    }
+
+    input {
+        margin-bottom: 8px;
+    }
+
+    &__datebirth {
+        padding-top: 22px;
+        position: relative;
+
+        &::before { 
+            content: 'Дата рождения';
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+            
+            @include h3_txt();
+        }
+    }
+
+    &__entrydata {
+        padding-top: 22px;
+        position: relative;
+
+        &::before { 
+            content: 'Данные для входа в сервис';
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            @include h3_txt();
+        }
     }
 }

@@ -8,6 +8,7 @@ import card4 from '../../../assets/img/cards/4.png';
 
 import Room from '../../../components/room/room';
 import Login from '../../../components/login/login';
+import Registration from '../../../components/registration/registration';
 
 const Cards: FC = () => {
     return(
@@ -16,6 +17,8 @@ const Cards: FC = () => {
             <Room isLuxe={false} number={840} price={9900} reviews={65} starsName='2room' sliderItems={[card1, card2, card3, card4]} activeStars={4}/>
 
             <Login/>
+
+            <Registration/>
         </div>
     )
 }
