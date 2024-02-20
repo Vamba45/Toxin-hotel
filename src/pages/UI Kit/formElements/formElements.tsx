@@ -34,8 +34,8 @@ const FormElements = () => {
             <Checkbox name='some' id='ch3' paragraph='Можно пригласить гостей (до 10 человек)'/>
             <Checkbox name='some' id='ch4' paragraph='Разрешено употрбление табачной продукции' disabled={true}/>
 
-            <Radio name='radio-buttins' id='r1' labeltext='мужчина' value='мужчина'/>
-            <Radio name='radio-buttins' id='r2' labeltext='женщина' value='женщина'/>
+            <Radio name='radio-buttins' id='r1' labeltext='Мужчина' value='Мужчина'/>
+            <Radio name='radio-buttins' id='r2' labeltext='Женщина' value='Женщина'/>
             <Radio name='radio-buttins' id='r3' labeltext='нечто' value='нечто' disabled={true}/>
 
             <Toggle id='tg1' labeltext='Получать спецпредложения'/>

@@ -19,11 +19,21 @@
 
         max-width: 192px;
 
+        padding-left: 30px;
+
+        position: relative;
+
         &::before {
             content: '';
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
             display: inline-block;
-            width: 19px;
-            height: 19px;
+            width: 20px;
+            height: 20px;
 
             flex-shrink: 0;
             flex-grow: 0;
@@ -31,17 +41,33 @@
             border: 1px solid $DS_25;
 
             border-radius: 50%;
+        }
 
-            margin-right: 10px;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 100%;
+        &::after {
+            content: '';
+
+            position: absolute;
+
+            top: 4px;
+            left: 4.25px;
+
+            height: 12px;
+            width: 12px;    
+
+            flex-shrink: 0;
+            flex-grow: 0;
+
+            border-radius: 50%;
+            
+            background-color: $purple;
+
+            opacity: 0;
         }
     }
 }
 
-.radio__input:checked+label.radio__label::before {
-    background: url(../../assets/img/icons/radio.svg) center center no-repeat;
+.radio__input:checked+label.radio__label::after {
+    opacity: 1;
 }
 
 /* стили при наведении курсора на radio */
