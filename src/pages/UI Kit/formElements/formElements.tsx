@@ -24,6 +24,7 @@ const FormElements = () => {
             <TextField placeholder='Email' isSubscribtion={true}/>
             <TextField placeholder='Email' inputmask='__.__.____'/>
             <TextField placeholder='Email'/>
+            <TextField placeholder='Пароль' isPasswrod={true}/>
 
             <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
             <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
@@ -44,6 +45,11 @@ const FormElements = () => {
             <Like value={12}/>
 
             <Rate name='kinopoisk' starCount={5}/>
+            <Rate name='kinopoisk2' starCount={5} activeStars={1}/>
+            <Rate name='kinopoisk3' starCount={5} activeStars={2}/>
+            <Rate name='kinopoisk4' starCount={5} activeStars={3}/>
+            <Rate name='kinopoisk5' starCount={5} activeStars={4}/>
+            <Rate name='kinopoisk6' starCount={5} activeStars={5}/>
 
             <button className='button'>Перейти к оплате</button>
             <button className='button_1'>click me</button>

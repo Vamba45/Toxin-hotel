@@ -6,9 +6,10 @@ interface ITextField {
     placeholder?: string,
     inputmask?: string,
     isSubscribtion?: boolean;
+    isPasswrod?: boolean;
 }
 
-const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputmask=""}) => {
+const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputmask="", isPasswrod=false}) => {
     const maxWidth = isSubscribtion ? "267px" : "320px";
 
     const inputRef = useMask({ mask: inputmask, 
@@ -21,7 +22,7 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
             style={{maxWidth: maxWidth}}>
             { 
                 isSubscribtion === false && inputmask === "" &&
-                <input type="text" 
+                <input type={isPasswrod ? "password" : "text"} 
                     className='textField__input' 
                     placeholder={placeholder}/>
             }

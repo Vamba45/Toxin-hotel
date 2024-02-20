@@ -1,0 +1,89 @@
+@import './../../styles/mixins.scss';
+@import './../../styles/vars.scss';
+
+.login {
+    padding: 38px 30px;
+    background-color: #fff;
+    
+    box-shadow: 0 0 10px $DS_25;
+
+    max-width: 380px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    &__rows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__column {
+        &:last-child {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 25px;
+        }
+    }
+
+    &__title {
+        @include h1_txt();
+
+        margin-bottom: 12px;
+    }
+
+    input[placeholder="Пароль"] {
+        margin-top: 10px;
+    }
+
+    &__submit {
+        margin-top: 24px;
+
+        @include h3_txt();
+
+        background-image: linear-gradient(#BC9CFF, #8BA4F9);
+        padding: 11px 20px;
+        width: 320px;
+        line-height: normal;
+        border-radius: 25px;
+        color: #fff;
+        position: relative;
+
+        &:hover {
+            box-shadow: 0px 0px 10px 0px $purple;
+        }
+
+        &::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+            right: 12px;
+            top: 0px;
+
+            background: url(../../assets/img/icons/arrow_white.svg) right center no-repeat;
+        }
+    }
+
+    &__createacclink {
+        @include body_txt();
+        color: $DS_75;
+        font-weight: normal;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .login__createaccbutton {
+        @include button_whiteBG();
+
+        padding: 9px 18px;
+    }
+}
