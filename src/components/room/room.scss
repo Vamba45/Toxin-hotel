@@ -73,6 +73,13 @@
 
         &__reviews {
             height: 18px;
+
+
+            color: $DS_50;
+
+            &:hover {
+                color: $DS_75;
+            }
         }
     }
 }

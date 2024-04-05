@@ -39,9 +39,9 @@ const Room : FC<IRoom> = ({isLuxe = false, price, reviews, starsName, starsCount
                         <div className="info__rate">
                             <Rate name={starsName} starCount={5} activeStars={activeStars}/>
                         </div>
-                        <div className="info__reviews">
+                        <a href='#' className="info__reviews">
                             <span className='numeric'>{ reviews }</span> Отзывов
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
