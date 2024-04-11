@@ -11,6 +11,9 @@ import Header from './components/header/header';
 import Footer from './components/footer/footer';
 import Layout from './components/layout/layout';
 import Landing from './pages/WebsitePages/Landing/Landing';
+import Registration from './pages/WebsitePages/Regpage/Regpage';
+import Regpage from './pages/WebsitePages/Regpage/Regpage';
+import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
 //import { Provider } from 'react-redux';
 //import  {setupStore} from './store/store';
 
@@ -31,6 +34,8 @@ root.render(
             </Route>
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Landing />} />
+                <Route path='/registration' element={<Regpage />} />
+                <Route path='/login' element={<Loginpage />} />
             </Route>
         </Routes>
     </Router>

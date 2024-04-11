@@ -1,0 +1,16 @@
+.loginpage {
+    background: url(../../../assets/img/landing-page2.png) center no-repeat;
+
+    width: 100%;
+    height: 100%;
+
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__form {
+        margin: 0 auto;
+        width: 380px;
+    }
+}
