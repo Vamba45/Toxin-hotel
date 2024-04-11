@@ -1,0 +1,14 @@
+.regpage {
+    background: url(../../../assets/img/landing-page2.png) center no-repeat;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__form {    
+        margin: 20px 0;
+        height: 100%;
+    }
+}
