@@ -14,6 +14,11 @@ import Landing from './pages/WebsitePages/Landing/Landing';
 import Registration from './pages/WebsitePages/Regpage/Regpage';
 import Regpage from './pages/WebsitePages/Regpage/Regpage';
 import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
+
+import { LocalizationProvider } from '../node_modules/@mui/x-date-pickers';
+import { AdapterDayjs } from '../node_modules/@mui/x-date-pickers/AdapterDayjs'
+
+
 //import { Provider } from 'react-redux';
 //import  {setupStore} from './store/store';
 
@@ -24,19 +29,20 @@ const rootNode: HTMLElement | any = document.getElementById("app");    // эле
 const root = ReactDOM.createRoot(rootNode);
 // рендеринг в корневой элемент
 root.render(
-    <Router>
-        <Routes>
-            <Route path='/components'>
-                <Route path='colorstypes' element={<ColorsTypes />} />
-                <Route path="formElements" element={<FormElements />} />
-                <Route path="headfoot" element={<HeadersFooters />} />
-                <Route path="cards" element={<Cards />} />
-            </Route>
-            <Route path='/' element={<Layout/>}>
-                <Route index element={<Landing />} />
-                <Route path='/registration' element={<Regpage />} />
-                <Route path='/login' element={<Loginpage />} />
-            </Route>
-        </Routes>
-    </Router>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <Router>
+            <Routes>
+                <Route path='/colorstypes' element={<ColorsTypes />} />
+                <Route path="/formElements" element={<FormElements />} />
+                <Route path="/headfoot" element={<HeadersFooters />} />
+                <Route path="/cards" element={<Cards />} />
+
+                <Route path='/' element={<Layout/>}>
+                    <Route index element={<Landing />} />
+                    <Route path='/registration' element={<Regpage />} />
+                    <Route path='/login' element={<Loginpage />} />
+                </Route>
+            </Routes>
+        </Router>
+    </LocalizationProvider>
 );

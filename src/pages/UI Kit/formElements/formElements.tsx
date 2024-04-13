@@ -17,6 +17,7 @@ import Comment from '../../../components/comment/comment';
 import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 
 import Pagination from '../../../components/pagination/pagination';
+import DateRangePicker from '../../../components/dateRangePicker/dateRangePicker';
 
 const FormElements = () => {
     return (
@@ -84,6 +85,8 @@ const FormElements = () => {
             <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
 
             <Pagination pageLimit={15}/>
+
+            <DateRangePicker/>
         </div> 
     )
 }
