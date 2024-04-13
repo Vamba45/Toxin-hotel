@@ -1,0 +1,21 @@
+.daterange {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 500px;
+
+    &__line {
+        align-self: center;
+        margin: 0 14px;
+    }
+
+    
+    .MuiButtonBase-root:hover,
+    .MuiButtonBase-root:active {
+        background-color: unset;
+    }
+
+    .MuiTouchRipple-root {
+        display: none;
+    }
+}
