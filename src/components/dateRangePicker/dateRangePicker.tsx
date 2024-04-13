@@ -33,9 +33,12 @@ const DateRangePicker: FC = () => {
 
                 setMinDate(value);
             }}
+
             slotProps={{
                 field: { clearable: true, onClear: () => setCleared(true) },
             }}
+
+            format="DD.MM.YYYY"
             />
 
             <div className="daterange__line">
@@ -45,6 +48,9 @@ const DateRangePicker: FC = () => {
             <DatePicker minDate={minDate} value={maxDate} onAccept={(value) => {
                 setMaxDate(value);
             }}
+
+            format="DD.MM.YYYY"
+
             slotProps={{
                 field: { clearable: true, onClear: () => setCleared(true) },
             }}/>

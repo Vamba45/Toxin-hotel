@@ -17,6 +17,8 @@ import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
 
 import { LocalizationProvider } from '../node_modules/@mui/x-date-pickers';
 import { AdapterDayjs } from '../node_modules/@mui/x-date-pickers/AdapterDayjs'
+import 'dayjs/locale/ru';
+import { ruRU } from '@mui/x-date-pickers/locales';
 
 
 //import { Provider } from 'react-redux';
@@ -29,7 +31,7 @@ const rootNode: HTMLElement | any = document.getElementById("app");    // эле
 const root = ReactDOM.createRoot(rootNode);
 // рендеринг в корневой элемент
 root.render(
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale='ru-RU' localeText={ruRU.components.MuiLocalizationProvider.defaultProps.localeText}>
         <Router>
             <Routes>
                 <Route path='/colorstypes' element={<ColorsTypes />} />
