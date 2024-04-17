@@ -26,12 +26,10 @@ const root = ReactDOM.createRoot(rootNode);
 root.render(
     <Router>
         <Routes>
-            <Route path='/components'>
-                <Route path='colorstypes' element={<ColorsTypes />} />
-                <Route path="formElements" element={<FormElements />} />
-                <Route path="headfoot" element={<HeadersFooters />} />
-                <Route path="cards" element={<Cards />} />
-            </Route>
+            <Route path='colorstypes' element={<ColorsTypes />} />
+            <Route path="formElements" element={<FormElements />} />
+            <Route path="headfoot" element={<HeadersFooters />} />
+            <Route path="cards" element={<Cards />} />
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Landing />} />
                 <Route path='/registration' element={<Regpage />} />

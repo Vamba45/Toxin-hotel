@@ -1,0 +1,76 @@
+@import '../../styles/vars.scss';
+
+.toxin-range-picker.ant-picker {
+    max-width: 300px;
+
+    padding: 10px 12px;
+    border-color: $DS_25;
+    box-shadow: unset;
+
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus {
+        border-color: $DS_50;
+    }
+
+    .ant-picker-range-separator {
+        padding-right: 20px;
+    }
+
+    .ant-picker-active-bar {
+        background-color: $DS_50;
+    }
+}
+
+.ant-picker-dropdown {
+    font-family: "Montserrat", "Helvetica", sans-serif;
+
+    .ant-picker-content thead th {
+        color: $purple;
+        font-weight: bold;
+    }
+
+    .ant-picker-month-btn,
+    .ant-picker-year-btn,
+    .ant-picker-decade-btn {
+        &:hover {
+            color: $purple !important; 
+        }
+    }
+
+    .ant-picker-cell-today .ant-picker-cell-inner {
+        background-image: linear-gradient(#6FCF97,#66D2EA) !important;
+        color: #FFF;
+    }
+
+    .ant-picker-cell-today .ant-picker-cell-inner::before {
+        border: none !important;
+    }
+
+    .ant-picker-cell-in-range.ant-picker-cell-in-view::before,
+    .ant-picker-cell-range-start.ant-picker-cell-in-view::before,
+    .ant-picker-cell-range-end.ant-picker-cell-in-view::before {
+        background: #f0ecfd !important;
+    }
+
+    .ant-picker-cell-range-start .ant-picker-cell-inner,
+    .ant-picker-cell-range-end .ant-picker-cell-inner {
+        background-image: linear-gradient(#BC9CFF, #8BA4F9) !important;
+    }
+}
+
+.ant-picker-dropdown .ant-picker-cell-inner {
+    background-color: transparent !important;
+}
+
+@media screen and (max-width: 620px) {
+    .ant-picker-panel-container {
+        margin: 0 auto !important;
+    }
+
+    .ant-picker-panels {
+        flex-direction: column !important;
+    }
+}

@@ -9,7 +9,6 @@ import card4 from '../../../assets/img/cards/4.png';
 import Room from '../../../components/room/room';
 import Login from '../../../components/login/login';
 import Registration from '../../../components/registration/registration';
-import Calendar from '../../../components/calendar/calendar';
 
 const Cards: FC = () => {
     return(
@@ -20,8 +19,6 @@ const Cards: FC = () => {
             <Login/>
 
             <Registration/>
-
-            <Calendar/>
         </div>
     )
 }
