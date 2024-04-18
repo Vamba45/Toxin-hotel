@@ -1,5 +1,6 @@
 .regpage {
     background: url(../../../assets/img/landing-page2.png) center no-repeat;
+    background-size: cover;
 
     .container {
         display: flex;
@@ -10,5 +11,19 @@
     &__form {    
         margin: 20px 0;
         height: 100%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .regpage__form {    
+        padding-top: 100px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .regpage {   
+        .registration { 
+            width: 350px;
+        }
     }
 }
