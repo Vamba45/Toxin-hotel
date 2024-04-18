@@ -1,0 +1,73 @@
+@import './../../styles/mixins.scss';
+@import './../../styles/vars.scss';
+
+.searchroom {
+    padding: 38px 30px;
+    background-color: #fff;
+    
+    box-shadow: 0 0 10px $DS_25;
+
+    max-width: 380px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    &__rows {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__column {
+        &:last-child {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-top: 34px;
+        }
+
+        &:nth-child(2) {
+            margin: 15px 0;
+        }
+    }
+
+    &__title {
+        @include h1_txt();
+
+        margin-bottom: 12px;
+    }
+
+    &__btn {
+        display: block;
+
+        @include h3_txt();
+    
+        background-image: linear-gradient(#BC9CFF, #8BA4F9);
+        padding: 14px 20px;
+        width: 320px;
+        line-height: normal;
+        border-radius: 25px;
+        color: #fff;
+        position: relative;
+
+        &:hover {
+            box-shadow: 0px 0px 10px 0px $purple;
+        }
+
+        &::after {
+            content: '';
+            width: 40px;
+            height: 40px;
+            
+            position: absolute;
+            right: 12px;
+            top: 3px;
+    
+            background: url(../../assets/img/icons/arrow_white.svg) right center no-repeat;
+        }
+    }
+}
