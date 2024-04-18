@@ -30,8 +30,8 @@ const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}
                             onClick={buttonClick}>
                             {title}
                         </div>
-                        <button className='checkboxList__button'
-                                onClick={buttonClick}></button>
+                        <div className='checkboxList__button'
+                                onClick={buttonClick}></div>
                     </>
                 }
                 {

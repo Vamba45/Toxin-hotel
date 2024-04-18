@@ -32,7 +32,7 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
                     <input type="text" 
                         className='textField__subscribtion' 
                         placeholder={placeholder}/> 
-                    <button className='textField__button'></button>
+                    <div className='textField__button'></div>
                 </>
             }
             {

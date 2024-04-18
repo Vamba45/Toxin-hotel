@@ -45,7 +45,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         }
     }
 
-    function acceptBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
+    function acceptBtnClick(event: React.MouseEvent) {
         const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
 
         const arrow = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement;
@@ -72,7 +72,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
         text.innerText = `Гостей: ${sum}`;
     }
 
-    function resetBtnClick(event: React.MouseEvent<HTMLButtonElement>) {
+    function resetBtnClick(event: React.MouseEvent) {
         const counters = ( 
                         (event.target as HTMLElement).closest('.dropdown')?.
                         querySelector('.dropdown__menu') as HTMLElement
@@ -96,7 +96,7 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
                         hasButtons === false ? "Спальни и ванные" : "Сколько гостей"
                     }
                 </div>
-                <button className="dropdown__arrow"></button>
+                <div className="dropdown__arrow"></div>
             </div>
             <ul className="dropdown__menu">
                 {
@@ -109,10 +109,10 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
                 }
                 {   hasButtons && 
                     <div className="dropdown__buttons">
-                        <button className="dropdown__resetBtn"
-                                onClick={resetBtnClick}>очистить</button>
-                        <button className="dropdown__acceptBtn"
-                                onClick={acceptBtnClick}>применить</button>
+                        <div className="dropdown__resetBtn"
+                                onClick={resetBtnClick}>очистить</div>
+                        <div className="dropdown__acceptBtn"
+                                onClick={acceptBtnClick}>применить</div>
                     </div>
                 }
             </ul>

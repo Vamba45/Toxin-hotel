@@ -26,7 +26,7 @@ const Slider : FC<ISlider> = ({items}) => {
         }
     }
 
-    function nextClick(e: React.MouseEvent<HTMLButtonElement>) {
+    function nextClick(e: React.MouseEvent) {
         const slider = (e.target as HTMLElement).closest('.slider');
 
         const frame = slider?.querySelector('.slider__frames') as HTMLElement;
@@ -48,7 +48,7 @@ const Slider : FC<ISlider> = ({items}) => {
         }
     }
 
-    function prevClick(e: React.MouseEvent<HTMLButtonElement>) {
+    function prevClick(e: React.MouseEvent) {
         const slider = (e.target as HTMLElement).closest('.slider');
 
         const frames = slider?.querySelector('.slider__frames') as HTMLElement;
@@ -90,12 +90,12 @@ const Slider : FC<ISlider> = ({items}) => {
                 }
             </div>
             <div className="slider__buttons">
-                <button className="slider__prev"
+                <div className="slider__prev"
                     onClick={prevClick}>
-                </button>
-                <button className="slider__next"
+                </div>
+                <div className="slider__next"
                     onClick={nextClick}>
-                </button>
+                </div>
             </div>
         </div>
     )

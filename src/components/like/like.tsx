@@ -21,14 +21,14 @@ const Like: FC<ILike> = ({value = 0}) => {
     }
 
     return (
-        <button className="like"
+        <div className="like"
         onClick={likeOnClick}>
             <div className='like__icon'>
             </div>
             <div className="like__value">
                 {`${val}`}
             </div>
-        </button>
+        </div>
     )
 }
 
