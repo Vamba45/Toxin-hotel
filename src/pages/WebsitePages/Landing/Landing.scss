@@ -40,3 +40,42 @@
         @include body_txt();
     }
 }
+
+@media screen and (max-width: 1000px) {
+    .landing {
+        &__rows {
+            padding: 130px 0 15px 0;
+        }
+
+        height: 700px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .landing {
+        &__rows {
+            align-items: center;
+        }
+
+        &__column {
+            &:first-child {
+                align-self: center;
+            }
+            
+            &:last-child {
+                align-self: flex-end;
+            }
+        }
+
+        &__text {
+            display: none;
+        }
+
+        .searchroom {
+            width: 330px;
+            padding: 30px 25px;
+        }
+
+        height: 570px;
+    }
+}
