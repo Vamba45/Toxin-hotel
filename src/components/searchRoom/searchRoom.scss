@@ -70,4 +70,38 @@
             background: url(../../assets/img/icons/arrow_white.svg) right center no-repeat;
         }
     }
+
+    .toxin-range-picker {
+        position: relative;
+        margin: 20px 0 0 0;
+
+        &::before {
+            content: 'Даты пребывания в отеле';
+            font-family: 'Montserrat', "Helvetica", sans-serif;
+
+            position: absolute;
+
+            @include h3_txt();
+
+            top: -19px;
+            left: 0;
+        }
+    }
+
+    .dropdown {
+        position: relative;
+        margin: 20px 0 0 0;
+
+        &::before {
+            content: 'Гости';
+            font-family: 'Montserrat', "Helvetica", sans-serif;
+
+            position: absolute;
+
+            @include h3_txt();
+
+            top: -20px;
+            left: 0;
+        }
+    }
 }
