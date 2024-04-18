@@ -1,5 +1,42 @@
+@import '../../../styles/vars.scss';
+@import '../../../styles/mixins.scss';
+
 .landing {
-    height: 100%;
-    width: 100%;
-    background: url(../../../assets/img/landing-page.png) center no-repeat;
+    height: 830px;
+
+    background: url(../../../assets/img/landingBG.jpg) center no-repeat;
+    background-size: cover;
+
+    .container {
+        height: 100%;
+        width: 100%;
+    }
+
+    &__rows {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        height: 100%;
+        width: 100%;
+
+        padding: 80px 0 15px 0;
+    }
+
+    &__column {
+        &:first-child {
+            align-self: flex-start;
+        }
+        
+        &:last-child {
+            align-self: flex-end;
+        }
+    }
+
+    &__text {
+        font-family: "Montserrat", "Helvetica", sans-serif;
+        text-align: right;
+
+        @include body_txt();
+    }
 }
