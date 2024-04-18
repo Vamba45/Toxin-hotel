@@ -14,6 +14,9 @@ import Landing from './pages/WebsitePages/Landing/Landing';
 import Registration from './pages/WebsitePages/Regpage/Regpage';
 import Regpage from './pages/WebsitePages/Regpage/Regpage';
 import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
+import 'dayjs/locale/ru';
+
+
 //import { Provider } from 'react-redux';
 //import  {setupStore} from './store/store';
 
