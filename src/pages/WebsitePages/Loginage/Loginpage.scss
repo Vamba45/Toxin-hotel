@@ -2,15 +2,35 @@
     background: url(../../../assets/img/landing-page2.png) center no-repeat;
 
     width: 100%;
-    height: 100%;
+    height: 750px;
 
-    
     display: flex;
     justify-content: center;
     align-items: center;
 
-    &__form {
-        margin: 0 auto;
-        width: 380px;
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .loginpage {
+        padding-top: 100px;
+        height: 580px;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .loginpage {
+
+        padding-top: 80px;
+        height: 480px;
+
+        .login {
+            width: 330px;
+            padding: 30px 25px;
+        }
     }
 }
