@@ -8,7 +8,7 @@ import Checkbox from "../../../components/checkboxx/checkbox";
 import CheckBoxList from "../../../components/checkboxExpandable/checkboxList";
 import Room from "../../../components/room/room";
 
-const HostelsPage: FC = () => {
+const hotelsPage: FC = () => {
     let rooms: {number: number, price: number, reviews: number, sliderItems: [], starsName: string}[] = [];
 
     for(let i = 0; i < 10; i++) {
@@ -16,26 +16,37 @@ const HostelsPage: FC = () => {
     }
  
     return (
-        <div className="hostels">
+        <div className="hotels">
             <div className="container">
-                <div className="hostels__rows">
-                    <div className="hostels__column hostels__filters filters">
-                        <RangePicker/>
-                        <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
-                        <RangeSlider defaultMax={10000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
-                        <div className="filters__checkbox-list">
+                <div className="hotels__rows">
+                    <div className="hotels__column hotels__filters filters">
+                        <div className="filters__rangepicker">
+                            <RangePicker/>
+                        </div>
+                        <div className="filters__guests">
+                            <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
+                        </div>
+                        <div className="filters__rangeslider">
+                            <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
+                        </div>
+                        <div className="filters__checkbox-home">
                             <Checkbox id="ch1" name="home" paragraph="Можно курить"/>
                             <Checkbox id="ch2" name="home" paragraph="Можно с питомцами"/>
                             <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'}/>
                         </div>
-                        <div className="filters__checkbox-list">
+                        <div className="filters__checkbox-features">
                             <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см"/>
                             <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'}/>
                         </div>
-                        <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
-                        <CheckBoxList options={["Завтрак", "Письменный стол", "Стул для кормления", "Кроватка", "Телевизор", "Шампунь"]} title="Дополнительные удобства" type="expanable"/>
+                        <div className="filters__interier">
+                            <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
+                        </div>
+                        <div className="filters__checkbox-dropdown">
+                            <CheckBoxList options={["Завтрак", "Письменный стол", "Стул для кормления", "Кроватка", "Телевизор", "Шампунь"]} 
+                                        title="Дополнительные удобства" type="expanable"/>
+                        </div>
                     </div>
-                    <div className="hostels__column hostels__rooms rooms">
+                    <div className="hotels__column hotels__rooms rooms">
                         <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
                         <div className="rooms__grid">
                             {   
@@ -49,7 +60,9 @@ const HostelsPage: FC = () => {
                                 ))
                             }
                         </div>
-                        <Pagination pageLimit={15}/>
+                        <div className="rooms__pagination">    
+                            <Pagination pageLimit={15}/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,4 +70,4 @@ const HostelsPage: FC = () => {
     )
 }
 
-export default HostelsPage;
+export default hotelsPage;
