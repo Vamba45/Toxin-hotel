@@ -16,6 +16,7 @@ const RangePicker: FC = () => {
             <ConfigProvider locale={locale}>
                 <DatePicker.RangePicker picker="date"
                     separator={"→"} 
+                    placement="bottomLeft"
                     placeholder={["ДД.ММ.ГГГГ", "ДД.ММ.ГГГГ"]} 
                     className="toxin-range-picker"
                     format={"DD.MM.YYYY"}

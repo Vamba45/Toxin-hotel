@@ -30,6 +30,12 @@
 .ant-picker-dropdown {
     font-family: "Montserrat", "Helvetica", sans-serif;
 
+    // &.ant-picker-dropdown-range.ant-picker-dropdown-placement-topLeft,
+    // .ant-picker-dropdown-range.ant-picker-dropdown-placement-topRight {
+    //     left: var(--arrow-x) !important;
+    //     top: var(--arrow-y) !important;
+    // }
+
     .ant-picker-content thead th {
         color: $purple;
         font-weight: bold;
