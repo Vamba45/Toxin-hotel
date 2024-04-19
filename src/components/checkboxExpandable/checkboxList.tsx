@@ -6,7 +6,7 @@ interface ICheckBoxList {
     title: string;
     options: string[];
     richTitles?: string[];
-    type: string
+    type: "expanable" | "bullet" | "rich"
 }
 
 const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}) => {

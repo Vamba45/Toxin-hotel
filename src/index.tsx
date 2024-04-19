@@ -15,6 +15,7 @@ import Registration from './pages/WebsitePages/Regpage/Regpage';
 import Regpage from './pages/WebsitePages/Regpage/Regpage';
 import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
 import 'dayjs/locale/ru';
+import HostelsPage from './pages/WebsitePages/HotelsPage/HotelsPage';
 
 
 //import { Provider } from 'react-redux';
@@ -37,6 +38,7 @@ root.render(
                 <Route index element={<Landing />} />
                 <Route path='/registration' element={<Regpage />} />
                 <Route path='/login' element={<Loginpage />} />
+                <Route path='/hotels' element={<HostelsPage />} />
             </Route>
         </Routes>
     </Router>
