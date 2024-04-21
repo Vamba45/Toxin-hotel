@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
 import './HotelsPage.scss';
 import Pagination from "../../../components/pagination/pagination";
 import RangePicker from "../../../components/rangePicker/RangePicker";
@@ -7,6 +7,7 @@ import RangeSlider from "../../../components/rangeSlider/rangeSlider";
 import Checkbox from "../../../components/checkboxx/checkbox";
 import CheckBoxList from "../../../components/checkboxExpandable/checkboxList";
 import Room from "../../../components/room/room";
+import useOnClickOutside from "../../../hooks/useClickOutside";
 
 const hotelsPage: FC = () => {
     let rooms: {number: number, price: number, reviews: number, sliderItems: [], starsName: string}[] = [];
@@ -14,12 +15,30 @@ const hotelsPage: FC = () => {
     for(let i = 0; i < 10; i++) {
         rooms.push({number: i, price: i * 1000, reviews: i * 10, sliderItems: [], starsName: `room-${i}`})
     }
+
+    const btnRef = useRef(null);
+    const sidebarRef = useRef(null);
+
+    useOnClickOutside([btnRef, sidebarRef], () => sideBarOnClick());
+
+    function sideBarOnClick (fromBtn?: boolean) {
+
+        if(fromBtn) {
+            (document.querySelector('#sidebar-btn'))?.classList.toggle('active');
+            (document.querySelector('.filters') as HTMLElement)?.classList.toggle('active');
+            (document.body as HTMLElement)?.classList.toggle('lock');
+        } else {
+            (document.querySelector('#sidebar-btn'))?.classList.remove('active');
+            (document.querySelector('.filters') as HTMLElement)?.classList.remove('active');
+            (document.body as HTMLElement)?.classList.remove('lock');
+        }
+    }
  
     return (
         <div className="hotels">
             <div className="container">
                 <div className="hotels__rows">
-                    <div className="hotels__column hotels__filters filters">
+                    <div className="hotels__column hotels__filters filters" ref={sidebarRef}>
                         <div className="filters__container">
                             <div className="filters__rangepicker">
                                 <RangePicker/>
@@ -48,7 +67,9 @@ const hotelsPage: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="hotels__sidebar-btn">
+                    <div id="sidebar-btn" className="hotels__sidebar-btn"
+                        onClick={() => sideBarOnClick(true)}
+                        ref={btnRef}>
                         <span></span>
                         <span></span>
                         <span></span>
