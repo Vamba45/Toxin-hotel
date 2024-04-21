@@ -48,7 +48,11 @@ const hotelsPage: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="hotels__sidebar-btn"></div>
+                    <div className="hotels__sidebar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <div className="hotels__column hotels__rooms rooms">
                         <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
                         <div className="rooms__grid">
