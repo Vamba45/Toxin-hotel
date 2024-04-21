@@ -57,8 +57,8 @@ const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title,
 
         const min = parent?.querySelector('.range-min') as HTMLInputElement;
         const max = parent?.querySelector('.range-max') as HTMLInputElement;
-        
-        let coordX = Math.ceil(e.pageX - slider.offsetLeft);
+
+        let coordX = Math.ceil(e.pageX - slider.getBoundingClientRect().left);
         let procent = (coordX / slider.clientWidth) * 100;
 
         procent = Math.ceil(procent);
