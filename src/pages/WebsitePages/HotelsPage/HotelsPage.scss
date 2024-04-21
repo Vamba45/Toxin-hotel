@@ -26,10 +26,12 @@
 }
 
 .filters {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    row-gap: 22px;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        row-gap: 22px;
+    }
 
     &__rangepicker,
     &__guests,
@@ -120,6 +122,10 @@
             margin-right: 55px;
         }
     }
+
+    &__sidebar-btn {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1240px)
@@ -133,6 +139,7 @@
 
         &__column {
             &:first-child {
+                direction: rtl;
                 position: fixed;
 
                 border-right: 1px solid $DS_25;
@@ -154,6 +161,23 @@
                 //transform: translateX(-500px);
             }
         }
+
+        .filters__container {
+            direction: ltr;
+        }
+
+        // &__sidebar-btn {
+        //     display: block;
+
+        //     position: fixed;
+        //     top: 92px;
+        //     left: 380px;
+
+        //     width: 40px;
+        //     height: 40px;
+
+        //     background-color: red;
+        // }
     }
 }
 

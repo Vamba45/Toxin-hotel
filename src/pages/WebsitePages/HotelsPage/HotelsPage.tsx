@@ -20,32 +20,35 @@ const hotelsPage: FC = () => {
             <div className="container">
                 <div className="hotels__rows">
                     <div className="hotels__column hotels__filters filters">
-                        <div className="filters__rangepicker">
-                            <RangePicker/>
-                        </div>
-                        <div className="filters__guests">
-                            <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
-                        </div>
-                        <div className="filters__diapasone">
-                            <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
-                        </div>
-                        <div className="filters__checkbox-home">
-                            <Checkbox id="ch1" name="home" paragraph="Можно курить"/>
-                            <Checkbox id="ch2" name="home" paragraph="Можно с питомцами"/>
-                            <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'}/>
-                        </div>
-                        <div className="filters__checkbox-features">
-                            <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см"/>
-                            <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'}/>
-                        </div>
-                        <div className="filters__interier">
-                            <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
-                        </div>
-                        <div className="filters__checkbox-dropdown">
-                            <CheckBoxList options={["Завтрак", "Письменный стол", "Стул для кормления", "Кроватка", "Телевизор", "Шампунь"]} 
-                                        title="Дополнительные удобства" type="expanable"/>
+                        <div className="filters__container">
+                            <div className="filters__rangepicker">
+                                <RangePicker/>
+                            </div>
+                            <div className="filters__guests">
+                                <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
+                            </div>
+                            <div className="filters__diapasone">
+                                <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
+                            </div>
+                            <div className="filters__checkbox-home">
+                                <Checkbox id="ch1" name="home" paragraph="Можно курить"/>
+                                <Checkbox id="ch2" name="home" paragraph="Можно с питомцами"/>
+                                <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'}/>
+                            </div>
+                            <div className="filters__checkbox-features">
+                                <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см"/>
+                                <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'}/>
+                            </div>
+                            <div className="filters__interier">
+                                <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
+                            </div>
+                            <div className="filters__checkbox-dropdown">
+                                <CheckBoxList options={["Завтрак", "Письменный стол", "Стул для кормления", "Кроватка", "Телевизор", "Шампунь"]} 
+                                            title="Дополнительные удобства" type="expanable"/>
+                            </div>
                         </div>
                     </div>
+                    <div className="hotels__sidebar-btn"></div>
                     <div className="hotels__column hotels__rooms rooms">
                         <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
                         <div className="rooms__grid">
