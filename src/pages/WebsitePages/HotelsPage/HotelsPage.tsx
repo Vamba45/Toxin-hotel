@@ -26,7 +26,7 @@ const hotelsPage: FC = () => {
                         <div className="filters__guests">
                             <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
                         </div>
-                        <div className="filters__rangeslider">
+                        <div className="filters__diapasone">
                             <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
                         </div>
                         <div className="filters__checkbox-home">
