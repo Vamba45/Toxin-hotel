@@ -26,11 +26,11 @@ const hotelsPage: FC = () => {
         if(fromBtn) {
             (document.querySelector('#sidebar-btn'))?.classList.toggle('active');
             (document.querySelector('.filters') as HTMLElement)?.classList.toggle('active');
-            (document.body as HTMLElement)?.classList.toggle('lock');
+            (document.body as HTMLElement)?.classList.toggle('disabled');
         } else {
             (document.querySelector('#sidebar-btn'))?.classList.remove('active');
             (document.querySelector('.filters') as HTMLElement)?.classList.remove('active');
-            (document.body as HTMLElement)?.classList.remove('lock');
+            (document.body as HTMLElement)?.classList.remove('disabled');
         }
     }
  
