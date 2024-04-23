@@ -10,6 +10,7 @@ import Room from '../../../components/room/room';
 import Login from '../../../components/login/login';
 import Registration from '../../../components/registration/registration';
 import SearchRoom from '../../../components/searchRoom/searchRoom';
+import BookRoom from '../../../components/bookRoom/bookRoom';
 
 const Cards: FC = () => {
     return(
@@ -22,6 +23,9 @@ const Cards: FC = () => {
             <Registration/>
 
             <SearchRoom/>
+
+            <BookRoom dayStart={new Date(2019, 8, 19)} dayEnd={new Date(2019, 8, 27)} advancedServiceMoney={100} number={888}
+                        price={5000} serviceMoney={250}/>
         </div>
     )
 }

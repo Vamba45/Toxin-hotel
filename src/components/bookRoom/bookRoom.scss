@@ -12,6 +12,36 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+
+    .toxin-range-picker {
+        position: relative;
+        margin: 20px 0 0 0;
+
+        &::before {
+            content: 'Даты пребывания в отеле';
+            font-family: 'Montserrat', "Helvetica", sans-serif;
+
+            position: absolute;
+
+            @include h3_txt();
+
+            top: -19px;
+            left: 0;
+        }
+    }
+
+    &__fullprice {
+        @include h1_txt();
+
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        span {
+            border-bottom: 1px dashed $DS_50;
+            width: 100%;
+        }
+    }
     
     &__row {
         display: flex;
@@ -27,18 +57,12 @@
 
             align-items: center;
 
-            margin-top: 34px;
+            margin-top: 18px;
         }
 
         &:nth-child(2) {
             margin: 15px 0;
         }
-    }
-
-    &__title {
-        @include h1_txt();
-
-        margin-bottom: 12px;
     }
 
     &__btn {
@@ -70,24 +94,7 @@
             background: url(../../assets/img/icons/arrow_white.svg) right center no-repeat;
         }
     }
-
-    .toxin-range-picker {
-        position: relative;
-        margin: 20px 0 0 0;
-
-        &::before {
-            content: 'Даты пребывания в отеле';
-            font-family: 'Montserrat', "Helvetica", sans-serif;
-
-            position: absolute;
-
-            @include h3_txt();
-
-            top: -19px;
-            left: 0;
-        }
-    }
-
+    
     .dropdown {
         position: relative;
         margin: 20px 0 0 0;
@@ -102,6 +109,57 @@
 
             top: -20px;
             left: 0;
+        }
+    }
+
+    .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+
+        &__number {        
+            .num,
+            .luxe {
+                @include h3_txt();
+            }
+
+            .numeric {
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .luxe {
+                color: $purple;
+            }
+        }
+
+
+
+        &__price {
+            color: $DS_50;
+            font-size: 12px;
+
+            .numeric {
+                font-weight: bold;
+                font-size: 14px;
+            }
+        }
+    }
+
+    .pay {
+        display: flex;
+        justify-content: space-between;
+
+        @include body_txt();
+
+        margin: 10px 0;
+
+        &:first-child {
+            margin-top: 25px;
+        }
+        
+        &:last-of-type {
+            margin-bottom: 25px;
         }
     }
 }
