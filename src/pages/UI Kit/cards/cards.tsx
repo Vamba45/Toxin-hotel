@@ -24,7 +24,7 @@ const Cards: FC = () => {
 
             <SearchRoom/>
 
-            <BookRoom dayStart={new Date(2019, 8, 19)} dayEnd={new Date(2019, 8, 27)} advancedServiceMoney={100} number={888}
+            <BookRoom dayStart={new Date(2024, 8, 19)} dayEnd={new Date(2024, 8, 27)} advancedServiceMoney={100} number={888}
                         price={5000} serviceMoney={250}/>
         </div>
     )

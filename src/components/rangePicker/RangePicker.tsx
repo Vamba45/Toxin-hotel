@@ -15,7 +15,7 @@ interface IRangePicker {
     defaultValues?: [dayjs.Dayjs, dayjs.Dayjs],
     minDate?: dayjs.Dayjs,
     maxDate?: dayjs.Dayjs,
-    onChange?: (dateStrings: [string, string]) => void
+    onChange?: (date: [string, string]) => void
 }
 
 const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValues = undefined}: IRangePicker) => {
@@ -30,7 +30,10 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
                     format={"DD.MM.YYYY"}
 
                     defaultValue={defaultValues !== undefined ? [defaultValues[0], defaultValues[1]] : undefined}
-                    onChange={onChange}
+
+                    onChange={(dates, dateString) => {
+                        onChange(dateString);
+                    }}
 
                     minDate={dayjs(new Date())}/>
             </ConfigProvider>
