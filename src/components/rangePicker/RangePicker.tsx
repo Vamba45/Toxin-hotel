@@ -32,7 +32,7 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
                     defaultValue={defaultValues !== undefined ? [defaultValues[0], defaultValues[1]] : undefined}
 
                     onChange={(dates, dateString) => {
-                        onChange(dateString);
+                            onChange ? onChange(dateString) : "";
                     }}
 
                     minDate={dayjs(new Date())}/>
