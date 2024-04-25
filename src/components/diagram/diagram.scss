@@ -1,0 +1,101 @@
+@import '../../styles/vars.scss';
+@import '../../styles/mixins.scss';
+
+
+.diagram {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: fit-content;
+
+    font-family: "Montserrat", "Verdana", "Helvetica", sans-serif;
+}
+
+.legend {
+    @include body_txt();
+
+    padding-left: 20px;
+
+    .caption-list {
+        .caption-item {
+            position: relative;
+            margin-bottom: 2px;
+
+            
+
+            &:last-child::before {
+                margin-bottom: 0;
+                background-color: $DS_75;
+            }
+
+            &:nth-child(2)::before {
+                background-color: #6FCF97;
+            }
+
+            &:nth-child(3)::before {
+                background-color: $purple;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: -15px;
+
+                border-radius: 50%;
+
+                width: 10px;
+                height: 10px;
+
+                background-color: rgb(255, 196, 87);
+            }
+        }
+    }
+}
+
+.canvas {
+    display: inline-flex;
+
+    width: fit-content;
+    position: relative;
+
+    .voices {
+        position: absolute;
+
+        top: 50px;
+        left: 36px;
+
+        line-height: 100%;
+        text-align: center;
+
+        color: $purple;
+        
+        span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        font-size: 12px;
+    }
+}
+
+.unit {
+    fill: none;
+    stroke-width: 2;
+  }
+  
+  .unit:nth-child(1) {
+    stroke: #6FCF97;
+  }
+  
+  .unit:nth-child(2) {
+    stroke: $purple;
+  }
+  
+  .unit:nth-child(3) {
+    stroke: rgb(250, 210, 135);
+  }
+
+  .unit:nth-child(4) {
+    stroke: $DS_75;
+  }

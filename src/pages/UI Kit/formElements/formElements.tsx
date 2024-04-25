@@ -18,6 +18,7 @@ import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 
 import Pagination from '../../../components/pagination/pagination';
 import RangePicker from '../../../components/rangePicker/RangePicker';
+import Diagram from '../../../components/diagram/diagram';
 
 const FormElements = () => {
     return (
@@ -81,21 +82,16 @@ const FormElements = () => {
 
             <Comment avatar={avatar} likes={12} lastvisit='5 дней назад'
                         username='Мурад Сарафанов' text='Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.'/>
-
-            <div className='filter__diapasone'
-                style={{margin: "200px 100px 100px 100px",
-                position: "fixed",
-                top: 0,
-                left: 0,
-                }}>
-                <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
-            </div>
             
             <RangeSlider maxValue={15000} defaultMax={10000} defaultMin={5000} priceGap={1500} title='range slider'/>
 
             <Pagination pageLimit={15}/>
 
             <RangePicker/>
+
+            <Diagram reviewCount={250} categoryPercentage={[25, 25, 50]}/>
+            <Diagram reviewCount={250} categoryPercentage={[25, 25, 50]}/>
+            <Diagram reviewCount={250} categoryPercentage={[25, 25, 25, 25]}/>
         </div> 
     )
 }
