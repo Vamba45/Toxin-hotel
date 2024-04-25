@@ -1,48 +1,22 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Counter from "../counter/counter";
 import './dropdown.scss';
 
 interface IDropDown {
-    menuItems: string[],
-    hasButtons?: boolean
+    menuItems: {name: string, count?: number}[],
+    placeholder: string,
+    commonName: string,
 }
 
-const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
+const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
 
     function dropdownSelectClick(event: React.MouseEvent<HTMLElement>) {
-        const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
+        const parentDropdown = (event.target as HTMLElement).closest('.dropdown');
 
         parentDropdown?.classList.toggle('active');
 
         const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
-        btn.classList.toggle('rotate')
-
-        if(hasButtons === false) {
-
-            const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
-            const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
-            
-            let text: string = "";
-            let sum = 0;
-
-            for(let i = 0; i < counters.length; i++) {
-                let num = Number(
-                                (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
-                            );
-
-                sum += num;
-                
-                if(num !== 0) {
-                    text = text + `${menuItems[i]} - ${num}. `;
-                }
-            }
-
-            if(sum <= 0) {
-                text = "Спальни и ванные"
-            }
-
-            (parentDropdown?.querySelector('.dropdown__text') as HTMLElement).textContent = text
-        }
+        btn.classList.toggle('rotate');
     }
 
     function acceptBtnClick(event: React.MouseEvent) {
@@ -53,23 +27,23 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
 
         const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
         const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
-
+        
         let sum = 0;
 
         for(let i = 0; i < counters.length; i++) {
-            sum += Number(
-                            (counters[i].querySelector(".counter__value") as HTMLInputElement)?.value
-                        );
+            let val = Number((counters[i].querySelector(".counter__value") as HTMLInputElement).value);
+            
+            sum += val;
         }
 
         const text = parentDropdown?.querySelector('.dropdown__text') as HTMLElement;
 
         if(sum === 0) {
-            text.innerText = `Сколько гостей`;
+            text.innerText = placeholder;
             return;
         }
 
-        text.innerText = `Гостей: ${sum}`;
+        text.innerText = `${commonName}: ${sum}`;
     }
 
     function resetBtnClick(event: React.MouseEvent) {
@@ -84,16 +58,19 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             (counters[i].querySelector('.counter__value') as HTMLInputElement).dispatchEvent(new Event('input', {bubbles: true}))
         }
     }
-
-    const maxWidth = hasButtons ? "320px" : "266px";
+    
+    let sum = menuItems.reduce((sum, current, i, arr) => {
+        if(current.count !== undefined)
+            return current.count + sum
+        else return sum
+    }, 0);
 
     return (
-        <div className="dropdown"
-            style={{maxWidth: maxWidth}}>
+        <div className="dropdown">
             <div className="dropdown__select" onClick={dropdownSelectClick}>
                 <div className="dropdown__text">
-                    {
-                        hasButtons === false ? "Спальни и ванные" : "Сколько гостей"
+                    {   
+                        sum > 0 ? `${commonName}: ${sum} ` : placeholder
                     }
                 </div>
                 <div className="dropdown__arrow"></div>
@@ -101,13 +78,13 @@ const DropDown: FC<IDropDown> = ({menuItems, hasButtons = true}) => {
             <ul className="dropdown__menu">
                 {
                     menuItems.map((item) => 
-                        <li key={item}>
-                            {item}
-                            <Counter/>
+                        <li key={`${item.name}-${item.count}`}>
+                            {item.name}
+                            <Counter defautValue={item.count}/>
                         </li>
                     )
                 }
-                {   hasButtons && 
+                {
                     <div className="dropdown__buttons">
                         <div className="dropdown__resetBtn"
                                 onClick={resetBtnClick}>очистить</div>

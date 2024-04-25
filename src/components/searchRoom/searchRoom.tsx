@@ -18,7 +18,7 @@ const SearchRoom : FC = () => {
                     <RangePicker/>
                 </div>
                 <div className="searchroom__column">
-                    <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
+                    <DropDown menuItems={[{name: "Взрослые"}, {name: "Дети"}, {name: "Младенцы"}]} placeholder='Гости' commonName='Гостей'/>
                 </div>
                 <div className="searchroom__column">
                     <button className="searchroom__btn">подобрать номер</button>

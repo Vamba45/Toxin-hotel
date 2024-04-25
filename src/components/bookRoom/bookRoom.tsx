@@ -12,11 +12,12 @@ interface IBookRoom {
     dayStart: Date,
     dayEnd: Date,
     serviceMoney: number,
-    advancedServiceMoney: number
+    advancedServiceMoney: number,
+    dropdownValue: {name: string, count?: number}[]
 }
 
 const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, dayStart, dayEnd, serviceMoney = 100, 
-    advancedServiceMoney = 250
+    advancedServiceMoney = 250, dropdownValue
 }: IBookRoom) => {
     const [minDate, setMinDate] = useState<string>(`${dayStart.getDate()}.${dayStart.getMonth()}.${dayStart.getFullYear()}`);
     const [maxDate, setMaxDate] = useState<string>(`${dayEnd.getDate()}.${dayEnd.getMonth()}.${dayEnd.getFullYear()}`);
@@ -56,7 +57,7 @@ const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, da
                     }}/>
                 </div>
                 <div className="bookroom__column">
-                    <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
+                    <DropDown menuItems={dropdownValue} placeholder='Гости' commonName='Гостей'/>
                 </div>
                 <div className="bookroom__column">
                     <div className="bookroom__calculations">

@@ -2,6 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .dropdown {
+    max-width: 320px;
     width: 100%;
 
     border: 1px solid $DS_25;

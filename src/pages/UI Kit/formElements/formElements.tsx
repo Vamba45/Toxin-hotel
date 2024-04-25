@@ -28,8 +28,14 @@ const FormElements = () => {
             <TextField placeholder='Email'/>
             <TextField placeholder='Пароль' isPasswrod={true}/>
 
-            <DropDown menuItems={["Взрослые", "Дети", "Младенцы"]}/>
-            <DropDown menuItems={["Спальни", "Кровати", "Ванные комнаты"]} hasButtons={false}/>
+            <DropDown menuItems={[{name: "Взрослые", count: 7}, 
+                                {name: "Дети"}, 
+                                { name: "Младенцы"}]}
+                                placeholder='Гости'
+                                commonName='Гостей'/>
+
+            <DropDown menuItems={[{name:"Спальни"}, {name:"Кровати"}, {name:"Ванные комнаты"}]} placeholder='Спальни и ванные'
+                        commonName='Мебели'/>
 
             <Checkbox name='some' id='ch1' paragraph='Можно курить'/>
             <Checkbox name='some' id='ch2' paragraph='Можно с питомцами'/>
@@ -90,8 +96,8 @@ const FormElements = () => {
             <RangePicker/>
 
             <Diagram reviewCount={250} categoryPercentage={[25, 25, 50]}/>
-            <Diagram reviewCount={250} categoryPercentage={[25, 25, 50]}/>
-            <Diagram reviewCount={250} categoryPercentage={[25, 25, 25, 25]}/>
+            <Diagram reviewCount={10000} categoryPercentage={[25, 25, 50]}/>
+            <Diagram reviewCount={150} categoryPercentage={[25, 25, 45, 5]}/>
         </div> 
     )
 }
