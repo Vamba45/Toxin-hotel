@@ -1,7 +1,7 @@
 import { FC } from "react";
 import './diagram.scss';
 
-interface IDiagram {
+export interface IDiagram {
     reviewCount: number,
     categoryPercentage: number[]
 }

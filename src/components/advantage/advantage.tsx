@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import './advantage.scss';
 
-interface IAdvantage {
+export interface IAdvantage {
     img: string;
     title: string;
     text: string;

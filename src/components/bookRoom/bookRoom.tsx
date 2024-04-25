@@ -5,7 +5,7 @@ import RangePicker from '../rangePicker/RangePicker';
 import DropDown from '../dropdown/dropdown';
 import dayjs from 'dayjs';
 
-interface IBookRoom {
+export interface IBookRoom {
     isLuxe?: boolean,
     price: number,
     number: number,

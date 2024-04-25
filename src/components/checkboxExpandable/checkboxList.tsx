@@ -2,7 +2,7 @@ import { FC } from 'react';
 import './checkboxList.scss';
 import Checkbox from '../checkboxx/checkbox';
 
-interface ICheckBoxList {
+export interface ICheckBoxList {
     title: string;
     options: string[];
     richTitles?: string[];

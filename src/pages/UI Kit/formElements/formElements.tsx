@@ -11,7 +11,7 @@ import Advantage from '../../../components/advantage/advantage';
 
 import city from '../../../assets/img/icons/city.svg';
 import smile from '../../../assets/img/icons/smile.svg';
-import avatar from '../../../assets/img/avatar.png';
+import avatar from '../../../assets/img/avatar/man.png';
 
 import Comment from '../../../components/comment/comment';
 import RangeSlider from '../../../components/rangeSlider/rangeSlider';

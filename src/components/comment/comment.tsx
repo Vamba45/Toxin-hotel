@@ -2,7 +2,7 @@ import { FC } from 'react';
 import './comment.scss';
 import Like from '../like/like';
 
-interface IComment {
+export interface IComment {
     avatar: string;
     username: string;
     lastvisit: string;
