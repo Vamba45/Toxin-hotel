@@ -1,25 +1,22 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import './counter.scss';
 
-const Counter = () => {
-    const [count, setCount] = useState(0)
-    const [decrStyles, setDecrStyles] = useState("rgba(31, 32, 65, 0.25)")
+interface ICounter {
+    defautValue?: number
+}
+
+const Counter: FC<ICounter> = ({defautValue}) => {
+    const [count, setCount] = useState(defautValue !== undefined ? defautValue : 0)
 
     function minusClick(e : React.MouseEvent) {
         if(count === 0) {
             return;
-        } 
-
-        if((count - 1) === 0) {
-            setDecrStyles("rgba(31, 32, 65, 0.25)")
         }
 
         setCount(count - 1)
     }
 
     function plusClick(e : React.MouseEvent) {
-        setDecrStyles("rgba(31, 32, 65, 0.50)")
-
         setCount(count + 1)
     }
 
@@ -27,19 +24,14 @@ const Counter = () => {
         const input = e.target as HTMLInputElement;
 
         setCount(Number((input).value));
-        setDecrStyles("rgba(31, 32, 65, 0.25)")
     }
 
     return (
         <div className="counter">
-            <div className="counter__minus"
-                    onClick={minusClick}
-                    style={
-                        {
-                            borderColor: decrStyles,
-                            color: decrStyles
-                        }
-                    }>-</div>
+            <div className={["counter__minus",,
+                            count === 0 ? "disable" : ""].join(" ")
+            }
+                    onClick={minusClick}>-</div>
             <input className="counter__value" 
                     readOnly={true} 
                     value={`${count}`}

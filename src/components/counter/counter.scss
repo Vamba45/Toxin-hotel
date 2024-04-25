@@ -8,6 +8,8 @@
 
     width: 92px;
 
+    user-select: none;
+
     &__minus, 
     &__plus {
         @include border($border-radius: 50%);
@@ -22,6 +24,11 @@
         align-items: center;
 
         cursor: pointer;
+    }
+
+    &__minus.disable {
+        border-color: $DS_25;
+        color: $DS_25;
     }
 
     &__value {
