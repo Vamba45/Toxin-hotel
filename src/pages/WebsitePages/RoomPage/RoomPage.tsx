@@ -1,4 +1,6 @@
 import { FC } from "react";
+import './RoomPage.scss';
+
 import BookRoom, { IBookRoom } from "../../../components/bookRoom/bookRoom";
 import Advantage, { IAdvantage } from "../../../components/advantage/advantage";
 import Diagram, { IDiagram } from "../../../components/diagram/diagram";
@@ -17,31 +19,34 @@ interface IRoomPage {
 const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, checkBoxList, images}) => {
     return (
         <div className="roomPage">
-            <div className="grid">
+            {/* <div className="grid">
                 {
-                    images.map((img) => (
-                        <div>
-                            <img src={img} alt="room image" />
+                    images.map((img, i) => (
+                        <div className={["grid__img", i === 1 ? "big" : ""].join(' ')}>
+                            <img src={img} alt='room image'/>
                         </div>
                     ))
                 }
-            </div>
+            </div> */}
             <div className="container">
                 <div className="roomPage__row">
                     <div className="roomPage__column info">
                         <div className="info__section">
                             <div>
+                                <h3>Сведения о номере</h3>
                             {
                                 advantages.map((e) => <Advantage img={e.img} text={e.text} title={e.text}/>)
                             }
                             </div>
                             <div>
+                                <h3>Впечатления от номера</h3>
                             {
                                 <Diagram categoryPercentage={diagram.categoryPercentage} reviewCount={diagram.reviewCount}/>
                             }
                             </div>
                         </div>
                         <div className="info__section">
+                            <h3>Отзывы посетителей номера</h3>
                             {
                                 comments.map((e) => <Comment avatar={e.avatar} lastvisit={e.lastvisit} 
                                                             likes={e.likes} text={e.text}
@@ -55,9 +60,9 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                                                 type={checkBoxList.type}
                                                 richTitles={checkBoxList.richTitles}/>
                             </div>
-                            <div>
-                                <h3>Отмена</h3>
-                                <p>
+                            <div className="cancel">
+                                <h3 className="cancel__h3">Отмена</h3>
+                                <p className="cancel__paragraph">
                                     Бесплатная отмена в течение 48 ч. После этого при отмене не позднее чем за 5 дн. до прибытия вы получите полный возврат за вычетом сбора за услуги.
                                 </p>
                             </div>
