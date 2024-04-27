@@ -2,6 +2,7 @@
 @import './../../styles/vars.scss';
 
 .footer {
+    border-top: 1px solid $DS_25;
     &__widgetes {
         display: grid;
         grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 1fr;
