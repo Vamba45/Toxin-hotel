@@ -50,9 +50,9 @@ root.render(
                 <Route path='/registration' element={<Regpage />} />
                 <Route path='/login' element={<Loginpage />} />
                 <Route path='/hotels' element={<HostelsPage />} />
-                <Route path='/room'  element={<RoomPage images={[img1, img2, img3]} 
+                <Route path='/room'  element={<RoomPage images={[img2, img1, img3]} 
                                                 diagram={{reviewCount: 260, categoryPercentage: [25, 25, 50]}}
-                                                checkBoxList={{type: "bullet", options: ["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия - после 13:00, а выезд до 12:00"], title: ""}}
+                                                checkBoxList={{type: "bullet", options: ["Нельзя с питомцами", "Без вечеринок и мероприятий", "Время прибытия - после 13:00, а выезд до 12:00"], title: "Правила"}}
                                                 comments={[{avatar: ava1, lastvisit: "5 дней назад", likes: 12, text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.", username: "Мурад Сарафанов"},
                                                     {avatar: ava2, lastvisit: "Неделю назад", likes: 2, text: "Обслуживание на высоте! Всё аккуратно, чисто. Завтраки в номер советую заказать, каждый день новое блюдо и десерт как комплимент", username: "Патрисия Стёклышкова"}
                                                 ]}
