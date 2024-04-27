@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import './RoomPage.scss';
 
 import BookRoom, { IBookRoom } from "../../../components/bookRoom/bookRoom";
@@ -32,6 +32,9 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                         </div>
                     ))
                 }
+            </div>
+            <div className="roomPage__slider">
+                <Slider items={images} width={550} height={320}/>
             </div>
             <div className="container">
                 <div className="roomPage__row">

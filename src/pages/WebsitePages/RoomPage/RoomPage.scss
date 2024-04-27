@@ -6,6 +6,11 @@
         margin: 50px auto;
     }
 
+    &__slider {
+        display: none;
+        padding: 0 15px;
+    }
+
     h3 {
         @include h2_txt();
         margin-bottom: 20px;
@@ -132,13 +137,18 @@
 @media screen and (max-width: 800px) {
     .roomPage {
         .grid {
-            &__img {
-                &.big {
-                }
-            }
+            display: none !important;
+        }
+
+        &__slider {
+            display: flex;
+            justify-content: center;
+
+            padding-top: 125px;    
         }
     }
 }
+
 
 @media screen and (max-width: 1010px) {
     .roomPage {
@@ -149,6 +159,64 @@
 
         &__column.form {
             margin-bottom: 70px;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .roomPage {
+        .container {
+            margin-top: 25px !important;
+        }
+
+        &__slider {
+            .slider {
+                // &__frames {
+                //     transform: translateX(0) !important;
+                // }
+
+                max-width: 420px !important;
+                max-height: 234px !important;
+                width: 420px !important;
+                height: 234px !important;
+
+                .frame {
+                    min-width: 420px !important;
+                    height: 234px !important;
+                }
+            }
+
+            .dot {
+                height: 12px !important;
+                width: 12px !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .roomPage {
+        &__slider {
+            .slider {
+                max-width: 330px !important;
+                max-height: 195px !important;
+                width: 330px !important;
+                height: 195px !important;
+
+                // &__frames {
+                //     transform: translateX(0) !important;
+                // }
+
+                .dot {
+                    height: 10px !important;
+                    width: 10px !important;
+                }
+
+                .frame {
+                    min-width: 330px !important;
+                    height: 195px !important;
+                }
+            }
         }
     }
 }
