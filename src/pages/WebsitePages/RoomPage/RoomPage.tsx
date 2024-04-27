@@ -6,6 +6,7 @@ import Advantage, { IAdvantage } from "../../../components/advantage/advantage";
 import Diagram, { IDiagram } from "../../../components/diagram/diagram";
 import Comment, { IComment } from "../../../components/comment/comment";
 import CheckBoxList, { ICheckBoxList } from "../../../components/checkboxExpandable/checkboxList";
+import Slider from "../../../components/slider/slider";
 
 interface IRoomPage {
     bookRoom: IBookRoom,
@@ -19,15 +20,19 @@ interface IRoomPage {
 const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, checkBoxList, images}) => {
     return (
         <div className="roomPage">
-            {/* <div className="grid">
+            <div className="grid">
                 {
                     images.map((img, i) => (
-                        <div className={["grid__img", i === 1 ? "big" : ""].join(' ')}>
-                            <img src={img} alt='room image'/>
+                        <div className={["grid__img", i === 0 ? "big" : ""].join(' ')}>
+                            <div className="image" style={{
+                                background: `url(${img}) center no-repeat`,
+                                backgroundSize: 'cover'}}>
+
+                            </div>
                         </div>
                     ))
                 }
-            </div> */}
+            </div>
             <div className="container">
                 <div className="roomPage__row">
                     <div className="roomPage__column info">
