@@ -2,10 +2,12 @@ import { FC } from "react";
 import './slider.scss';
 
 interface ISlider {
-    items: any[]
+    items: any[],
+    width?: number,
+    height?: number
 }
 
-const Slider : FC<ISlider> = ({items}) => {
+const Slider : FC<ISlider> = ({items, width = 270, height = 150}) => {
 
     function dotClick(e: React.MouseEvent<HTMLElement>) {
         const slider = (e.target as HTMLElement).closest('.slider');
@@ -21,7 +23,7 @@ const Slider : FC<ISlider> = ({items}) => {
 
             if(dots[i] === e.target) {
                 dots[i].classList.add('active')
-                frame.style.transform = `translateX(-${Number(slider?.clientWidth)*i}px)`;
+                frame.style.transform = `translateX(-${100 * i}%)`;
             }
         }
     }
@@ -40,7 +42,7 @@ const Slider : FC<ISlider> = ({items}) => {
                     dots[i].classList.remove('active')
                     dots[i + 1].classList.add('active')
 
-                    frame.style.transform = `translateX(-${Number(slider?.clientWidth)*(i+1)}px)`;
+                    frame.style.transform = `translateX(-${(100 * (i + 1))}%)`;
 
                     break
                 }
@@ -62,7 +64,7 @@ const Slider : FC<ISlider> = ({items}) => {
                     dots[i].classList.remove('active')
                     dots[i - 1].classList.add('active')
 
-                    frames.style.transform = `translateX(-${Number(slider?.clientWidth)*(i - 1)}px)`;
+                    frames.style.transform = `translateX(-${(100 * (i - 1))}%)`;
 
                     break
                 }
@@ -71,12 +73,22 @@ const Slider : FC<ISlider> = ({items}) => {
     }
 
     return (
-        <div className="slider">
+        <div className="slider" style={{
+            maxWidth: width,
+            maxHeight: height,
+            width: width,
+            height: height,
+        }}>
             <ul className="slider__frames">
                 {
                     items.map((item, index) => (
-                        <li className={"frame" + " " + (index === 0 ? "active" : "")}>
-                            <img src={item} alt="slider frame" />
+                        <li className={"frame" + " " + (index === 0 ? "active" : "")}
+                            style={{
+                                background: `url(${item}) center no-repeat`,
+                                backgroundSize: 'cover',
+                                minWidth: width,
+                                height: height
+                            }}>
                         </li>
                     ))
                 }
@@ -85,6 +97,10 @@ const Slider : FC<ISlider> = ({items}) => {
                 {
                     items.map((item, index) => (
                         <div className={"dot" + " " + (index === 0 ? "active" : "")}
+                            style={{
+                                width: height / 16,
+                                height: height / 16,
+                            }}
                             onClick={dotClick}></div>
                     ))
                 }
