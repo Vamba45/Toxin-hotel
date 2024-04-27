@@ -19,6 +19,11 @@ import RangeSlider from '../../../components/rangeSlider/rangeSlider';
 import Pagination from '../../../components/pagination/pagination';
 import RangePicker from '../../../components/rangePicker/RangePicker';
 import Diagram from '../../../components/diagram/diagram';
+import Slider from '../../../components/slider/slider';
+
+import img1 from '../../../assets/img/room/a.png';
+import img2 from '../../../assets/img/room/b.png';
+import img3 from '../../../assets/img/room/c.png';
 
 const FormElements = () => {
     return (
