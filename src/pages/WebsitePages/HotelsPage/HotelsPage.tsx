@@ -9,11 +9,16 @@ import CheckBoxList from "../../../components/checkboxExpandable/checkboxList";
 import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
 
+
+import img1 from '../../../assets/img/room/a.png';
+import img2 from '../../../assets/img/room/b.png';
+import img3 from '../../../assets/img/room/c.png';
+
 const hotelsPage: FC = () => {
-    let rooms: {number: number, price: number, reviews: number, sliderItems: [], starsName: string}[] = [];
+    let rooms: {number: number, price: number, reviews: number, sliderItems: any[], starsName: string}[] = [];
 
     for(let i = 0; i < 10; i++) {
-        rooms.push({number: i, price: i * 1000, reviews: i * 10, sliderItems: [], starsName: `room-${i}`})
+        rooms.push({number: i, price: i * 1000, reviews: i * 10, sliderItems: [img1, img2, img3], starsName: `room-${i}`})
     }
 
     const btnRef = useRef(null);
