@@ -9,17 +9,9 @@ import CheckBoxList from "../../../components/checkboxExpandable/checkboxList";
 import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
 
-
-import img1 from '../../../assets/img/room/a.png';
-import img2 from '../../../assets/img/room/b.png';
-import img3 from '../../../assets/img/room/c.png';
+import { roomsAPI } from "../../../store/services/roomSerivce";
 
 const hotelsPage: FC = () => {
-    let rooms: {number: number, price: number, reviews: number, sliderItems: any[], starsName: string}[] = [];
-
-    for(let i = 0; i < 10; i++) {
-        rooms.push({number: i, price: i * 1000, reviews: i * 10, sliderItems: [img1, img2, img3], starsName: `room-${i}`})
-    }
 
     const btnRef = useRef(null);
     const sidebarRef = useRef(null);
@@ -38,6 +30,8 @@ const hotelsPage: FC = () => {
             (document.body as HTMLElement)?.classList.remove('disabled');
         }
     }
+
+    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery(1);
  
     return (
         <div className="hotels">
@@ -83,12 +77,12 @@ const hotelsPage: FC = () => {
                         <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
                         <div className="rooms__grid">
                             {   
-                                rooms.map((room) => (
+                                data && data.map((room) => (
                                     <Room number={room.number} 
                                         price={room.price}
-                                        reviews={room.reviews} 
-                                        sliderItems={room.sliderItems} 
-                                        starsName={room.starsName}
+                                        reviews={room.reviewNumber} 
+                                        sliderItems={room.photos} 
+                                        starsName={room.number + room.dayStart}
                                         starsCount={5}/>
                                 ))
                             }
