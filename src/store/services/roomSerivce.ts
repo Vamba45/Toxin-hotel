@@ -9,7 +9,7 @@ export const roomsAPI = createApi({
             query: (page) => ({
                 url: `/rooms?page=${page}`,
                 params: {
-                    limit: 10
+                    limit: 12
                 }
             })
         })

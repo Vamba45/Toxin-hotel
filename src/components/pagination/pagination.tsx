@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import './pagination.scss';
 
 interface IPagination {
-    pageLimit: number;
+    pageLimit: number
 }
 
 const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
@@ -62,7 +62,7 @@ const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
                             onClick={() => setPage(1)}>
                             1
                         </li>
-                        <li className="pagination__dotsbefore"
+                        <li className="pagination__dotsbefore   "
                             onClick={pageDecriment}>
                             ...
                         </li>   

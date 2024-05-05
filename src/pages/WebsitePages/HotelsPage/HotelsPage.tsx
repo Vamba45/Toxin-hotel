@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react";
+import React, { FC, useRef, useState } from "react";
 import './HotelsPage.scss';
 import Pagination from "../../../components/pagination/pagination";
 import RangePicker from "../../../components/rangePicker/RangePicker";
@@ -10,6 +10,9 @@ import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
 
 import { roomsAPI } from "../../../store/services/roomSerivce";
+
+import ContentLoader from "react-content-loader";
+import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
 
 const hotelsPage: FC = () => {
 
@@ -31,7 +34,8 @@ const hotelsPage: FC = () => {
         }
     }
 
-    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery(1);
+    const [page, setPage] = useState(1);
+    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery(page);
  
     return (
         <div className="hotels">
@@ -76,6 +80,15 @@ const hotelsPage: FC = () => {
                     <div className="hotels__column hotels__rooms rooms">
                         <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
                         <div className="rooms__grid">
+                            {
+                                isLoading && (<>
+                                    {
+                                        [... Array(12)].map(() => (
+                                            <RoomSkeleton/>
+                                          ))
+                                    }
+                                    </>)
+                            }
                             {   
                                 data && data.map((room) => (
                                     <Room number={room.number} 
@@ -87,13 +100,18 @@ const hotelsPage: FC = () => {
                                 ))
                             }
                         </div>
-                        <div className="rooms__pagination">    
-                            <Pagination pageLimit={15}/>
+                        <div className="rooms__pagination"
+                            onClick={
+                                (event: React.MouseEvent) => {
+                                    const pagination = (event.target as HTMLElement).querySelector('.pagination');
+                                }
+                            }>    
+                            <Pagination pageLimit={9}/>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
     )
 }
 
