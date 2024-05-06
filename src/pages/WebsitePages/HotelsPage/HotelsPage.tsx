@@ -103,7 +103,33 @@ const hotelsPage: FC = () => {
                         <div className="rooms__pagination"
                             onClick={
                                 (event: React.MouseEvent) => {
-                                    const pagination = (event.target as HTMLElement).querySelector('.pagination');
+                                    const el = (event.target as HTMLElement);
+
+                                    if(Number(el.innerText)) {
+                                        setPage(Number(el.innerText));
+
+                                        return;
+                                    }
+
+                                    if(el.classList.contains('pagination__dotsbefore') || 
+                                        el.classList.contains('pagination__prev')) {
+                                        
+                                        if(page > 1) {
+                                            setPage(page - 1)
+                                        }
+
+                                        return;
+                                    }
+
+                                    if(el.classList.contains('pagination__dotsafter') || 
+                                        el.classList.contains('pagination__next')) {
+                                        
+                                        if(page < 8) {
+                                            setPage(page + 1)
+                                        }
+
+                                        return;
+                                    }
                                 }
                             }>    
                             <Pagination pageLimit={9}/>

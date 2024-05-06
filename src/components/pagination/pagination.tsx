@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import './pagination.scss';
 
 interface IPagination {
-    pageLimit: number
+    pageLimit: number;
 }
 
 const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
@@ -48,22 +48,28 @@ const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
                 {
                     page <= pageRange && 
                             range(1, pageRange + 1).map((el) => (
-                                <li className={page === el ? "active" : ""}
-                                    onClick={() => setPage(el)}>{el}</li>
+                                <li className={(page === el ? "active" : "") + " pag-btn"}
+                                    onClick={() => { 
+                                        setPage(el)
+                                    }}>{el}</li>
                             ))
                 }
 
                 {
                     page > pageRange && 
                     <>
-                        <li className="pagination__prev"
-                            onClick={pageDecriment}></li>
-                        <li className="pagination__firstpage"
-                            onClick={() => setPage(1)}>
+                        <li className="pagination__prev pag-btn"
+                            onClick={() => {
+                                    pageDecriment();
+                                }}></li>
+                        <li className="pagination__firstpage pag-btn"
+                            onClick={() => { setPage(1); }}>
                             1
                         </li>
-                        <li className="pagination__dotsbefore   "
-                            onClick={pageDecriment}>
+                        <li className="pagination__dotsbefore pag-btn"
+                            onClick={() => { 
+                                pageDecriment();
+                            }}>
                             ...
                         </li>   
                     </>
@@ -75,7 +81,7 @@ const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
                         <>
                             {
                                 centerNums.map((num, index) => (
-                                    <li className={page === num ? "active" : ""}
+                                    <li className={(page === num ? "active" : "") + " pag-btn"}
                                         onClick={() => setPage(num)}>
                                         {num}
                                     </li>
@@ -88,15 +94,15 @@ const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
                 {
                     page < (pageLimit - pageRange + 1) && 
                     <>
-                        <li className="pagination__dotsafter"
+                        <li className="pagination__dotsafter pag-btn"
                             onClick={pageIncrement}>
                             ...
                         </li>
-                        <li className="pagination__lastpage"
+                        <li className="pagination__lastpage pag-btn"
                             onClick={() => setPage(pageLimit)}>
                             {pageLimit}
                         </li>
-                        <li className="pagination__next"
+                        <li className="pagination__next pag-btn"
                             onClick={pageIncrement}></li>
                     </>
                 }
@@ -104,7 +110,7 @@ const Pagination: FC<IPagination> = ({pageLimit = 15}) => {
                 {
                     page > (pageLimit - pageRange) && 
                     range(pageLimit - pageRange, pageLimit).map((el) => (
-                        <li className={page === el ? "active" : ""}
+                        <li className={(page === el ? "active" : "") + " pag-btn"}
                             onClick={() => setPage(el)}>{el}</li>
                     ))
                 }
