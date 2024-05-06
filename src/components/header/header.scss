@@ -73,12 +73,17 @@
 
     &__login {
         @include button_whiteBG();
+
         margin-right: 6px;
         height: 40px;
     }
 
     &__registration {
         @include button_short();
+
+        padding-top: 10px;
+        
+        line-height: 12px;
         margin-left: 6px;    
         height: 40px;
     }

@@ -4,6 +4,7 @@ import Radio from "../radio/radio";
 import Toggle from "../toggle/toggle";
 
 import './registration.scss';
+import { Link } from "react-router-dom";
 
 const Registration : FC = () => {
     return (
@@ -36,8 +37,8 @@ const Registration : FC = () => {
                     <button className='registration__submit' type='submit'>Перейти к оплате</button>
                 </div>
                 <div className="registration__column">
-                    <a href="#" className="registration__createacclink">Уже есть аккаунт на Toxin?</a>
-                    <a href="#" className="registration__createaccbutton">Войти</a>
+                    <Link to={'/login'} className="registration__createacclink">Уже есть аккаунт на Toxin?</Link>
+                    <Link to={'/login'} className="registration__createaccbutton">Войти</Link>
                 </div>
             </div>
         </form>

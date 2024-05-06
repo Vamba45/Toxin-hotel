@@ -7,7 +7,7 @@ export const roomsAPI = createApi({
     endpoints: (build) => ({
         fetchAllRooms: build.query<IRoom[], number>({
             query: (page) => ({
-                url: `/rooms?page=${page}`,
+                url: `/rooms?isLuxe=${false}`,
                 params: {
                     limit: 12
                 }

@@ -2,6 +2,7 @@ import { FC } from "react";
 import './header.scss';
 
 import logo from '../../assets/img/logo.svg';
+import { Link } from "react-router-dom";
 
 interface ISubmenu {
     text: string;
@@ -91,8 +92,8 @@ const Header : FC<IHeader> = ({user = ""}) => {
                         {
                             user === "" && 
                             (<div className="header__buttons">
-                                <button className="header__login">войти</button>
-                                <button className="header__registration">зарегистрироваться</button>
+                                <Link to={'/login'} className="header__login">войти</Link>
+                                <Link to={'/registration'} className="header__registration">зарегистрироваться</Link>
                             </div>)
                         }
                         {

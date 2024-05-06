@@ -2,6 +2,7 @@ import { FC } from 'react';
 import './login.scss';
 
 import { TextField } from '../textField/textField';
+import { Link } from 'react-router-dom';
 
 const Login : FC = () => {
     return (
@@ -16,8 +17,8 @@ const Login : FC = () => {
                     <button className='login__submit' type='submit'>Войти</button>
                 </div>
                 <div className="login__column">
-                    <a href="#" className="login__createacclink">Нет аккаунта на Toxin?</a>
-                    <a href="#" className="login__createaccbutton">Создать</a>
+                    <Link to={'/registration'} className="login__createacclink">Нет аккаунта на Toxin?</Link>
+                    <Link to={'/registration'} className="login__createaccbutton">Создать</Link>
                 </div>
             </div>
         </form>
