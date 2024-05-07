@@ -7,15 +7,19 @@
 
     border: 1px solid $DS_25;
     border-radius: 5px;  
+
+    position: relative;
     
     &.active {
         .dropdown__menu {
             max-height: 100vh;
             
             padding: 4px 7px 7px 15px;
-            transition: max-height 0.5s ease-out;
-    
-            border-top: 1px solid $DS_75;
+            transition: max-height 0.2s ease-out;
+
+            overflow: visible;
+
+            border: 1px solid $DS_50;
         }
     }
 
@@ -76,17 +80,27 @@
     &__menu {
         @include h3_txt();
 
-        max-height: 0;
+        position: absolute;
+
         overflow: hidden;
 
         transition: max-height 0.5s ease-out;
         transition: padding 0.1s ease-out;
         
         padding: 0;
+        background-color: #fff;
+
+        top: 50px;
+        left: -1.5px;
+
+        width: 101%;
+        max-height: 0;
+        border-radius: 5px;
+
+        z-index: 1000;
 
         li {
             width: 100%;
-
             padding: 4px 0;
 
             display: flex;
