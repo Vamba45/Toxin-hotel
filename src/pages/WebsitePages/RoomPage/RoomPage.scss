@@ -134,6 +134,14 @@
     }
 }
 
+@media screen and (max-width: 860px) {
+    .ant-picker-dropdown {
+        .ant-picker-panels {
+            flex-direction: column !important;
+        }
+    }
+}
+
 @media screen and (max-width: 800px) {
     .roomPage {
         .grid {
