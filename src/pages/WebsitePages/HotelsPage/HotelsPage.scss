@@ -7,6 +7,19 @@ body {
     width: 100%;
 }
 
+@media screen and (min-width: 1241px) {
+    body {
+        position: static !important;
+        overflow: auto !important;
+        
+        &::after {
+            content: '';
+
+            display: none !important; 
+        }
+    }
+}
+
 .rooms {
     display: flex;
     flex-direction: column;
