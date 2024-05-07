@@ -8,10 +8,7 @@ import Checkbox from "../../../components/checkboxx/checkbox";
 import CheckBoxList from "../../../components/checkboxExpandable/checkboxList";
 import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
-
 import { roomsAPI } from "../../../store/services/roomSerivce";
-
-import ContentLoader from "react-content-loader";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
 
 const hotelsPage: FC = () => {
@@ -22,7 +19,6 @@ const hotelsPage: FC = () => {
     useOnClickOutside([btnRef, sidebarRef], () => sideBarOnClick());
 
     function sideBarOnClick (fromBtn?: boolean) {
-
         if(fromBtn) {
             (document.querySelector('#sidebar-btn'))?.classList.toggle('active');
             (document.querySelector('.filters') as HTMLElement)?.classList.toggle('active');

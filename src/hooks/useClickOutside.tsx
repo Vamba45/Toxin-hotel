@@ -10,6 +10,10 @@ export default function useOnClickOutside(refs: any[], handler) {
             if (!refs[i].current || refs[i].current.contains(event.target)) {
                 return;
             }
+
+            if((event.target as HTMLElement).closest('.ant-picker-dropdown')) {
+              return;
+            }
         }   
 
         handler(event);
