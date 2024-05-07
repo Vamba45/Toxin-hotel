@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 import './header.scss';
 
 import logo from '../../assets/img/logo.svg';
@@ -53,6 +53,18 @@ function burgerOnClick(e: React.MouseEvent) {
     document.body.classList.toggle('lock');
 }
 
+function linksOnClick(e: React.MouseEvent) {
+    const row = (e.target as HTMLElement).closest('.header__row');
+
+    const col = row?.querySelector('.burgercol') as HTMLElement;
+    const burger = row?.querySelector('.burger__button') as HTMLElement;
+
+    burger.classList.remove('active')
+    col.classList.remove('active')
+
+    document.body.classList.remove('lock');
+}
+
 interface IHeader {
     user?: string;
 }
@@ -92,8 +104,8 @@ const Header : FC<IHeader> = ({user = ""}) => {
                         {
                             user === "" && 
                             (<div className="header__buttons">
-                                <Link to={'/login'} className="header__login">войти</Link>
-                                <Link to={'/registration'} className="header__registration">зарегистрироваться</Link>
+                                <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
+                                <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
                             </div>)
                         }
                         {
