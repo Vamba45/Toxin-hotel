@@ -10,6 +10,7 @@ import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
 import { roomsAPI } from "../../../store/services/roomSerivce";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
+import { Link } from "react-router-dom";
 
 const hotelsPage: FC = () => {
 
@@ -31,6 +32,7 @@ const hotelsPage: FC = () => {
     }
 
     const [page, setPage] = useState(1);
+    const [priceDiapasone, setPriceDiapasone] = useState([5000, 15000]);
     const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery(page);
  
     return (
@@ -86,13 +88,17 @@ const hotelsPage: FC = () => {
                                     </>)
                             }
                             {   
-                                data && data.map((room) => (
-                                    <Room number={room.number} 
-                                        price={room.price}
-                                        reviews={room.reviewNumber} 
-                                        sliderItems={room.photos} 
-                                        starsName={room.number + room.dayStart}
-                                        starsCount={5}/>
+                                data && data.filter((el) => {
+                                    return (el.price >= priceDiapasone[0] && el.price <= priceDiapasone[1])
+                                }).map((room) => (
+                                    <Link to={'/room'} onClick={() => {}}>
+                                        <Room number={room.number} 
+                                            price={room.price}
+                                            reviews={room.reviewNumber} 
+                                            sliderItems={room.photos} 
+                                            starsName={room.number + room.dayStart}
+                                            starsCount={5}/>
+                                    </Link>
                                 ))
                             }
                         </div>
