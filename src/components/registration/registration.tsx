@@ -4,7 +4,7 @@ import Radio from "../radio/radio";
 import Toggle from "../toggle/toggle";
 
 import './registration.scss';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Registration : FC = () => {
     return (
@@ -34,7 +34,15 @@ const Registration : FC = () => {
 
                     <Toggle labeltext="Получать спецпредложения" id="spec"/>
 
-                    <button className='registration__submit' type='submit'>Перейти к оплате</button>
+                    <button className='registration__submit' onClick={(e: React.MouseEvent) => {
+                        const parent = (e.target as HTMLElement).closest('.registration');
+
+                        const name = parent?.querySelector('.textField__input[placeholder="Имя"]') as HTMLInputElement;
+                        const surname = parent?.querySelector('.textField__input[placeholder="Фамилия"]') as HTMLInputElement;
+
+                        name.value && surname.value && localStorage.setItem("Name", name.value + " "  + surname.value);
+
+                    }}>Перейти к оплате</button>
                 </div>
                 <div className="registration__column">
                     <Link to={'/login'} className="registration__createacclink">Уже есть аккаунт на Toxin?</Link>

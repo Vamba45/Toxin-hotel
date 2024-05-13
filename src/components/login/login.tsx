@@ -14,7 +14,12 @@ const Login : FC = () => {
                     </h1>
                     <TextField placeholder='Email'/>
                     <TextField placeholder='Пароль' isPasswrod={true}/>
-                    <button className='login__submit' type='submit'>Войти</button>
+                    <button className='login__submit' onClick={(e: React.MouseEvent) => {
+                        const parent = (e.target as HTMLElement).closest('.login');
+                        const email = parent?.querySelector('.textField__input') as HTMLInputElement;
+
+                        email.value && localStorage.setItem("Name", email.value);
+                    }}>Войти</button>
                 </div>
                 <div className="login__column">
                     <Link to={'/registration'} className="login__createacclink">Нет аккаунта на Toxin?</Link>
