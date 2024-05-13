@@ -3,6 +3,7 @@ import './header.scss';
 
 import logo from '../../assets/img/logo.svg';
 import { Link } from "react-router-dom";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
 interface ISubmenu {
     text: string;
@@ -66,10 +67,12 @@ function linksOnClick(e: React.MouseEvent) {
 }
 
 interface IHeader {
-    user?: string;
+    user?: string | null;
 }
 
-const Header : FC<IHeader> = ({user = ""}) => {
+const Header : FC<IHeader> = ({user = null}) => {
+    user = useAppSelector((state) => state.userReducer.name);
+
     return (
         <header className="header">
             <div className="container">
@@ -102,15 +105,13 @@ const Header : FC<IHeader> = ({user = ""}) => {
                     </div>
                     <div className="header__column">
                         {
-                            user === "" && 
-                            (<div className="header__buttons">
+                            !user && (<div className="header__buttons">
                                 <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
                                 <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
                             </div>)
                         }
                         {
-                            user !== "" && 
-                            (<div className="header__user">
+                            user && (<div className="header__user">
                                 {user}
                             </div>)
                         }
