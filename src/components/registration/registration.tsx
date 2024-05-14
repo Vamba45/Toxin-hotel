@@ -7,6 +7,8 @@ import './registration.scss';
 import { Link, useNavigate } from "react-router-dom";
 
 const Registration : FC = () => {
+    const navigate = useNavigate();
+
     return (
         <form action="" className="registration">
             <div className="registration__rows">
@@ -40,8 +42,10 @@ const Registration : FC = () => {
                         const name = parent?.querySelector('.textField__input[placeholder="Имя"]') as HTMLInputElement;
                         const surname = parent?.querySelector('.textField__input[placeholder="Фамилия"]') as HTMLInputElement;
 
-                        name.value && surname.value && localStorage.setItem("Name", name.value + " "  + surname.value);
+                        if(name.value && surname.value) {
 
+                            localStorage.setItem("Name", name.value + " "  + surname.value);
+                        }
                     }}>Перейти к оплате</button>
                 </div>
                 <div className="registration__column">

@@ -2,9 +2,11 @@ import { FC } from 'react';
 import './login.scss';
 
 import { TextField } from '../textField/textField';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login : FC = () => {
+    const navigate = useNavigate();
+
     return (
         <form className="login">
             <div className="login__rows">
@@ -18,7 +20,14 @@ const Login : FC = () => {
                         const parent = (e.target as HTMLElement).closest('.login');
                         const email = parent?.querySelector('.textField__input') as HTMLInputElement;
 
-                        email.value && localStorage.setItem("Name", email.value);
+                        if(email.value) {
+
+                            if(localStorage.getItem("Name")) {
+                                localStorage.removeItem("Name");
+                            }
+                                
+                            localStorage.setItem("Name", email.value);
+                        }
                     }}>Войти</button>
                 </div>
                 <div className="login__column">
