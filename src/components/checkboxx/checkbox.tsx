@@ -7,12 +7,17 @@ interface ICheckBox {
     title?: string;
     paragraph: string;
     disabled?: boolean;
+    onChangeFunc?: () => void;
 }
 
-const Checkbox: FC<ICheckBox> = ({name, id, title=undefined, paragraph, disabled=false}) => {
+const Checkbox: FC<ICheckBox> = ({name, id, title=undefined, paragraph, disabled=false, onChangeFunc}) => {
     return (
         <div className="checkbox">
-            <input className="checkbox__input" type="checkbox" disabled={disabled} name={name} id={name+id}/>
+            <input className="checkbox__input" type="checkbox" disabled={disabled} name={name} id={name+id} onChange={() => {
+                if(onChangeFunc) { 
+                    onChangeFunc();
+                }
+            }}/>
             <label className="checkbox__label" htmlFor={name+id}>
                 <div>
                     {

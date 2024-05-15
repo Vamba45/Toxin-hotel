@@ -4,9 +4,9 @@ import Checkbox from '../checkboxx/checkbox';
 
 export interface ICheckBoxList {
     title: string;
-    options: string[];
+    options: {name: string, checkFunc: () => void}[];
     richTitles?: string[];
-    type: "expanable" | "bullet" | "rich"
+    type: "expanable" | "bullet" | "rich";
 }
 
 const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}) => {
@@ -46,7 +46,7 @@ const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}
                 <div className="checkboxList__options">
                         { 
                             options.map((opt, index) => (
-                                <Checkbox paragraph={opt} name={title} id={`${index}`} key={index}/>
+                                <Checkbox paragraph={opt.name} name={title} id={`${index}`} key={index} onChangeFunc={opt.checkFunc}/>
                             ))
                         }
                 </div>
@@ -56,7 +56,7 @@ const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}
                 <ul className="checkboxList__point">
                         { 
                             options.map((opt, index) => (
-                                <li>{opt}</li>
+                                <li>{opt.name}</li>
                             ))
                         }
                 </ul>
@@ -66,7 +66,7 @@ const CheckBoxList: FC<ICheckBoxList> = ({title, options, type, richTitles = []}
                 <div className="checkboxList__boxes">
                         { 
                             options.map((opt, index) => (
-                                <Checkbox paragraph={richTitles[index]} title={opt} name={title} id={`${index}`} key={index}/>
+                                <Checkbox paragraph={richTitles[index]} title={opt.name} name={title} id={`${index}`} key={index} onChangeFunc={opt.checkFunc}/>
                             ))
                         }
                 </div>
