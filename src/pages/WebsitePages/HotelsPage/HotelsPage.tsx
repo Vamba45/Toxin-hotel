@@ -35,7 +35,7 @@ const hotelsPage: FC = () => {
     const [priceDiapasone, setPriceDiapasone] = useState([5000, 15000]);
     const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery("");
 
-    // FILTERS
+    // FILTERS CHECKBOX
 
     const [canSmoke, setCanSmoke] = useState(false);
     const [pets, setPets] = useState(false);
@@ -50,6 +50,16 @@ const hotelsPage: FC = () => {
     const [babyCrib, setbabyCrib] = useState(false);
     const [TV, setTV] = useState(false);
     const [champoo, setChampoo] = useState(false);
+
+    // FILTERS DROPDOWN
+
+    const [parents, setParents] = useState<Number>(0);
+    const [children, setChildren] = useState<Number>(0);
+    const [babies, setBabies] = useState<Number>(0);  
+    
+    const [bedrooms, setBedrooms] = useState<Number>(0);
+    const [beds, setBeds] = useState<Number>(0);
+    const [bathrooms, setBathrooms] = useState<Number>(0);  
  
     return (
         <div className="hotels">
@@ -60,8 +70,10 @@ const hotelsPage: FC = () => {
                             <div className="filters__rangepicker child">
                                 <RangePicker/>
                             </div>
-                            <div className="filters__guests child">
-                                <DropDown menuItems={[{name: "Взрослые"}, {name: "Дети"}, {name: "Младенцы"}]} 
+                            <div className="filters__guests child" onClick={() => {
+                                alert(parents + " " + children + " " + babies)
+                            }}>
+                                <DropDown menuItems={[{name: "Взрослые", setStateFunc: setParents}, {name: "Дети", setStateFunc: setChildren}, {name: "Младенцы", setStateFunc: setBabies}]} 
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
@@ -87,7 +99,7 @@ const hotelsPage: FC = () => {
                                 }}/>
                             </div>
                             <div className="filters__interier child">
-                                <DropDown menuItems={[{name: "Спальни"}, {name: "Кровати"}, {name: "Ванные комнаты"}]} placeholder="Мебель" commonName="Мебели"/>
+                                <DropDown menuItems={[{name: "Спальни", setStateFunc: setBedrooms}, {name: "Кровати", setStateFunc: setBeds}, {name: "Ванные комнаты", setStateFunc: setBathrooms}]} placeholder="Мебель" commonName="Мебели"/>
                             </div>
                             <div className="filters__checkbox-dropdown child">
                                 <CheckBoxList options={[
@@ -98,7 +110,7 @@ const hotelsPage: FC = () => {
                                                 {name: "Телевизор", checkFunc: () => setTV(!TV) }, 
                                                 {name: "Шампунь", checkFunc: () => setChampoo(!champoo) }
                                             ]} 
-
+                                            
                                             title="Дополнительные удобства" type="expanable"/>
                             </div>
                         </div>

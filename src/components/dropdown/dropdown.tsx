@@ -3,9 +3,9 @@ import Counter from "../counter/counter";
 import './dropdown.scss';
 
 interface IDropDown {
-    menuItems: {name: string, count?: number}[],
+    menuItems: { name: string, count?: number, setStateFunc?: (value: number) => void } [],
     placeholder: string,
-    commonName: string,
+    commonName: string
 }
 
 const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
@@ -32,6 +32,12 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
 
         for(let i = 0; i < counters.length; i++) {
             let val = Number((counters[i].querySelector(".counter__value") as HTMLInputElement).value);
+
+            //
+                if(menuItems[i].setStateFunc) {
+                    menuItems[i].setStateFunc(val);
+                }
+            //
             
             sum += val;
         }
@@ -56,6 +62,10 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
         for(let i = 0; i < counters.length; i++) {
             (counters[i].querySelector('.counter__value') as HTMLInputElement).value = "0";
             (counters[i].querySelector('.counter__value') as HTMLInputElement).dispatchEvent(new Event('input', {bubbles: true}))
+
+            if(menuItems[i].setStateFunc) {
+                menuItems[i].setStateFunc(0);
+            }
         }
     }
     
