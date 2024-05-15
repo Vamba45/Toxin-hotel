@@ -33,7 +33,23 @@ const hotelsPage: FC = () => {
 
     const [page, setPage] = useState(1);
     const [priceDiapasone, setPriceDiapasone] = useState([5000, 15000]);
-    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery(page);
+    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery("");
+
+    // FILTERS
+
+    const [canSmoke, setCanSmoke] = useState(false);
+    const [pets, setPets] = useState(false);
+    const [guests, setGuests] = useState(false);
+    
+    const [coridor, setCoridor] = useState(false);
+    const [assistant, setAssistant] = useState(false);
+    
+    const [breakfast, setbreakfast] = useState(false);
+    const [desk, setDesk] = useState(false);
+    const [highChair, setHighChair] = useState(false);
+    const [babyCrib, setbabyCrib] = useState(false);
+    const [TV, setTV] = useState(false);
+    const [champoo, setChampoo] = useState(false);
  
     return (
         <div className="hotels">
@@ -45,25 +61,44 @@ const hotelsPage: FC = () => {
                                 <RangePicker/>
                             </div>
                             <div className="filters__guests child">
-                                <DropDown menuItems={[{name: "Взрослые"}, {name: "Дети"}, {name: "Младенцы"}]} placeholder="Гости" commonName="Гостей"/>
+                                <DropDown menuItems={[{name: "Взрослые"}, {name: "Дети"}, {name: "Младенцы"}]} 
+                                            placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
                                 <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
                             </div>
                             <div className="filters__checkbox-home child">
-                                <Checkbox id="ch1" name="home" paragraph="Можно курить"/>
-                                <Checkbox id="ch2" name="home" paragraph="Можно с питомцами"/>
-                                <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'}/>
+                                <Checkbox id="ch1" name="home" paragraph="Можно курить" onChangeFunc={() => {
+                                    setCanSmoke(!canSmoke);
+                                }}/>
+                                <Checkbox id="ch2" name="home" paragraph="Можно с питомцами" onChangeFunc={() => {
+                                    setPets(!pets);
+                                }}/>
+                                <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'} onChangeFunc={() => {
+                                    setGuests(!guests);
+                                }}/>
                             </div>
                             <div className="filters__checkbox-features child">
-                                <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см"/>
-                                <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'}/>
+                                <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см" onChangeFunc={() => {
+                                    setCoridor(!coridor);
+                                }}/>
+                                <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'} onChangeFunc={() => {
+                                    setAssistant(!assistant);
+                                }}/>
                             </div>
                             <div className="filters__interier child">
                                 <DropDown menuItems={[{name: "Спальни"}, {name: "Кровати"}, {name: "Ванные комнаты"}]} placeholder="Мебель" commonName="Мебели"/>
                             </div>
                             <div className="filters__checkbox-dropdown child">
-                                <CheckBoxList options={["Завтрак", "Письменный стол", "Стул для кормления", "Кроватка", "Телевизор", "Шампунь"]} 
+                                <CheckBoxList options={[
+                                                {name: "Завтрак", checkFunc: () => setbreakfast(!breakfast) }, 
+                                                {name: "Письменный стол", checkFunc: () => setDesk(!desk) }, 
+                                                {name: "Стул для кормления", checkFunc: () => setHighChair(!highChair) }, 
+                                                {name: "Кроватка", checkFunc: () => setbabyCrib(!babyCrib) }, 
+                                                {name: "Телевизор", checkFunc: () => setTV(!TV) }, 
+                                                {name: "Шампунь", checkFunc: () => setChampoo(!champoo) }
+                                            ]} 
+
                                             title="Дополнительные удобства" type="expanable"/>
                             </div>
                         </div>
@@ -71,6 +106,7 @@ const hotelsPage: FC = () => {
                     <div id="sidebar-btn" className="hotels__sidebar-btn"
                         onClick={() => sideBarOnClick(true)}
                         ref={btnRef}>
+
                         <span></span>
                         <span></span>
                         <span></span>
@@ -89,7 +125,15 @@ const hotelsPage: FC = () => {
                             }
                             {   
                                 data && data.filter((el) => {
-                                    return (el.price >= priceDiapasone[0] && el.price <= priceDiapasone[1])
+                                    return (el.price >= priceDiapasone[0] && el.price <= priceDiapasone[1] &&
+                                            el.rules.canSmoke === canSmoke &&
+                                            el.rules.guests === guests &&
+                                            el.rules.pets === pets && 
+                                            el.additionalComfort.babyCrib === babyCrib &&
+                                            el.additionalComfort.breakfast === breakfast &&
+                                            el.additionalComfort.desk === desk &&
+                                            el.additionalComfort.highChair === highChair
+                                        )
                                 }).map((room) => (
                                     <Link to={'/room'} onClick={() => {}}>
                                         <Room number={room.number} 
@@ -134,7 +178,7 @@ const hotelsPage: FC = () => {
                                     }
                                 }
                             }>    
-                            <Pagination pageLimit={9}/>
+                            <Pagination pageLimit={10}/>
                         </div>
                     </div>
                 </div>
