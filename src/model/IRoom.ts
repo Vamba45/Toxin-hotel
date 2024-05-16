@@ -1,6 +1,7 @@
 export interface IRoom {
     "isLuxe": boolean,
     "dayStart": string,
+    "dayEnd": string,
     "parent": number,
     "children": number,
     "baby": number,
@@ -27,6 +28,8 @@ export interface IRoom {
       "breakfast": boolean,
       "desk": boolean,
       "highChair": boolean,
-      "babyCrib": boolean
+      "babyCrib": boolean,
+      "champoo": boolean,
+      "TV": boolean
     }
 }
