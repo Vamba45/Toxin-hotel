@@ -7,7 +7,7 @@ export const roomsAPI = createApi({
     endpoints: (build) => ({
         fetchAllRooms: build.query<IRoom[], string>({
             query: (filter) => ({
-                url: `/rooms`
+                url: `/hotelRooms`
             })
         })
     })
