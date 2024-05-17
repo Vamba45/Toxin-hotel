@@ -85,7 +85,6 @@ const Slider : FC<ISlider> = ({items, width = 270, height = 150}) => {
                         <li className={"frame" + " " + (index === 0 ? "active" : "")}
                             style={{
                                 background: `url(${item}) center no-repeat`,
-                                backgroundSize: 'cover',
                                 minWidth: width,
                                 height: height
                             }}>

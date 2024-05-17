@@ -1,13 +1,15 @@
 .slider {
-
     overflow: hidden;
-
     position: relative;
 
     &__frames {
         display: flex;
 
         transition: transform 0.2s ease;
+
+        li {
+            background-size: cover !important;
+        }
     }
 
     &__dots {
