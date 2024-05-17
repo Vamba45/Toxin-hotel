@@ -7,9 +7,12 @@ interface IRangeSlider {
     defaultMin: number;
     defaultMax: number;
     title: string;
+
+    onMinChange?: (e: any) => void;
+    onMaxChange?: (e: any) => void;
 }
 
-const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title, maxValue}) => {
+const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title, maxValue, onMaxChange, onMinChange}) => {
 
     function rangeOnInput(e: React.FormEvent<HTMLInputElement>) {
         const target = e.target as HTMLInputElement;
@@ -44,6 +47,14 @@ const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title,
 
             progress.style.left = (Number(rangeMin.value) / Number(rangeMin.max)) * 100 + "%";
             progress.style.right = 100 - (Number(rangeMax.value) / Number(rangeMax.max)) * 100 + "%";
+            
+            if(onMinChange) {
+                onMinChange(minVal);
+            }
+    
+            if(onMaxChange) {
+                onMaxChange(maxVal);
+            }
         }
     }
 
@@ -126,6 +137,7 @@ const RangeSlider: FC<IRangeSlider> = ({priceGap, defaultMax, defaultMin, title,
                 min="0" max={maxValue} defaultValue={defaultMin}
                 onInput={rangeOnInput}
                 step={100}/>
+
                 <input type="range" className="range-max" min="0" max={maxValue} defaultValue={defaultMax}
                 onInput={rangeOnInput}
                 step={100}/>

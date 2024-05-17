@@ -37,19 +37,19 @@ const hotelsPage: FC = () => {
 
     // FILTERS CHECKBOX
 
-    const [canSmoke, setCanSmoke] = useState(false);
-    const [pets, setPets] = useState(false);
-    const [guests, setGuests] = useState(false);
+    const [canSmoke, setCanSmoke] = useState(true);
+    const [pets, setPets] = useState(true);
+    const [guests, setGuests] = useState(true);
     
-    const [coridor, setCoridor] = useState(false);
-    const [assistant, setAssistant] = useState(false);
+    const [coridor, setCoridor] = useState(true);
+    const [assistant, setAssistant] = useState(true);
     
-    const [breakfast, setbreakfast] = useState(false);
-    const [desk, setDesk] = useState(false);
-    const [highChair, setHighChair] = useState(false);
-    const [babyCrib, setbabyCrib] = useState(false);
-    const [TV, setTV] = useState(false);
-    const [champoo, setChampoo] = useState(false);
+    const [breakfast, setbreakfast] = useState(true);
+    const [desk, setDesk] = useState(true);
+    const [highChair, setHighChair] = useState(true);
+    const [babyCrib, setbabyCrib] = useState(true);
+    const [TV, setTV] = useState(true);
+    const [champoo, setChampoo] = useState(true);
 
     // FILTERS DROPDOWN
 
@@ -60,6 +60,19 @@ const hotelsPage: FC = () => {
     const [bedrooms, setBedrooms] = useState<Number>(0);
     const [beds, setBeds] = useState<Number>(0);
     const [bathrooms, setBathrooms] = useState<Number>(0);  
+
+    //DATE FILTER
+
+    const [dateStart, setDateStart] = useState("");
+    const [dateEnd, setDateEnd] = useState("");
+
+    //PRICE FILTER
+
+    const [minPrice, setMinPrice] = useState(5000);
+    const [maxPrice, setMaxPrice] = useState(15000);
+
+    const pageCount = 12;
+    let totalCount = data ? data.length : 0;
  
     return (
         <div className="hotels">
@@ -68,16 +81,19 @@ const hotelsPage: FC = () => {
                     <div className="hotels__column hotels__filters filters" ref={sidebarRef}>
                         <div className="filters__container">
                             <div className="filters__rangepicker child">
-                                <RangePicker/>
+                                <RangePicker onChange={(date) => {
+                                    setDateStart(date[0]);
+                                    setDateEnd(date[1]);
+                                }}/>
                             </div>
-                            <div className="filters__guests child" onClick={() => {
-                                alert(parents + " " + children + " " + babies)
-                            }}>
+                            <div className="filters__guests child">
                                 <DropDown menuItems={[{name: "Взрослые", setStateFunc: setParents}, {name: "Дети", setStateFunc: setChildren}, {name: "Младенцы", setStateFunc: setBabies}]} 
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
-                                <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены"/>
+                                <RangeSlider defaultMax={15000} defaultMin={500} maxValue={20000} priceGap={2500} title="Диапазон цены" 
+                                onMaxChange={setMaxPrice} 
+                                onMinChange={setMinPrice}/>
                             </div>
                             <div className="filters__checkbox-home child">
                                 <Checkbox id="ch1" name="home" paragraph="Можно курить" onChangeFunc={() => {
@@ -137,25 +153,23 @@ const hotelsPage: FC = () => {
                             }
                             {   
                                 data && data.filter((el) => {
-                                    return (el.price >= priceDiapasone[0] && el.price <= priceDiapasone[1] &&
-                                            el.rules.canSmoke === canSmoke &&
-                                            el.rules.guests === guests &&
-                                            el.rules.pets === pets && 
-                                            el.additionalComfort.babyCrib === babyCrib &&
-                                            el.additionalComfort.breakfast === breakfast &&
-                                            el.additionalComfort.desk === desk &&
-                                            el.additionalComfort.highChair === highChair
-                                        )
-                                }).map((room) => (
-                                    <Link to={'/room'} onClick={() => {}}>
-                                        <Room number={room.number} 
-                                            price={room.price}
-                                            reviews={room.reviewNumber} 
-                                            sliderItems={room.photos} 
-                                            starsName={room.number + room.dayStart}
-                                            starsCount={5}/>
-                                    </Link>
-                                ))
+                                    return (el.price >= minPrice && el.price <= maxPrice)
+                                }).map((room, i, array) => {
+                                    if(i === array.length - 1) {
+                                        totalCount = array.length;
+                                    }
+
+                                    if(i >= (page * pageCount - pageCount) && i < page * pageCount) {
+                                    return (
+                                            <Room number={room.number} 
+                                                price={room.price}
+                                                reviews={room.reviewNumber} 
+                                                sliderItems={room.photos} 
+                                                starsName={room.number + room.dayStart}
+                                                starsCount={5}
+                                                activeStars={room.starCount}/>)
+                                    }
+                                })
                             }
                         </div>
                         <div className="rooms__pagination"
@@ -190,7 +204,7 @@ const hotelsPage: FC = () => {
                                     }
                                 }
                             }>    
-                            <Pagination pageLimit={10}/>
+                            <Pagination pageLimit={Math.ceil(totalCount / pageCount)}/>
                         </div>
                     </div>
                 </div>
