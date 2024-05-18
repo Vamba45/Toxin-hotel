@@ -11,6 +11,7 @@ import useOnClickOutside from "../../../hooks/useClickOutside";
 import { roomsAPI } from "../../../store/services/roomSerivce";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
 import { Link } from "react-router-dom";
+import useDebounce from "../../../hooks/useDebounce";
 
 const hotelsPage: FC = () => {
 
@@ -69,10 +70,15 @@ const hotelsPage: FC = () => {
     //PRICE FILTER
 
     const [minPrice, setMinPrice] = useState(5000);
+    const debouncedMinPrice = useDebounce(setMinPrice, 500);
+
     const [maxPrice, setMaxPrice] = useState(15000);
+    const debouncedMaxPrice = useDebounce(setMaxPrice, 500);
 
     const pageCount = 12;
-    let totalCount = data ? data.length : 0;
+    let totalCount = data?.length;
+
+    const paginationRef = useRef(null);
  
     return (
         <div className="hotels">
@@ -92,8 +98,8 @@ const hotelsPage: FC = () => {
                             </div>
                             <div className="filters__diapasone child">
                                 <RangeSlider defaultMax={15000} defaultMin={500} maxValue={20000} priceGap={2500} title="Диапазон цены" 
-                                onMaxChange={setMaxPrice} 
-                                onMinChange={setMinPrice}/>
+                                onMaxChange={debouncedMaxPrice} 
+                                onMinChange={debouncedMinPrice}/>
                             </div>
                             <div className="filters__checkbox-home child">
                                 <Checkbox id="ch1" name="home" paragraph="Можно курить" onChangeFunc={() => {
@@ -140,7 +146,9 @@ const hotelsPage: FC = () => {
                         <span></span>
                     </div>
                     <div className="hotels__column hotels__rooms rooms">
-                        <h2 className="rooms__title">Номера, которые мы для вас подобрали</h2>
+                        <h2 className="rooms__title">
+                            Номера, которые мы для Вас подобрали
+                        </h2>
                         <div className="rooms__grid">
                             {
                                 isLoading && (<>
@@ -153,10 +161,21 @@ const hotelsPage: FC = () => {
                             }
                             {   
                                 data && data.filter((el) => {
-                                    return (el.price >= minPrice && el.price <= maxPrice)
+                                    if(el.price >= minPrice && el.price <= maxPrice) {
+                                        return (el.price >= minPrice && el.price <= maxPrice)
+                                    }
+
+                                    totalCount = 0;
+
                                 }).map((room, i, array) => {
+                                    if( (Math.ceil( (array.length - 1) / pageCount)) < page && paginationRef.current) {
+                                        // const firstPage = ((paginationRef.current as HTMLElement).querySelector('.pagination__list li:first-child') as HTMLElement);
+
+                                        // firstPage.dispatchEvent(new MouseEvent('click', { bubbles: true} ));
+                                    }
+
                                     if(i === array.length - 1) {
-                                        totalCount = array.length;
+                                        totalCount = array.length - 1;
                                     }
 
                                     if(i >= (page * pageCount - pageCount) && i < page * pageCount) {
@@ -172,7 +191,7 @@ const hotelsPage: FC = () => {
                                 })
                             }
                         </div>
-                        <div className="rooms__pagination"
+                        <div className="rooms__pagination" ref={paginationRef}
                             onClick={
                                 (event: React.MouseEvent) => {
                                     const el = (event.target as HTMLElement);
@@ -204,6 +223,7 @@ const hotelsPage: FC = () => {
                                     }
                                 }
                             }>    
+
                             <Pagination pageLimit={Math.ceil(totalCount / pageCount)}/>
                         </div>
                     </div>
