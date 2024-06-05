@@ -1,35 +1,20 @@
 export interface IRoom {
-    "isLuxe": boolean,
-    "dayStart": string,
-    "dayEnd": string,
-    "parent": number,
-    "children": number,
-    "baby": number,
-    "price": number,
-    "rules": {
-      "canSmoke": boolean,
-      "pets": boolean,
-      "guests": boolean
-    },
-    "availability": {
-      "wideCoridor": boolean,
-      "assistant": boolean
-    },
-    "comfort": {
-      "bedrooms": number,
-      "bed": number,
-      "bath": number
-    },
-    "number": number,
-    "reviewNumber": number,
-    "starCount": number,
-    "photos": [],
-    "additionalComfort": {
-      "breakfast": boolean,
-      "desk": boolean,
-      "highChair": boolean,
-      "babyCrib": boolean,
-      "champoo": boolean,
-      "TV": boolean
-    }
+  number: Number, 
+  luxe:  Boolean, 
+  stars:  Number, 
+  reviewCount:  Number, 
+
+  beds:  Number, 
+  bedRooms:  Number, 
+  bathRooms:  Number, 
+
+  adult:  Number, 
+  children:  Number, 
+  babies:  Number, 
+
+  comfort:  string[], 
+  dayStart:  Date, 
+  dayEnd:  Date, 
+  price:  Number, 
+  photos:  string[], 
 }

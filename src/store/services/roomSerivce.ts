@@ -1,13 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { IRoom } from '../../model/IRoom';
+import { ListResponse } from '../../model/IListResponce';
 
 export const roomsAPI = createApi({
     reducerPath: 'roomsAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'https://65893844324d41715258975f.mockapi.io/react/hotel'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5000/api/'}),
     endpoints: (build) => ({
-        fetchAllRooms: build.query<IRoom[], string>({
+        fetchAllRooms: build.query<ListResponse<IRoom>, string>({
             query: (filter) => ({
-                url: `/hotelRooms`
+                url: `/rooms?${filter}`
             })
         })
     })
