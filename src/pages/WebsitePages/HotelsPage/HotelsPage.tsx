@@ -30,27 +30,35 @@ const hotelsPage: FC = () => {
             (document.querySelector('.filters') as HTMLElement)?.classList.remove('active');
             (document.body as HTMLElement)?.classList.remove('disabled');
         }
+    }  
+
+    const [smoke, setSmoke] = useState("");
+    const [pets, setPets] = useState("");
+    const [guests, setGuests] = useState("");
+    
+    const [coridor, setCoridor] = useState("");
+    const [helper, setHelper] = useState("");
+    
+    const [breakfast, setBreakfast] = useState("");
+    const [table, setTable] = useState("");
+    const [chair, setChair] = useState("");
+    const [bed, setBed] = useState("");
+    const [TV, setTV] = useState("");
+    const [champoo, setChampoo] = useState("");
+
+    let arr = [smoke, pets, guests, coridor, helper, breakfast, table, chair, bed, TV, champoo];
+
+    let comfort = "comfort=all,";
+
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] !== "") {
+            comfort += arr[i] + ','
+        }
     }
-
-    const [page, setPage] = useState(1);
-    const [priceDiapasone, setPriceDiapasone] = useState([5000, 15000]);
-    const {data, isError, isLoading} = roomsAPI.useFetchAllRoomsQuery("");
-
-    // FILTERS CHECKBOX
-
-    const [canSmoke, setCanSmoke] = useState(true);
-    const [pets, setPets] = useState(true);
-    const [guests, setGuests] = useState(true);
     
-    const [coridor, setCoridor] = useState(true);
-    const [assistant, setAssistant] = useState(true);
-    
-    const [breakfast, setbreakfast] = useState(true);
-    const [desk, setDesk] = useState(true);
-    const [highChair, setHighChair] = useState(true);
-    const [babyCrib, setbabyCrib] = useState(true);
-    const [TV, setTV] = useState(true);
-    const [champoo, setChampoo] = useState(true);
+    comfort = comfort.slice(0, -1); 
+
+    console.log(comfort)
 
     // FILTERS DROPDOWN
 
@@ -62,10 +70,14 @@ const hotelsPage: FC = () => {
     const [beds, setBeds] = useState<Number>(0);
     const [bathrooms, setBathrooms] = useState<Number>(0);  
 
+    let dropdown = `beds=${beds}&adults=${parents}&children=${children}&babies=${babies}&bedrooms=${bedrooms}&bathrooms=${bathrooms}`;
+
     //DATE FILTER
 
-    const [dateStart, setDateStart] = useState("");
-    const [dateEnd, setDateEnd] = useState("");
+    const [minDate, setMinDate] = useState("");
+    const [maxDate, setMaxDate] = useState("");
+
+    let dates = `minDate=${minDate}&maxDate=${maxDate}`;
 
     //PRICE FILTER
 
@@ -75,8 +87,12 @@ const hotelsPage: FC = () => {
     const [maxPrice, setMaxPrice] = useState(15000);
     const debouncedMaxPrice = useDebounce(setMaxPrice, 500);
 
-    const pageCount = 12;
-    let totalCount = data?.length;
+    let prices = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
+
+    const [page, setPage] = useState(1);
+    const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=12` + "&" + comfort);
+
+    let pageLim = Math.ceil(data?.total / 12);
 
     const paginationRef = useRef(null);
  
@@ -88,8 +104,8 @@ const hotelsPage: FC = () => {
                         <div className="filters__container">
                             <div className="filters__rangepicker child">
                                 <RangePicker onChange={(date) => {
-                                    setDateStart(date[0]);
-                                    setDateEnd(date[1]);
+                                    setMinDate(date[0].split('.').reverse().join('-'));
+                                    setMaxDate(date[1].split('.').reverse().join('-'));
                                 }}/>
                             </div>
                             <div className="filters__guests child">
@@ -97,27 +113,47 @@ const hotelsPage: FC = () => {
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
-                                <RangeSlider defaultMax={15000} defaultMin={500} maxValue={20000} priceGap={2500} title="Диапазон цены" 
+                                <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены" 
                                 onMaxChange={debouncedMaxPrice} 
                                 onMinChange={debouncedMinPrice}/>
                             </div>
                             <div className="filters__checkbox-home child">
                                 <Checkbox id="ch1" name="home" paragraph="Можно курить" onChangeFunc={() => {
-                                    setCanSmoke(!canSmoke);
+                                    if(smoke === "") {
+                                        setSmoke("smoke");
+                                    } else {
+                                        setSmoke("");
+                                    }
                                 }}/>
                                 <Checkbox id="ch2" name="home" paragraph="Можно с питомцами" onChangeFunc={() => {
-                                    setPets(!pets);
+                                    if(pets === "") {
+                                        setPets("pets");
+                                    } else {
+                                        setPets("");
+                                    }
                                 }}/>
                                 <Checkbox id="ch3" name="home" paragraph={'Можно пригласить гостей (до 10 человек)'} onChangeFunc={() => {
-                                    setGuests(!guests);
+                                    if(guests === "") {
+                                        setGuests("guests");
+                                    } else {
+                                        setGuests("");
+                                    }
                                 }}/>
                             </div>
                             <div className="filters__checkbox-features child">
                                 <Checkbox id="ch1" name="features" title="Широкий коридор" paragraph="Ширина коридоров в номере не менее 91 см" onChangeFunc={() => {
-                                    setCoridor(!coridor);
+                                    if(coridor === "") {
+                                        setCoridor("coridor");
+                                    } else {
+                                        setGuests("");
+                                    }
                                 }}/>
                                 <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'} onChangeFunc={() => {
-                                    setAssistant(!assistant);
+                                    if(helper === "") {
+                                        setHelper("helper");
+                                    } else {
+                                        setHelper("");
+                                    }
                                 }}/>
                             </div>
                             <div className="filters__interier child">
@@ -125,12 +161,48 @@ const hotelsPage: FC = () => {
                             </div>
                             <div className="filters__checkbox-dropdown child">
                                 <CheckBoxList options={[
-                                                {name: "Завтрак", checkFunc: () => setbreakfast(!breakfast) }, 
-                                                {name: "Письменный стол", checkFunc: () => setDesk(!desk) }, 
-                                                {name: "Стул для кормления", checkFunc: () => setHighChair(!highChair) }, 
-                                                {name: "Кроватка", checkFunc: () => setbabyCrib(!babyCrib) }, 
-                                                {name: "Телевизор", checkFunc: () => setTV(!TV) }, 
-                                                {name: "Шампунь", checkFunc: () => setChampoo(!champoo) }
+                                                {name: "Завтрак", checkFunc: () => {
+                                                    if(breakfast === "") {
+                                                        setBreakfast("breakfast");
+                                                    } else {
+                                                        setBreakfast("");
+                                                    }
+                                                }}, 
+                                                {name: "Письменный стол", checkFunc: () => {
+                                                    if(table === "") {
+                                                        setTable("table");
+                                                    } else {
+                                                        setTable("");
+                                                    }
+                                                } }, 
+                                                {name: "Стул для кормления", checkFunc: () => {
+                                                    if(chair === "") {
+                                                        setChair("chair");
+                                                    } else {
+                                                        setChair("");
+                                                    }
+                                                } }, 
+                                                {name: "Кроватка", checkFunc: () => {
+                                                    if(bed === "") {
+                                                        setBed("bed");
+                                                    } else {
+                                                        setBed("");
+                                                    }
+                                                } }, 
+                                                {name: "Телевизор", checkFunc: () => {
+                                                    if(TV === "") {
+                                                        setTV("TV");
+                                                    } else {
+                                                        setTV("");
+                                                    }
+                                                } },    
+                                                {name: "Шампунь", checkFunc: () => {
+                                                    if(champoo === "") {
+                                                        setChampoo("champoo");
+                                                    } else {
+                                                        setChampoo("");
+                                                    }
+                                                } }
                                             ]} 
                                             
                                             title="Дополнительные удобства" type="expanable"/>
@@ -146,9 +218,14 @@ const hotelsPage: FC = () => {
                         <span></span>
                     </div>
                     <div className="hotels__column hotels__rooms rooms">
-                        <h2 className="rooms__title">
-                            Номера, которые мы для Вас подобрали
-                        </h2>
+                            <h2 className="rooms__title">
+                                {
+                                    Boolean(data?.rooms.length) && <>Номера, которые мы для Вас подобрали</>
+                                }
+                                {
+                                    Boolean(!data?.rooms.length) && <>Ничего не найдено</>
+                                }
+                            </h2>
                         <div className="rooms__grid">
                             {
                                 isLoading && (<>
@@ -160,34 +237,15 @@ const hotelsPage: FC = () => {
                                     </>)
                             }
                             {   
-                                data && data.filter((el) => {
-                                    if(el.price >= minPrice && el.price <= maxPrice) {
-                                        return (el.price >= minPrice && el.price <= maxPrice)
-                                    }
-
-                                    totalCount = 0;
-
-                                }).map((room, i, array) => {
-                                    if( (Math.ceil( (array.length - 1) / pageCount)) < page && paginationRef.current) {
-                                        // const firstPage = ((paginationRef.current as HTMLElement).querySelector('.pagination__list li:first-child') as HTMLElement);
-
-                                        // firstPage.dispatchEvent(new MouseEvent('click', { bubbles: true} ));
-                                    }
-
-                                    if(i === array.length - 1) {
-                                        totalCount = array.length - 1;
-                                    }
-
-                                    if(i >= (page * pageCount - pageCount) && i < page * pageCount) {
-                                    return (
-                                            <Room number={room.number} 
-                                                price={room.price}
-                                                reviews={room.reviewNumber} 
+                                data?.rooms.map((room, i, array) => {
+                                    return (<Room number={Number(room.number)} 
+                                                price={Number(room.price)}
+                                                reviews={Number(room.reviewCount)} 
                                                 sliderItems={room.photos} 
-                                                starsName={room.number + room.dayStart}
+                                                starsName={`${room.number} + ${room.dayStart}`}
                                                 starsCount={5}
-                                                activeStars={room.starCount}/>)
-                                    }
+                                                isLuxe={Boolean(room.luxe)}
+                                                activeStars={Number(room.stars)}/>)
                                 })
                             }
                         </div>
@@ -222,9 +280,9 @@ const hotelsPage: FC = () => {
                                         return;
                                     }
                                 }
-                            }>    
+                            }>
 
-                            <Pagination pageLimit={Math.ceil(totalCount / pageCount)}/>
+                            <Pagination pageLimit={pageLim}/>
                         </div>
                     </div>
                 </div>
