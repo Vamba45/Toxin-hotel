@@ -4,7 +4,7 @@ import Checkbox from '../checkboxx/checkbox';
 
 export interface ICheckBoxList {
     title: string;
-    options: {name: string, checkFunc: () => void}[];
+    options: {name: string, checkFunc?: () => void}[];
     richTitles?: string[];
     type: "expanable" | "bullet" | "rich";
 }
