@@ -32,8 +32,8 @@
             left: 0;
 
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
 
             flex-shrink: 0;
             flex-grow: 0;
@@ -48,18 +48,18 @@
 
             position: absolute;
 
-            top: 4px;
-            left: 4.25px;
+            top: 0;
+            left: 0;
 
-            height: 12px;
-            width: 12px;    
+            height: 22px;
+            width: 22px;
 
             flex-shrink: 0;
             flex-grow: 0;
 
             border-radius: 50%;
             
-            background-color: $purple;
+            border: 6px solid $purple;
 
             opacity: 0;
         }
