@@ -70,14 +70,14 @@ const hotelsPage: FC = () => {
     const [beds, setBeds] = useState<Number>(0);
     const [bathrooms, setBathrooms] = useState<Number>(0);  
 
-    let dropdown = `beds=${beds}&adults=${parents}&children=${children}&babies=${babies}&bedrooms=${bedrooms}&bathrooms=${bathrooms}`;
+    let dropdown = `beds=${beds}&adult=${parents}&children=${children}&babies=${babies}&bedrooms=${bedrooms}&bathrooms=${bathrooms}`;
 
     //DATE FILTER
 
     const [minDate, setMinDate] = useState("");
     const [maxDate, setMaxDate] = useState("");
 
-    let dates = `minDate=${minDate}&maxDate=${maxDate}`;
+    let dates = `dayStart=${minDate}&dayEnd=${maxDate}`;
 
     //PRICE FILTER
 
@@ -90,11 +90,10 @@ const hotelsPage: FC = () => {
     let prices = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
 
     const [page, setPage] = useState(1);
-    const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=12` + "&" + comfort);
+    const limit = 12;
+    const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
 
-    let pageLim = Math.ceil(data?.total / 12);
-
-    const paginationRef = useRef(null);
+    console.log(data);
  
     return (
         <div className="hotels">
@@ -240,49 +239,17 @@ const hotelsPage: FC = () => {
                                 data?.rooms.map((room, i, array) => {
                                     return (<Room number={Number(room.number)} 
                                                 price={Number(room.price)}
-                                                reviews={Number(room.reviewCount)} 
+                                                reviews={Number(room.reviewcount)} 
                                                 sliderItems={room.photos} 
-                                                starsName={`${room.number} + ${room.dayStart}`}
+                                                starsName={`${room.number} + ${room.daystart}`}
                                                 starsCount={5}
                                                 isLuxe={Boolean(room.luxe)}
                                                 activeStars={Number(room.stars)}/>)
                                 })
                             }
                         </div>
-                        <div className="rooms__pagination" ref={paginationRef}
-                            onClick={
-                                (event: React.MouseEvent) => {
-                                    const el = (event.target as HTMLElement);
-
-                                    if(Number(el.innerText)) {
-                                        setPage(Number(el.innerText));
-
-                                        return;
-                                    }
-
-                                    if(el.classList.contains('pagination__dotsbefore') || 
-                                        el.classList.contains('pagination__prev')) {
-                                        
-                                        if(page > 1) {
-                                            setPage(page - 1)
-                                        }
-
-                                        return;
-                                    }
-
-                                    if(el.classList.contains('pagination__dotsafter') || 
-                                        el.classList.contains('pagination__next')) {
-                                        
-                                        if(page < 8) {
-                                            setPage(page + 1)
-                                        }
-
-                                        return;
-                                    }
-                                }
-                            }>
-
-                            <Pagination pageLimit={pageLim}/>
+                        <div className="rooms__pagination">
+                            <Pagination currentPage={data ? data.page : 1} onClick={setPage} pageLimit={data ? Math.ceil(data.total / data.limit) : 0}/>
                         </div>
                     </div>
                 </div>
