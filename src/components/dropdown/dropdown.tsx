@@ -10,20 +10,13 @@ interface IDropDown {
 
 const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
 
-    function dropdownSelectClick(event: React.MouseEvent<HTMLElement>) {
-        const parentDropdown = (event.target as HTMLElement).closest('.dropdown');
+    function accept(event: React.MouseEvent) {
+        const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
 
         parentDropdown?.classList.toggle('active');
 
         const btn = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement; 
         btn.classList.toggle('rotate');
-    }
-
-    function acceptBtnClick(event: React.MouseEvent) {
-        const parentDropdown = (event.target as HTMLElement).closest('.dropdown')
-
-        const arrow = parentDropdown?.querySelector('.dropdown__arrow') as HTMLElement;
-        arrow.dispatchEvent(new Event('click', {bubbles: true}))
 
         const menu = parentDropdown?.querySelector('.dropdown__menu') as HTMLElement;
         const counters = menu?.getElementsByClassName('counter') as HTMLCollection;
@@ -62,10 +55,6 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
         for(let i = 0; i < counters.length; i++) {
             (counters[i].querySelector('.counter__value') as HTMLInputElement).value = "0";
             (counters[i].querySelector('.counter__value') as HTMLInputElement).dispatchEvent(new Event('input', {bubbles: true}))
-
-            if(menuItems[i].setStateFunc) {
-                menuItems[i].setStateFunc(0);
-            }
         }
     }
     
@@ -77,7 +66,7 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
 
     return (
         <div className="dropdown">
-            <div className="dropdown__select" onClick={dropdownSelectClick}>
+            <div className="dropdown__select" onClick={accept}>
                 <div className="dropdown__text">
                     {   
                         sum > 0 ? `${commonName}: ${sum} ` : placeholder
@@ -99,7 +88,7 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
                         <div className="dropdown__resetBtn"
                                 onClick={resetBtnClick}>очистить</div>
                         <div className="dropdown__acceptBtn"
-                                onClick={acceptBtnClick}>применить</div>
+                                onClick={accept}>применить</div>
                     </div>
                 }
             </ul>
