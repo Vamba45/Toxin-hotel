@@ -26,14 +26,22 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
                 isSubscribtion === false && inputmask === "" &&
                 <input type={isPasswrod ? "password" : "text"} 
                     className='textField__input' 
-                    placeholder={placeholder}/>
+                    placeholder={placeholder}
+                    onFocus={(e) => {
+                        (e.target as HTMLElement).classList.remove('error');
+                        (e.target.closest('.textField')?.querySelector('.textField__errorblock') as HTMLElement).textContent = ""
+                    }}/>
             }
             { 
                 isSubscribtion && 
                 <>
                     <input type="text" 
                         className='textField__subscribtion' 
-                        placeholder={placeholder}/> 
+                        placeholder={placeholder}
+                        onFocus={(e) => {
+                            (e.target as HTMLElement).classList.remove('error');
+                        (e.target.closest('.textField')?.querySelector('.textField__errorblock') as HTMLElement).textContent = ""
+                        }}/> 
                     <div className='textField__button'></div>
                 </>
             }
@@ -42,8 +50,14 @@ const TextField: FC<ITextField> = ({placeholder, isSubscribtion = false, inputma
                 <input type="text" 
                     className='textField__masked' 
                     placeholder="ДД.ММ.ГГГГ"
-                    ref={inputRef}/>
+                    ref={inputRef}
+                    onFocus={(e) => {
+                        (e.target as HTMLElement).classList.remove('error');
+                        (e.target.closest('.textField')?.querySelector('.textField__errorblock') as HTMLElement).textContent = ""
+                    }}/>
             }
+
+            <div className="textField__errorblock"></div>
         </div>
     )
 }

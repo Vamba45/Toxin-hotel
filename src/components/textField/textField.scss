@@ -55,6 +55,11 @@
 
 .textField {
     position: relative;
+
+    &__errorblock {
+        color: red;
+        font-size: 12px;
+    }
 }
 
 
