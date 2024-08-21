@@ -1,20 +1,21 @@
 export interface IRoom {
+  id: number,
   number: Number, 
   luxe:  Boolean, 
   stars:  Number, 
-  reviewCount:  Number, 
+  reviewcount:  Number, 
 
   beds:  Number, 
-  bedRooms:  Number, 
-  bathRooms:  Number, 
+  bedrooms:  Number, 
+  bathrooms:  Number, 
 
   adult:  Number, 
   children:  Number, 
   babies:  Number, 
 
   comfort:  string[], 
-  dayStart:  Date, 
-  dayEnd:  Date, 
+  daystart:  Date, 
+  dayend:  Date, 
   price:  Number, 
   photos:  string[], 
 }
