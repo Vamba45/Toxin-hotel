@@ -39,26 +39,31 @@
         cursor: pointer;
         
         width: 44px;
-        height: 60%;
+        height: 30%;
 
         position: absolute;
         transition: opacity 0.2s ease;
 
         top: 50%;
+        
+        border-radius: 50%;
     }
 
     &__prev {
-        background: url(../../assets/img/icons/slider_arrow.svg) center no-repeat;
+        background: url(../../assets/img/icons/slider_arrow.svg) rgba(179, 179, 179, 0.75) center no-repeat;
         
         transform: translate(0, -50%);
-        left: 0;
+        left: 5px;
+
+        border: 1px solid #ffffff;
     }
 
     &__next {
-        background: url(../../assets/img/icons/slider_arrow.svg) center no-repeat;
+        background: url(../../assets/img/icons/slider_arrow.svg) rgba(179, 179, 179, 0.75) center no-repeat;
 
         transform: translate(0, -50%) rotate(180deg);
 
-        right: 0;
+        right: 5px;
+        border: 1px solid #fff;
     }
 }
