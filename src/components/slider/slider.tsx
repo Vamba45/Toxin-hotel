@@ -96,10 +96,6 @@ const Slider : FC<ISlider> = ({items, width = 270, height = 150}) => {
                 {
                     items.map((item, index) => (
                         <div className={"dot" + " " + (index === 0 ? "active" : "")}
-                            style={{
-                                width: height / 16,
-                                height: height / 16,
-                            }}
                             onClick={dotClick}></div>
                     ))
                 }

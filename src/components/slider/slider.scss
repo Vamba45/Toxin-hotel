@@ -25,6 +25,9 @@
             background-color: transparent;
             border: 1.25px solid #fff;
             border-radius: 50%;
+            
+            height: 12px;
+            width: 12px;
 
             cursor: pointer;
 
@@ -39,7 +42,7 @@
         cursor: pointer;
         
         width: 44px;
-        height: 30%;
+        height: 44px;
 
         position: absolute;
         transition: opacity 0.2s ease;
