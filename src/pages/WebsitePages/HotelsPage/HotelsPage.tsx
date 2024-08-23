@@ -1,4 +1,4 @@
-import React, { FC, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import './HotelsPage.scss';
 import Pagination from "../../../components/pagination/pagination";
 import RangePicker from "../../../components/rangePicker/RangePicker";
@@ -93,7 +93,7 @@ const hotelsPage: FC = () => {
     const limit = 12;
     const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
 
-    console.log(data);
+    console.log(page + " " + data?.page);
  
     return (
         <div className="hotels">
@@ -144,7 +144,7 @@ const hotelsPage: FC = () => {
                                     if(coridor === "") {
                                         setCoridor("coridor");
                                     } else {
-                                        setGuests("");
+                                        setCoridor("");
                                     }
                                 }}/>
                                 <Checkbox id="ch2" name="features" title="Помощник для инвалидов" paragraph={'На 1 этаже вас встретит специалист и проводит до номера'} onChangeFunc={() => {
@@ -237,14 +237,24 @@ const hotelsPage: FC = () => {
                             }
                             {   
                                 data?.rooms.map((room, i, array) => {
-                                    return (<Room number={Number(room.number)} 
-                                                price={Number(room.price)}
-                                                reviews={Number(room.reviewcount)} 
-                                                sliderItems={room.photos} 
-                                                starsName={`${room.number} + ${room.daystart}`}
-                                                starsCount={5}
-                                                isLuxe={Boolean(room.luxe)}
-                                                activeStars={Number(room.stars)}/>)
+                                    return (<Link to={`/room/${room.id}?${dates} + & + ${prices} + & + ${dropdown}`}
+                                    onClick={(e) => {
+                                        if((e.target as HTMLElement).classList.contains('slider__prev') ||
+                                            (e.target as HTMLElement).classList.contains('slider__next') ||
+                                            (e.target as HTMLElement).classList.contains('dot') ||
+                                            (e.target as HTMLElement).classList.contains('slider__dots')) {
+                                                e.preventDefault();
+                                        }
+                                    }}>
+                                                <Room number={Number(room.number)} 
+                                                    price={Number(room.price)}
+                                                    reviews={Number(room.reviewcount)} 
+                                                    sliderItems={room.photos} 
+                                                    starsName={`${room.number} + ${room.daystart}`}
+                                                    starsCount={5}
+                                                    isLuxe={Boolean(room.luxe)}
+                                                    activeStars={Number(room.stars)}/>
+                                            </Link>)
                                 })
                             }
                         </div>

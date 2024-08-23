@@ -7,6 +7,9 @@ import Diagram, { IDiagram } from "../../../components/diagram/diagram";
 import Comment, { IComment } from "../../../components/comment/comment";
 import CheckBoxList, { ICheckBoxList } from "../../../components/checkboxExpandable/checkboxList";
 import Slider from "../../../components/slider/slider";
+import { roomsAPI } from "../../../store/services/roomSerivce";
+import { useLocation } from "react-router";
+import dayjs from "dayjs";
 
 interface IRoomPage {
     bookRoom: IBookRoom,
@@ -18,11 +21,56 @@ interface IRoomPage {
 }
 
 const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, checkBoxList, images}) => {
+    const idRgx = /\d*$/;
+    const id = useLocation().pathname.match(idRgx)[0];
+
+    let dropdownContent : any[] = [];
+
+    let babies : any = 0;
+    let children : any = 0;
+    let adults : any = 0;
+
+    try {
+        babies = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+
+    try {
+        children = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+
+    try {
+        adults = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+
+    dropdownContent.push({name: 'взрослые', count: Number(adults)}, {name: 'дети', count: Number(children)}, {name: 'младенцы', count: Number(babies)});
+
+    const {data} = roomsAPI.useFetchOneRoomQuery(`${id}`);
+    
+    let daystart : any = undefined;
+
+    try {
+        daystart = useLocation().search.match(/dayStart=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
+    } catch {}
+
+    if(daystart != undefined) {
+        daystart = dayjs(daystart)?.toDate();
+    }
+
+    let dayend : any = undefined;
+
+    try {
+        dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
+    } catch {}
+
+    if(dayend != undefined) {
+        dayend = dayjs(dayend)?.toDate();
+    }
+
     return (
         <div className="roomPage">
             <div className="grid">
                 {
-                    images.map((img, i) => (
+                    data?.photos.map((img, i) => (
                         <div className={["grid__img", i === 0 ? "big" : ""].join(' ')}>
                             <div className="image" style={{
                                 background: `url(${img}) center no-repeat`,
@@ -34,7 +82,10 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                 }
             </div>
             <div className="roomPage__slider">
-                <Slider items={images} width={550} height={320}/>
+
+                {
+                    data?.photos && <Slider items={data?.photos} width={550} height={320}/>
+                }
             </div>
             <div className="container">
                 <div className="roomPage__row">
@@ -49,9 +100,9 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                             <div>
                                 <h3>Впечатления от номера</h3>
                             {
-                                <Diagram categoryPercentage={diagram.categoryPercentage} reviewCount={diagram.reviewCount}/>
+                                <Diagram categoryPercentage={diagram.categoryPercentage} reviewCount={data?.reviewcount}/>
                             }
-                            </div>
+                            </div>  
                         </div>
                         <div className="info__section">
                             <h3>Отзывы посетителей номера</h3>
@@ -78,13 +129,13 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                     </div>
                     <div className="roomPage__column form">
                         <BookRoom advancedServiceMoney={bookRoom.advancedServiceMoney}
-                            dayEnd={bookRoom.dayEnd}
-                            dayStart={bookRoom.dayStart}
-                            dropdownValue={bookRoom.dropdownValue}
-                            number={bookRoom.number}
-                            price={bookRoom.price}
+                            dayEnd={dayend}
+                            dayStart={daystart}
+                            dropdownValue={dropdownContent}
+                            number={data?.number}
+                            price={data?.price}
                             serviceMoney={bookRoom.serviceMoney}
-                            isLuxe={bookRoom.isLuxe}/>
+                            isLuxe={data?.luxe}/>
                     </div>
                 </div>
             </div>

@@ -78,9 +78,9 @@ const Header : FC<IHeader> = ({user = null}) => {
             <div className="container">
                 <div className="header__row">
                     <div className="header__column">
-                        <a href="#" className="header__logo">
+                        <Link className="header__logo" to={'/'}>
                             <img src={logo} alt="logo"/>
-                        </a>
+                        </Link>
                     </div>
                     <div className="header__column burgercol">
                         <ul className="header__menu menu">
