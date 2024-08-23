@@ -32,7 +32,7 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
                 }
             //
             
-            sum += val;
+            sum += Number(val);
         }
 
         const text = parentDropdown?.querySelector('.dropdown__text') as HTMLElement;
@@ -60,7 +60,7 @@ const DropDown: FC<IDropDown> = ({menuItems, placeholder, commonName}) => {
     
     let sum = menuItems.reduce((sum, current, i, arr) => {
         if(current.count !== undefined)
-            return current.count + sum
+            return Number(current.count) + sum
         else return sum
     }, 0);
 
