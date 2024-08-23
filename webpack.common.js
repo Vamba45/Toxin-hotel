@@ -11,7 +11,8 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, './dist/'),
-        filename: 'assets/script/[name].js'
+        filename: 'assets/script/[name].js',
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebpackPlugin({
