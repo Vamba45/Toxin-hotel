@@ -9,8 +9,8 @@ export interface IBookRoom {
     isLuxe?: boolean,
     price: number,
     number: number,
-    dayStart: Date,
-    dayEnd: Date,
+    dayStart?: Date,
+    dayEnd?: Date,
     serviceMoney: number,
     advancedServiceMoney: number,
     dropdownValue: {name: string, count?: number}[]
@@ -19,8 +19,8 @@ export interface IBookRoom {
 const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, dayStart, dayEnd, serviceMoney = 100, 
     advancedServiceMoney = 250, dropdownValue
 }: IBookRoom) => {
-    const [minDate, setMinDate] = useState<string>(`${dayStart.getDate()}.${dayStart.getMonth()}.${dayStart.getFullYear()}`);
-    const [maxDate, setMaxDate] = useState<string>(`${dayEnd.getDate()}.${dayEnd.getMonth()}.${dayEnd.getFullYear()}`);
+    const [minDate, setMinDate] = useState<string>(`${dayStart?.getDate()}.${dayStart?.getMonth()}.${dayStart?.getFullYear()}`);
+    const [maxDate, setMaxDate] = useState<string>(`${dayEnd?.getDate()}.${dayEnd?.getMonth()}.${dayEnd?.getFullYear()}`);
 
     const days: number = (new Date(Number(maxDate?.split('.')[2]),
     Number(maxDate?.split('.')[1]) - 1,
@@ -49,7 +49,8 @@ const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, da
                     </div>
                 </div>
                 <div className="bookroom__column">
-                    <RangePicker defaultValues={[dayjs(dayStart), dayjs(dayEnd)]} onChange={(dates: [string, string]) => {
+                    <RangePicker defaultValues={[dayStart != undefined ? dayjs(dayStart) : undefined, 
+                                                dayEnd != undefined ? dayjs(dayEnd) : undefined]} onChange={(dates: [string, string]) => {
                         if(dates[0] !== "") {
                             setMinDate(dates[0]);
                             setMaxDate(dates[1]);
@@ -62,8 +63,8 @@ const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, da
                 <div className="bookroom__column">
                     <div className="bookroom__calculations">
                         <div className="bookroom__pay pay">
-                            <div className="pay__name">{price}₽ х {days} { days === 1 ? "сутки" : "суток"}</div>
-                            <div className="pay__num">{days * price}₽</div>
+                            <div className="pay__name">{price}₽ х {days || 0} { days === 1 ? "сутки" : "суток"}</div>
+                            <div className="pay__num">{(days || 0 )* price}₽</div>
                         </div>
                         <div className="bookroom__pay pay">
                             <div className="pay__name">Сбор за услуги</div>
@@ -77,7 +78,7 @@ const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, da
                             Итого
                             <span></span>
                             {
-                                (price * days) + serviceMoney + advancedServiceMoney
+                                (price * (days || 0)) + serviceMoney + advancedServiceMoney
                             }₽
                         </h1>
                     </div>

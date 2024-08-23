@@ -13,8 +13,8 @@ dayjs.locale('ru');
 
 interface IRangePicker {
     defaultValues?: [dayjs.Dayjs, dayjs.Dayjs],
-    minDate?: dayjs.Dayjs,
-    maxDate?: dayjs.Dayjs,
+    minDate?: dayjs.Dayjs | undefined,
+    maxDate?: dayjs.Dayjs | undefined,
     onChange?: (date: [string, string]) => void
 }
 
@@ -33,9 +33,7 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
 
                     onChange={(dates, dateString) => {
                             onChange ? onChange(dateString) : "";
-                    }}
-
-                    minDate={dayjs(new Date())}/>
+                    }}/>
             </ConfigProvider>
         </>
     )
