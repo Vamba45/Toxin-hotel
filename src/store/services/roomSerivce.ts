@@ -10,6 +10,11 @@ export const roomsAPI = createApi({
             query: (filter) => ({
                 url: `/rooms?${filter}`
             })
-        })
+        }),
+        fetchOneRoom: build.query<IRoom, string>({
+            query: (id) => ({
+                url: `/rooms/${id}`
+            })
+        }),
     })
 })
