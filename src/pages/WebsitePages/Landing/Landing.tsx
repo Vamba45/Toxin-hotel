@@ -1,14 +1,31 @@
 import { FC } from "react";
 import './Landing.scss';
 import SearchRoom from "../../../components/searchRoom/searchRoom";
+import { useNavigate } from "react-router";
 
 const Landing: FC = () => {
+    const navigate = useNavigate();
     return (
         <div className="landing">
             <div className="container">
                 <div className="landing__rows">
                     <div className="landing__column">
-                        <SearchRoom/>
+                        <SearchRoom buttonClick={(e) => {
+                            const globalParent = (e.target as HTMLElement).closest('.landing');
+
+                            const dates = globalParent?.querySelectorAll('.ant-picker-input > input');
+
+                            const dayStart = dates ? (dates[0] as HTMLInputElement).value.split('.').reverse().join('-') : undefined;
+                            const dayEnd = dates ? (dates[1] as HTMLInputElement).value.split('.').reverse().join('-') : undefined;
+
+                            const dropdown = globalParent?.querySelectorAll('.counter__value');
+                            
+                            const adults = dropdown ? (dropdown[0] as HTMLInputElement).value : undefined;
+                            const children = dropdown ? (dropdown[1] as HTMLInputElement).value : undefined;
+                            const babies = dropdown ? (dropdown[2] as HTMLInputElement).value : undefined;
+                            
+                            navigate(`hotels?dayStart=${dayStart}&dayEnd=${dayEnd}&adult=${adults}&children=${children}&babies=${babies}`)
+                        }}/>
                     </div>
                     <div className="landing__column">
                         <p className="landing__text">
