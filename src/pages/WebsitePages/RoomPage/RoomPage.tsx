@@ -35,11 +35,11 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
     } catch {}
 
     try {
-        children = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+        children = useLocation().search.match(/children=\d/)[0].match(/\d/)[0] || 0;
     } catch {}
 
     try {
-        adults = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+        adults = useLocation().search.match(/adult=\d/)[0].match(/\d/)[0] || 0;
     } catch {}
 
     dropdownContent.push({name: 'взрослые', count: Number(adults)}, {name: 'дети', count: Number(children)}, {name: 'младенцы', count: Number(babies)});
