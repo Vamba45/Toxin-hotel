@@ -2,9 +2,10 @@ import { FC } from 'react';
 import './login.scss';
 
 import { TextField } from '../textField/textField';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login : FC = () => {
+    const navigate = useNavigate();
 
     return (
         <form className="login">
@@ -46,6 +47,8 @@ const Login : FC = () => {
                             }
                                 
                             localStorage.setItem("Name", email.value);
+
+                            navigate(`/hotels`);
                         }
                     }}>Войти</button>
                 </div>
