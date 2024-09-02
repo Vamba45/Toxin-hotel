@@ -10,8 +10,9 @@ import Room from "../../../components/room/room";
 import useOnClickOutside from "../../../hooks/useClickOutside";
 import { roomsAPI } from "../../../store/services/roomSerivce";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
+import dayjs from "dayjs";
 
 const hotelsPage: FC = () => {
 
@@ -94,7 +95,51 @@ const hotelsPage: FC = () => {
     const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
 
     console.log(page + " " + data?.page);
- 
+
+    ////////////////////////////////
+
+    let dropdownContent : any[] = [];
+
+    let currentBabies : any = 0;
+    let currentChildren : any = 0;
+    let currentAdults : any = 0;
+
+    try {
+        currentBabies = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+
+    try {
+        currentChildren = useLocation().search.match(/children=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+
+    try {
+        currentAdults = useLocation().search.match(/adult=\d/)[0].match(/\d/)[0] || 0;
+    } catch {}
+    
+    let daystart : any = undefined;
+
+    try {
+        daystart = useLocation().search.match(/dayStart=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
+    } catch {}
+
+    if(daystart != undefined) {
+        daystart = dayjs(daystart);
+        
+        console.log(daystart);
+    }
+
+    let dayend : any = undefined;
+
+    try {
+        dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
+    } catch {}
+
+    if(dayend != undefined) {
+        dayend = dayjs(dayend);
+
+        console.log(dayend);
+    }
+    
     return (
         <div className="hotels">
             <div className="container">
@@ -102,13 +147,13 @@ const hotelsPage: FC = () => {
                     <div className="hotels__column hotels__filters filters" ref={sidebarRef}>
                         <div className="filters__container">
                             <div className="filters__rangepicker child">
-                                <RangePicker onChange={(date) => {
+                                <RangePicker defaultValues={[daystart, dayend]} onChange={(date) => {
                                     setMinDate(date[0].split('.').reverse().join('-'));
                                     setMaxDate(date[1].split('.').reverse().join('-'));
                                 }}/>
                             </div>
                             <div className="filters__guests child">
-                                <DropDown menuItems={[{name: "Взрослые", setStateFunc: setParents}, {name: "Дети", setStateFunc: setChildren}, {name: "Младенцы", setStateFunc: setBabies}]} 
+                                <DropDown menuItems={[{name: "Взрослые", count: Number(currentAdults), setStateFunc: setParents}, {name: "Дети", count: Number(currentChildren), setStateFunc: setChildren}, {name: "Младенцы", count: Number(currentBabies), setStateFunc: setBabies}]} 
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
