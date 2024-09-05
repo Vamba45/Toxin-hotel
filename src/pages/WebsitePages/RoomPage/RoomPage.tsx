@@ -132,10 +132,10 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                             dayEnd={dayend}
                             dayStart={daystart}
                             dropdownValue={dropdownContent}
-                            number={data?.number}
-                            price={data?.price}
+                            number={Number(data?.number)}
+                            price={Number(data?.price)}
                             serviceMoney={bookRoom.serviceMoney}
-                            isLuxe={data?.luxe}/>
+                            isLuxe={Boolean(data?.luxe)}/>
                     </div>
                 </div>
             </div>
