@@ -6,6 +6,8 @@
     
     font-family: "Montserrat", "Helvetica", sans-serif;
 
+    border-radius: 5px;
+
     padding: 10px 16px;
     border-color: $DS_25;
     box-shadow: unset;
@@ -29,12 +31,12 @@
 
 .ant-picker-dropdown {
     font-family: "Montserrat", "Helvetica", sans-serif;
+    
+    border-radius: 5px;
 
-    // &.ant-picker-dropdown-range.ant-picker-dropdown-placement-topLeft,
-    // .ant-picker-dropdown-range.ant-picker-dropdown-placement-topRight {
-    //     left: var(--arrow-x) !important;
-    //     top: var(--arrow-y) !important;
-    // }
+    .ant-picker-header-view {
+        font-weight: bold;
+    }
 
     .ant-picker-content thead th {
         color: $purple;

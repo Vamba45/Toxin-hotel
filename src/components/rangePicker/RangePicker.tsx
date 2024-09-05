@@ -1,11 +1,13 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { DatePicker } from 'antd';
+
+import 'antd/dist/antd.css';
 
 import './RangePicker.scss';
 
 import { ConfigProvider } from "antd";
 import dayjs from 'dayjs';
-import locale from 'antd/locale/ru_RU';
+import locale from 'antd/es/locale/ru_RU';
 
 import 'dayjs/locale/ru';
 
@@ -22,18 +24,24 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
     return (
         <>
             <ConfigProvider locale={locale}>
-                <DatePicker.RangePicker property="value" picker="date"
+                <DatePicker.RangePicker
+                    picker="date"
                     separator={"→"} 
-                    placement="bottomLeft"
+                    placement="bottomRight"
                     placeholder={["ДД.ММ.ГГГГ", "ДД.ММ.ГГГГ"]} 
                     className="toxin-range-picker"
                     format={"DD.MM.YYYY"}
 
-                    defaultValue={defaultValues !== undefined ? [defaultValues[0], defaultValues[1]] : undefined}
+                    //defaultValue={defaultValues !== undefined ? [defaultValues[0], defaultValues[1]] : undefined}
+
+                    onClick={(e) => {
+                    }}
 
                     onChange={(dates, dateString) => {
-                            onChange ? onChange(dateString) : "";
-                    }}/>
+                            onChange ? onChange(dateString) : ""; 
+                            (document.querySelector('.ant-picker-dropdown') as HTMLElement).classList.add("levi")
+                    }}
+                />
             </ConfigProvider>
         </>
     )
