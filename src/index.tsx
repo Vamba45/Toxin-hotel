@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes, Link}from 'react-router-dom';
 
-import './styles/style.scss';
 import ColorsTypes from './pages/UI Kit/colorsTypes/colorsTypes';
 import FormElements from './pages/UI Kit/formElements/formElements';
 import HeadersFooters from './pages/UI Kit/headersFooters/headersFooters';
@@ -14,6 +13,8 @@ import Loginpage from './pages/WebsitePages/Loginage/Loginpage';
 import 'dayjs/locale/ru';
 import HostelsPage from './pages/WebsitePages/HotelsPage/HotelsPage';
 import RoomPage from './pages/WebsitePages/RoomPage/RoomPage';
+
+import './styles/style.scss';
 
 import img1 from './assets/img/room/a.png';
 import img2 from './assets/img/room/b.png';
@@ -28,7 +29,6 @@ import ava2 from './assets/img/avatar/woman.jpg';
 
 import { Provider } from 'react-redux';
 import  {setupStore} from './store/store';
-import Header from './components/header/header';
 
 const store = setupStore();
 
