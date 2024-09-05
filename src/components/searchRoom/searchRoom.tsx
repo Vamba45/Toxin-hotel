@@ -17,8 +17,7 @@ const SearchRoom : FC<ISearchRoom> = ({buttonClick}) => {
             <div className="searchroom__rows">
                 <div className="searchroom__column">
                     <h1 className='searchroom__title'>
-                        Найдём номера под <br />
-                        ваши желания
+                        Лучшие номера для Вас
                     </h1>
                 </div>
                 <div className="searchroom__column">
