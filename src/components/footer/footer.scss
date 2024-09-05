@@ -49,13 +49,12 @@
     }
 
     &__list {
-    
     }
 
     &__option {
+        margin-bottom: 7px;
         &:first-child {
             @include h3_txt(); 
-            padding: 0 0 7px 0;
 
             text-wrap: nowrap;
         }
