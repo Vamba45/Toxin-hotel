@@ -19,7 +19,18 @@ const hotelsPage: FC = () => {
     const btnRef = useRef(null);
     const sidebarRef = useRef(null);
 
-    useOnClickOutside([btnRef, sidebarRef], () => sideBarOnClick());
+    useOnClickOutside([btnRef, sidebarRef], () => { sideBarOnClick(); showFiltersOnClick() });
+
+    function showFiltersOnClick() {
+        const burgerBtn = document.querySelector('#sidebar-btn')?.classList.contains('active');
+        const showfilters = document.querySelector('.showfilters') as HTMLElement;
+
+        if(showfilters.classList.contains('active')) {
+            showfilters.classList.remove('active')
+        } else if(burgerBtn) {
+            showfilters.classList.add('active')
+        }
+    }
 
     function sideBarOnClick (fromBtn?: boolean) {
         if(fromBtn) {
@@ -140,9 +151,10 @@ const hotelsPage: FC = () => {
         console.log(dayend);
     }
     
-    return (
+    return (    
         <div className="hotels">
             <div className="container">
+            <div className="showfilters" onClick={() => showFiltersOnClick()}>Показать {data?.total} запис(-и, -ей)</div>
                 <div className="hotels__rows">
                     <div className="hotels__column hotels__filters filters" ref={sidebarRef}>
                         <div className="filters__container">
@@ -254,7 +266,10 @@ const hotelsPage: FC = () => {
                         </div>
                     </div>
                     <div id="sidebar-btn" className="hotels__sidebar-btn"
-                        onClick={() => sideBarOnClick(true)}
+                        onClick={() => { 
+                            sideBarOnClick(true);
+                            showFiltersOnClick();
+                        }}
                         ref={btnRef}>
 
                         <span></span>
@@ -267,7 +282,10 @@ const hotelsPage: FC = () => {
                                     Boolean(data?.rooms.length) && <>Номера, которые мы для Вас подобрали</>
                                 }
                                 {
-                                    Boolean(!data?.rooms.length) && <>Ничего не найдено</>
+                                    Boolean(!data?.rooms.length) && isLoading && <>Поиск...</>
+                                }
+                                {
+                                    Boolean(!data?.rooms.length) && !isLoading && <>Ничего не найдено</>
                                 }
                             </h2>
                         <div className="rooms__grid">

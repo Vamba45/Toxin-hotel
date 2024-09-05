@@ -3,7 +3,7 @@
 
 html,
 body {
-    height: fit-content;
+    height: 100%;
     width: 100%;
 }
 
@@ -25,6 +25,8 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    
+    flex-grow: 1;
 
     .rooms__grid {
         display: grid;
@@ -44,6 +46,47 @@ body {
     }
 }
 
+.showfilters {
+
+    &.active {
+        display: block;
+    }
+
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+
+    opacity: 0;
+
+    display: none;
+
+    transform: translateX(-50%);
+
+    box-shadow: 0 0 20px rgb(192, 187, 187);
+
+    margin: 0 auto;
+
+    width: 270px;
+
+    font-size: 18px;
+    font-family: Montserrat, sans-serif;
+    color: #fff;
+
+    border-radius: 5px;
+    padding: 10px 25px;
+
+    background-color: $purple;
+    cursor: pointer;
+
+    z-index: 1000;
+}
+
+@media screen and (max-width: 650px) {
+    .showfilters {
+        opacity: 1;
+    }
+}
+
 .filters {
     &__container {
         display: flex;
@@ -51,7 +94,6 @@ body {
         justify-content: flex-start;
         row-gap: 22px;
     }
-
 
     &__rangepicker,
     &__guests,
@@ -127,13 +169,19 @@ body {
 
 .hotels {
     border-top: 0.33px solid $DS_25;
-    border-bottom: 1px solid $DS_25;
+
+    height: 100%;
+
+    .container {
+        height: 100%;
+    }
 
     padding: 40px 0;
 
     &__rows {
         display: flex;
         justify-content: space-between;
+        height: 100%;
     }
 
     &__column {
@@ -150,6 +198,11 @@ body {
 
 @media screen and (max-width: 1240px)
 { 
+    .rooms {
+        .rooms__title {
+            align-self: center;
+        }
+    }
     .hotels {
         &__rows {
             justify-content: center;
@@ -212,7 +265,7 @@ body {
 
                 background-color: white;
 
-                transform: translateX(290px)
+                   transform: translateX(290px)
                             translateY(-80px);
 
                 span:nth-child(2) {
@@ -350,6 +403,10 @@ body {
 
         &.active {
             transform: translateX(100%) !important; 
+        }
+
+        &__button {
+            display: block;
         }
 
         &__container {
