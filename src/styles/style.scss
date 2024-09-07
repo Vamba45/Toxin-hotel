@@ -8,6 +8,35 @@ body {
     height: 100%;
 }
 
+a {
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+    transition: unset;
+    -webkit-text-decoration-skip: objects;
+    text-shadow: unset;
+  }
+  a:hover {
+    color: $DS_50;
+  }
+  a:active { 
+    color: $DS_50;
+ }
+  a:active,
+  a:hover {
+    text-decoration: none;
+    outline: 0;
+  }
+  a:focus {
+    text-decoration: none;
+    outline: 0;
+  }
+  a[disabled] {
+    color: rgba(0, 0, 0, 0.25);
+    cursor: not-allowed;
+  }
+
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #fff;

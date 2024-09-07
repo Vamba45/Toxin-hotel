@@ -78,6 +78,11 @@
 
     &:hover {
         background-image: linear-gradient(#d1bcff, #b0c3ff);
+        color: #fff;
+    }
+
+    &:active {
+        color: #fff;
     }
 }
 
@@ -102,6 +107,11 @@
 
     &:hover {
         opacity: 0.5;
+        color: $purple;
+    }
+
+    &:active {
+        color: $purple;
     }
 }
 
