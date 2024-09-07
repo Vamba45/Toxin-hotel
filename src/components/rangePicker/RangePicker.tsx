@@ -2,21 +2,19 @@ import { FC } from "react";
 import { DatePicker } from 'antd';
 
 import 'antd/dist/antd.css';
-
 import './RangePicker.scss';
 
 import { ConfigProvider } from "antd";
-import dayjs from 'dayjs';
 import locale from 'antd/es/locale/ru_RU';
 
 import 'dayjs/locale/ru';
+import moment from "moment";
 
-dayjs.locale('ru');
 
 interface IRangePicker {
-    defaultValues?: [dayjs.Dayjs, dayjs.Dayjs],
-    minDate?: dayjs.Dayjs | undefined,
-    maxDate?: dayjs.Dayjs | undefined,
+    defaultValues?: [string, string],
+    minDate?: string | undefined,
+    maxDate?: string | undefined,
     onChange?: (date: [string, string]) => void
 }
 
@@ -32,10 +30,7 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
                     className="toxin-range-picker"
                     format={"DD.MM.YYYY"}
 
-                    //defaultValue={defaultValues !== undefined ? [defaultValues[0], defaultValues[1]] : undefined}
-
-                    onClick={(e) => {
-                    }}
+                    defaultValue={defaultValues !== undefined ? [moment(defaultValues[0]), moment(defaultValues[1])] : undefined}
 
                     onChange={(dates, dateString) => {
                             onChange ? onChange(dateString) : ""; 

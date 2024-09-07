@@ -133,23 +133,11 @@ const hotelsPage: FC = () => {
         daystart = useLocation().search.match(/dayStart=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
     } catch {}
 
-    if(daystart != undefined) {
-        daystart = dayjs(daystart);
-        
-        console.log(daystart);
-    }
-
     let dayend : any = undefined;
 
     try {
         dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
     } catch {}
-
-    if(dayend != undefined) {
-        dayend = dayjs(dayend);
-
-        console.log(dayend);
-    }
     
     return (    
         <div className="hotels">
