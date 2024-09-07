@@ -70,6 +70,39 @@
     .ant-picker-cell-range-end .ant-picker-cell-inner {
         background-image: linear-gradient(#BC9CFF, #8BA4F9) !important;
     }
+    
+    .ant-picker-cell-range-hover-start,
+    .ant-picker-cell-range-hover-end {
+        &::before {
+            background: #f0ecfd !important;
+            border-radius: 0 5px 5px 0;
+            border: none !important;
+            outline: none !important;
+        }
+        &::after {
+            border: none !important;
+            outline: none !important;
+        }
+    }
+
+    .ant-picker-cell-range-hover-start {
+        &::before {
+            border-radius: 5px 0 0 5px;
+        }
+    }
+
+    .ant-picker-cell-range-hover {
+
+        &::before {
+            background: #f0ecfd !important;
+            border: none !important;
+            outline: none !important;
+        }
+        &::after {
+            border: none !important;
+            outline: none !important;
+        }
+    }
 }
 
 .ant-picker-dropdown .ant-picker-cell-inner {
