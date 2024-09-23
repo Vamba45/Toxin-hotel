@@ -12,7 +12,7 @@ import { roomsAPI } from "../../../store/services/roomSerivce";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
 import { Link, useLocation } from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
-import dayjs from "dayjs";
+import { userAPI } from "../../../store/services/userService";
 
 const hotelsPage: FC = () => {
 
@@ -60,15 +60,17 @@ const hotelsPage: FC = () => {
 
     let arr = [smoke, pets, guests, coridor, helper, breakfast, table, chair, bed, TV, champoo];
 
-    let comfort = "comfort=all,";
+    let comfort = "";
 
     for(let i = 0; i < arr.length; i++) {
         if(arr[i] !== "") {
             comfort += arr[i] + ','
         }
     }
+
+    comfort = comfort.length > 0 ? "comfort=" + comfort : "";
     
-    comfort = comfort.slice(0, -1); 
+    //comfort = comfort.slice(0, -1); 
 
     console.log(comfort)
 
@@ -104,12 +106,15 @@ const hotelsPage: FC = () => {
     const [page, setPage] = useState(1);
     const limit = 12;
     const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
+    const userData = userAPI.useFetchOneUserQuery('').data;
+
+    console.log(userData);
+
+    console.log(data);
 
     console.log(page + " " + data?.page);
 
     ////////////////////////////////
-
-    let dropdownContent : any[] = [];
 
     let currentBabies : any = 0;
     let currentChildren : any = 0;
@@ -147,7 +152,7 @@ const hotelsPage: FC = () => {
                     <div className="hotels__column hotels__filters filters" ref={sidebarRef}>
                         <div className="filters__container">
                             <div className="filters__rangepicker child">
-                                <RangePicker defaultValues={[daystart, dayend]} onChange={(date) => {
+                                <RangePicker defaultValues={ (daystart !== undefined && dayend !== undefined) ? [daystart, dayend]: undefined} onChange={(date) => {
                                     setMinDate(date[0].split('.').reverse().join('-'));
                                     setMaxDate(date[1].split('.').reverse().join('-'));
                                 }}/>
