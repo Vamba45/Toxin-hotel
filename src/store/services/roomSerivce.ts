@@ -4,7 +4,7 @@ import { ListResponse } from '../../model/IListResponce';
 
 export const roomsAPI = createApi({
     reducerPath: 'roomsAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:5050/api'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://toxin-backend-production.up.railway.app/api'}),
     endpoints: (build) => ({
         fetchAllRooms: build.query<ListResponse<IRoom>, string>({
             query: (filter) => ({
