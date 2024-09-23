@@ -17,5 +17,5 @@ export interface IRoom {
   daystart:  Date, 
   dayend:  Date, 
   price:  Number, 
-  photos:  string[], 
+  photos:  string[]
 }
