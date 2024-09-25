@@ -43,77 +43,7 @@ const hotelsPage: FC = () => {
             (document.body as HTMLElement)?.classList.remove('disabled');
         }
     }  
-
-    const [smoke, setSmoke] = useState("");
-    const [pets, setPets] = useState("");
-    const [guests, setGuests] = useState("");
     
-    const [coridor, setCoridor] = useState("");
-    const [helper, setHelper] = useState("");
-    
-    const [breakfast, setBreakfast] = useState("");
-    const [table, setTable] = useState("");
-    const [chair, setChair] = useState("");
-    const [bed, setBed] = useState("");
-    const [TV, setTV] = useState("");
-    const [champoo, setChampoo] = useState("");
-
-    let arr = [smoke, pets, guests, coridor, helper, breakfast, table, chair, bed, TV, champoo];
-
-    let comfort = "";
-
-    for(let i = 0; i < arr.length; i++) {
-        if(arr[i] !== "") {
-            comfort += arr[i] + ','
-        }
-    }
-
-    comfort = comfort.length > 0 ? "comfort=" + comfort : "";
-    
-    //comfort = comfort.slice(0, -1); 
-
-    console.log(comfort)
-
-    // FILTERS DROPDOWN
-
-    const [parents, setParents] = useState<Number>(0);
-    const [children, setChildren] = useState<Number>(0);
-    const [babies, setBabies] = useState<Number>(0);  
-    
-    const [bedrooms, setBedrooms] = useState<Number>(0);
-    const [beds, setBeds] = useState<Number>(0);
-    const [bathrooms, setBathrooms] = useState<Number>(0);  
-
-    let dropdown = `beds=${beds}&adult=${parents}&children=${children}&babies=${babies}&bedrooms=${bedrooms}&bathrooms=${bathrooms}`;
-
-    //DATE FILTER
-
-    const [minDate, setMinDate] = useState("");
-    const [maxDate, setMaxDate] = useState("");
-
-    let dates = `dayStart=${minDate}&dayEnd=${maxDate}`;
-
-    //PRICE FILTER
-
-    const [minPrice, setMinPrice] = useState(5000);
-    const debouncedMinPrice = useDebounce(setMinPrice, 500);
-
-    const [maxPrice, setMaxPrice] = useState(15000);
-    const debouncedMaxPrice = useDebounce(setMaxPrice, 500);
-
-    let prices = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
-
-    const [page, setPage] = useState(1);
-    const limit = 12;
-    const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
-    const userData = userAPI.useFetchOneUserQuery('').data;
-
-    console.log(userData);
-
-    console.log(data);
-
-    console.log(page + " " + data?.page);
-
     ////////////////////////////////
 
     let currentBabies : any = 0;
@@ -143,6 +73,68 @@ const hotelsPage: FC = () => {
     try {
         dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
     } catch {}
+
+    ////////////////////////////////////////////////
+
+    const [smoke, setSmoke] = useState("");
+    const [pets, setPets] = useState("");
+    const [guests, setGuests] = useState("");
+    
+    const [coridor, setCoridor] = useState("");
+    const [helper, setHelper] = useState("");
+    
+    const [breakfast, setBreakfast] = useState("");
+    const [table, setTable] = useState("");
+    const [chair, setChair] = useState("");
+    const [bed, setBed] = useState("");
+    const [TV, setTV] = useState("");
+    const [champoo, setChampoo] = useState("");
+
+    let arr = [smoke, pets, guests, coridor, helper, breakfast, table, chair, bed, TV, champoo];
+
+    let comfort = "";
+
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] !== "") {
+            comfort += arr[i] + ','
+        }
+    }
+
+    comfort = comfort.length > 0 ? "comfort=" + comfort : "";
+
+    // FILTERS DROPDOWN
+
+    const [parents, setParents] = useState<Number>(0);
+    const [children, setChildren] = useState<Number>(0);
+    const [babies, setBabies] = useState<Number>(0);  
+    
+    const [bedrooms, setBedrooms] = useState<Number>(0);
+    const [beds, setBeds] = useState<Number>(0);
+    const [bathrooms, setBathrooms] = useState<Number>(0);  
+
+    let dropdown = `beds=${beds}&adult=${parents}&children=${children}&babies=${babies}&bedrooms=${bedrooms}&bathrooms=${bathrooms}`;
+
+    //DATE FILTER
+
+    const [minDate, setMinDate] = useState(daystart);
+    const [maxDate, setMaxDate] = useState(dayend);
+
+    let dates = `dayStart=${minDate}&dayEnd=${maxDate}`;
+
+    //PRICE FILTER
+
+    const [minPrice, setMinPrice] = useState(5000);
+    const debouncedMinPrice = useDebounce(setMinPrice, 500);
+
+    const [maxPrice, setMaxPrice] = useState(15000);
+    const debouncedMaxPrice = useDebounce(setMaxPrice, 500);
+
+    let prices = `maxPrice=${maxPrice}&minPrice=${minPrice}`;
+
+    const [page, setPage] = useState(1);
+    const limit = 12;
+    const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
+    const userData = userAPI.useFetchOneUserQuery('').data;
     
     return (    
         <div className="hotels">
@@ -162,7 +154,7 @@ const hotelsPage: FC = () => {
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
-                                <RangeSlider defaultMax={15000} defaultMin={5000} maxValue={20000} priceGap={2500} title="Диапазон цены" 
+                                <RangeSlider defaultMax={17000} defaultMin={3000} maxValue={20000} priceGap={2500} title="Диапазон цены" 
                                 onMaxChange={debouncedMaxPrice} 
                                 onMinChange={debouncedMinPrice}/>
                             </div>
