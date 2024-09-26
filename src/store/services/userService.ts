@@ -3,11 +3,11 @@ import { IUser } from '../../model/IUser';
 
 export const userAPI = createApi({
     reducerPath: 'userAPI',
-    baseQuery: fetchBaseQuery({baseUrl: 'https://toxin-backend-production.up.railway.app/'}),
+    baseQuery: fetchBaseQuery({baseUrl: 'https://toxin-backend-production.up.railway.app'}),
     endpoints: (build) => ({
         fetchOneUser: build.query<IUser, string>({
-            query: (id) => ({
-                url: `/user`
+            query: (filter) => ({
+                url: `/user?${filter}`
             })
         }),
     })
