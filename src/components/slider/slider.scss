@@ -53,7 +53,7 @@
     }
 
     &__prev {
-        background: url(../../assets/img/icons/slider_arrow.svg) rgba(179, 179, 179, 0.75) center no-repeat;
+        background: url(../../assets/img/icons/slider_arrow.svg) rgba(192, 175, 210, 0.75) center no-repeat;
         
         transform: translate(0, -50%);
         left: 5px;
@@ -62,7 +62,7 @@
     }
 
     &__next {
-        background: url(../../assets/img/icons/slider_arrow.svg) rgba(179, 179, 179, 0.75) center no-repeat;
+        background: url(../../assets/img/icons/slider_arrow.svg) rgba(192, 175, 210, 0.75) center no-repeat;
 
         transform: translate(0, -50%) rotate(180deg);
 
