@@ -7,7 +7,6 @@ import './RangePicker.scss';
 import { ConfigProvider } from "antd";
 import locale from 'antd/es/locale/ru_RU';
 
-import 'dayjs/locale/ru';
 import moment from "moment";
 
 
@@ -34,7 +33,6 @@ const RangePicker: FC<IRangePicker> = ({minDate, maxDate, onChange, defaultValue
 
                     onChange={(dates, dateString) => {
                             onChange ? onChange(dateString) : ""; 
-                            (document.querySelector('.ant-picker-dropdown') as HTMLElement).classList.add("levi")
                     }}
                 />
             </ConfigProvider>
