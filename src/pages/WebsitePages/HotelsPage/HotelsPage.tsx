@@ -12,7 +12,6 @@ import { roomsAPI } from "../../../store/services/roomSerivce";
 import RoomSkeleton from "../../../components/roomSkeleton/roomSkeleton";
 import { Link, useLocation } from "react-router-dom";
 import useDebounce from "../../../hooks/useDebounce";
-import { userAPI } from "../../../store/services/userService";
 
 const hotelsPage: FC = () => {
 
@@ -104,9 +103,9 @@ const hotelsPage: FC = () => {
 
     // FILTERS DROPDOWN
 
-    const [parents, setParents] = useState<Number>(0);
-    const [children, setChildren] = useState<Number>(0);
-    const [babies, setBabies] = useState<Number>(0);  
+    const [parents, setParents] = useState<Number>(currentAdults);
+    const [children, setChildren] = useState<Number>(currentChildren);
+    const [babies, setBabies] = useState<Number>(currentBabies);  
     
     const [bedrooms, setBedrooms] = useState<Number>(0);
     const [beds, setBeds] = useState<Number>(0);
@@ -116,8 +115,8 @@ const hotelsPage: FC = () => {
 
     //DATE FILTER
 
-    const [minDate, setMinDate] = useState(daystart);
-    const [maxDate, setMaxDate] = useState(dayend);
+    const [minDate, setMinDate] = useState(daystart || "");
+    const [maxDate, setMaxDate] = useState(dayend || "");
 
     let dates = `dayStart=${minDate}&dayEnd=${maxDate}`;
 
@@ -134,7 +133,6 @@ const hotelsPage: FC = () => {
     const [page, setPage] = useState(1);
     const limit = 12;
     const {data, isLoading} = roomsAPI.useFetchAllRoomsQuery(`page=${page}&limit=${limit}` + `&` + prices + '&' + dates + '&' + dropdown + '&' + comfort);
-    const userData = userAPI.useFetchOneUserQuery('').data;
     
     return (    
         <div className="hotels">

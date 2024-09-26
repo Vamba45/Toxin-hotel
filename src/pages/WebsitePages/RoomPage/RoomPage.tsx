@@ -9,7 +9,6 @@ import CheckBoxList, { ICheckBoxList } from "../../../components/checkboxExpanda
 import Slider from "../../../components/slider/slider";
 import { roomsAPI } from "../../../store/services/roomSerivce";
 import { useLocation } from "react-router";
-import dayjs from "dayjs";
 
 interface IRoomPage {
     bookRoom: IBookRoom,
@@ -52,19 +51,11 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
         daystart = useLocation().search.match(/dayStart=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
     } catch {}
 
-    if(daystart != undefined) {
-        daystart = dayjs(daystart)?.toDate();
-    }
-
     let dayend : any = undefined;
 
     try {
         dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
     } catch {}
-
-    if(dayend != undefined) {
-        dayend = dayjs(dayend)?.toDate();
-    }
 
     return (
         <div className="roomPage">
