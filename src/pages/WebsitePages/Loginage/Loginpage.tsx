@@ -1,13 +1,40 @@
 import { FC } from "react";
 import './Loginpage.scss';
-import Login from "../../../components/login/login";
+import Login from "../../../components/login/login";    
+import { useNavigate } from "react-router-dom";
+
+
 const Loginpage: FC = () => {
+    const navigate = useNavigate();
 
     return (
         <div className="loginpage">
             <div className="container">
                 <div className="loginpage__form">
-                    <Login/>
+                    <Login submitOnClick={(e: React.MouseEvent) => {
+                        const parent = (e.target as HTMLElement).closest('.login');
+
+                        const email = parent?.querySelector('.textField__input[type="text"]') as HTMLInputElement;
+                        const password = parent?.querySelector('.textField__input[type="password"]') as HTMLInputElement;
+
+                        if(!email.value) {
+                            email.classList.add('error');
+
+                            const errorBlock = (email.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
+                            errorBlock.textContent = "Введите email";
+
+                            e.preventDefault();
+                        }
+
+                        if(!password.value) {
+                            password.classList.add('error');
+
+                            const errorBlock = (password.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
+                            errorBlock.textContent = "Введите пароль";
+
+                            e.preventDefault();
+                        }
+                    }}/>
                 </div>
             </div>
         </div>

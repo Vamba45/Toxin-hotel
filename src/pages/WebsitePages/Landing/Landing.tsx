@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 const Landing: FC = () => {
     const navigate = useNavigate();
+    
     return (
         <div className="landing">
             <div className="container">
@@ -20,11 +21,14 @@ const Landing: FC = () => {
 
                             const dropdown = globalParent?.querySelectorAll('.counter__value');
                             
-                            const adults = dropdown ? (dropdown[0] as HTMLInputElement).value : undefined;
-                            const children = dropdown ? (dropdown[1] as HTMLInputElement).value : undefined;
-                            const babies = dropdown ? (dropdown[2] as HTMLInputElement).value : undefined;
+                            const adults = dropdown ? (dropdown[0] as HTMLInputElement).value : 0;
+                            const children = dropdown ? (dropdown[1] as HTMLInputElement).value : 0;
+                            const babies = dropdown ? (dropdown[2] as HTMLInputElement).value : 0;
                             
-                            navigate(`hotels?dayStart=${dayStart}&dayEnd=${dayEnd}&adult=${adults}&children=${children}&babies=${babies}`)
+                            navigate(`hotels?${(dayStart && dayEnd) ? `dayStart=${dayStart}&dayEnd=${dayEnd}` : ""}` + 
+                            `${Number(adults) > 0 ? `&adult=${adults}` : ""}` + 
+                            `${Number(children) > 0 ? `&children=${children}` : ""}` +  
+                            `${Number(babies) > 0 ? `&babies=${babies}` : ""}`)
                         }}/>
                     </div>
                     <div className="landing__column">
