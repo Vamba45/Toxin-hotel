@@ -3,7 +3,6 @@ import './header.scss';
 
 import logo from '../../assets/img/logo.svg';
 import { Link } from "react-router-dom";
-import { useAppSelector } from "../../hooks/useAppSelector";
 
 interface ISubmenu {
     text: string;
@@ -66,12 +65,7 @@ function linksOnClick(e: React.MouseEvent) {
     document.body.classList.remove('lock');
 }
 
-interface IHeader {
-    user?: string | null;
-}
-
-const Header : FC<IHeader> = ({user = null}) => {
-    user = useAppSelector((state) => state.userReducer.name);
+const Header : FC = () => {
 
     return (
         <header className="header">
@@ -104,17 +98,10 @@ const Header : FC<IHeader> = ({user = null}) => {
                         </ul>
                     </div>
                     <div className="header__column">
-                        {
-                            !user && (<div className="header__buttons">
-                                <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
-                                <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
-                            </div>)
-                        }
-                        {
-                            user && (<div className="header__user">
-                                {user}
-                            </div>)
-                        }
+                        <div className="header__buttons">
+                            <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
+                            <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
+                        </div>
                     </div>
                     <div className="header__column burger">
                         <div className="burger__button" onClick={burgerOnClick}>
