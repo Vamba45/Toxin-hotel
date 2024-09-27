@@ -50,15 +50,15 @@ const hotelsPage: FC = () => {
     let currentAdults : any = 0;
 
     try {
-        currentBabies = useLocation().search.match(/babies=\d/)[0].match(/\d/)[0] || 0;
+        currentBabies = useLocation().search.match(/babies=\d+/)[0].match(/\d+/)[0];
     } catch {}
 
     try {
-        currentChildren = useLocation().search.match(/children=\d/)[0].match(/\d/)[0] || 0;
+        currentChildren = useLocation().search.match(/children=\d+/)[0].match(/\d+/)[0];
     } catch {}
 
     try {
-        currentAdults = useLocation().search.match(/adult=\d/)[0].match(/\d/)[0] || 0;
+        currentAdults = useLocation().search.match(/adult=\d+/)[0].match(/\d+/)[0];
     } catch {}
     
     let daystart : any = undefined;
