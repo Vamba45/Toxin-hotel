@@ -1,11 +1,17 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import './Loginpage.scss';
 import Login from "../../../components/login/login";    
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useAppSelector";
+import { userSlice } from "../../../store/reducers/UserSlice";
+import { fetchUser } from "../../../store/reducers/ActionCreators";
 
 
 const Loginpage: FC = () => {
     const navigate = useNavigate();
+
+    const {error, user, isLoading} = useAppSelector((state) => state.userReducer);
+    const dispatch = useAppDispatch();
 
     return (
         <div className="loginpage">
@@ -34,6 +40,10 @@ const Loginpage: FC = () => {
 
                             e.preventDefault();
                         }
+                                          
+                        dispatch(fetchUser(email.value, password.value));
+
+                        navigate('/hotels');
                     }}/>
                 </div>
             </div>

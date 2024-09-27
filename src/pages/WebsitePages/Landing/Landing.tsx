@@ -2,6 +2,8 @@ import { FC } from "react";
 import './Landing.scss';
 import SearchRoom from "../../../components/searchRoom/searchRoom";
 import { useNavigate } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useAppSelector";
+import { userSlice } from "../../../store/reducers/UserSlice";
 
 const Landing: FC = () => {
     const navigate = useNavigate();

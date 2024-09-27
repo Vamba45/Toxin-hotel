@@ -65,7 +65,11 @@ function linksOnClick(e: React.MouseEvent) {
     document.body.classList.remove('lock');
 }
 
-const Header : FC = () => {
+interface IHeader {
+    username?: string;
+}
+
+const Header : FC<IHeader> = ({username}) => {
 
     return (
         <header className="header">
@@ -99,8 +103,12 @@ const Header : FC = () => {
                     </div>
                     <div className="header__column">
                         <div className="header__buttons">
-                            <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
-                            <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
+                            {
+                                username && <div className="header__username">{username}</div> || (<>
+                                                <Link onClick={linksOnClick} to={'/login'} className="header__login">войти</Link>
+                                                <Link onClick={linksOnClick} to={'/registration'} className="header__registration">зарегистрироваться</Link>
+                                            </>)
+                            }
                         </div>
                     </div>
                     <div className="header__column burger">

@@ -1,6 +1,9 @@
 import { FC } from "react";
 import './Regpage.scss';
 import Registration from "../../../components/registration/registration";
+import { useAppDispatch } from "../../../hooks/useAppSelector";
+import { useNavigate } from "react-router";
+import { fetchUser } from "../../../store/reducers/ActionCreators";
 
 function validateRadio(name: string) {
     var radios = document.getElementsByName(name);
@@ -23,6 +26,10 @@ function isEmailValid(value: string) {
 }
 
 const Regpage: FC = () => {
+
+    const dispatch = useAppDispatch()
+    const navigate = useNavigate();
+
     return (
         <div className="regpage">
             <div className="container">
@@ -94,11 +101,10 @@ const Regpage: FC = () => {
                             
                             e.preventDefault();
                         }
+                        
+                        dispatch(fetchUser(email.value, password.value));
 
-                        if(name.value && surname.value) {
-
-                            localStorage.setItem("Name", name.value + " "  + surname.value);
-                        }
+                        navigate('/hotels');
                     }}/>
                 </div>
             </div>
