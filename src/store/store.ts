@@ -1,8 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { roomsAPI } from "./services/roomSerivce";
 import { userAPI } from "./services/userService";
+import userReducer from './reducers/UserSlice';
 
 const rootReducer = combineReducers({
+    userReducer,
     [roomsAPI.reducerPath]: roomsAPI.reducer,
     [userAPI.reducerPath]: userAPI.reducer
 })
