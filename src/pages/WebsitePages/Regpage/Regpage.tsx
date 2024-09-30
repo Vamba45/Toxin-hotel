@@ -1,22 +1,27 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import './Regpage.scss';
 import Registration from "../../../components/registration/registration";
-import { useAppDispatch } from "../../../hooks/useAppSelector";
+import { useAppDispatch, useAppSelector } from "../../../hooks/useAppSelector";
 import { useNavigate } from "react-router";
-import { fetchUser } from "../../../store/reducers/ActionCreators";
+import { checkUser, createUser, fetchUser } from "../../../store/reducers/ActionCreators";
+import moment from "moment";
 
 function validateRadio(name: string) {
     var radios = document.getElementsByName(name);
     var formValid = false;
+    var value = "";
 
     var i = 0;
 
     while (!formValid && i < radios.length) {
-        if ((radios[i] as HTMLInputElement).checked) formValid = true;
+        if ((radios[i] as HTMLInputElement).checked) {
+            formValid = true;
+            value = (radios[i] as HTMLInputElement).value;
+        }
         i++;        
     }
     
-    return formValid;
+    return {formValid, value}
 };  
 
 const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/;
@@ -26,15 +31,24 @@ function isEmailValid(value: string) {
 }
 
 const Regpage: FC = () => {
-
-    const dispatch = useAppDispatch()
     const navigate = useNavigate();
+    
+    const {user} = useAppSelector((state) => state.userReducer);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if(user) {
+            navigate('/hotels');
+        };
+    }, [user]);
 
     return (
         <div className="regpage">
             <div className="container">
                 <div className="regpage__form">
-                    <Registration submitOnClick={(e: React.MouseEvent) => {
+                    <Registration submitOnClick={async (e: React.MouseEvent) => {
+                        e.preventDefault();
+                            
                         const parent = (e.target as HTMLElement).closest('.registration');
 
                         const name = parent?.querySelector('.textField__input[placeholder="Имя"]') as HTMLInputElement;
@@ -45,13 +59,15 @@ const Regpage: FC = () => {
                         
                         const password = parent?.querySelector('.textField__input[placeholder="Пароль"]') as HTMLInputElement;
 
+                        let isFormCorrect = true;
+
                         if(!name.value) {
                             name.classList.add('error');
 
                             const errorBlock = (name.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
                             errorBlock.textContent = "Введите имя";
 
-                            e.preventDefault();
+                            isFormCorrect = false;
                         }
                         
                         if(!surname.value) {
@@ -60,16 +76,16 @@ const Regpage: FC = () => {
                             const errorBlock = (surname.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
                             errorBlock.textContent = "Введите фамилию";
 
-                            e.preventDefault();
+                            isFormCorrect = false;
                         }
                         
-                        if(!date.value) {
+                        if(!moment(date.value, "YYYY.MM.DD").isValid()) {
                             date.classList.add('error');
                             
                             const errorBlock = (date.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
-                            errorBlock.textContent = "Введите дату";
+                            errorBlock.textContent = "Некорректное значение";
                             
-                            e.preventDefault();
+                            isFormCorrect = false;
                         }
                         
                         if(!email.value || !isEmailValid(email.value)) {
@@ -83,7 +99,7 @@ const Regpage: FC = () => {
                                 errorBlock.textContent = "Введите email";
                             }
 
-                            e.preventDefault();
+                            isFormCorrect = false;
                         }
                         
                         if(!password.value) {
@@ -92,19 +108,41 @@ const Regpage: FC = () => {
                             const errorBlock = (password.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
                             errorBlock.textContent = "Введите пароль";
                             
-                            e.preventDefault();
+                            isFormCorrect = false;
                         }
 
-                        if(!validateRadio('gender')) {
+                        let validObj = validateRadio('gender');
+
+                        if(!validObj.formValid) {
                             const radioError = document.querySelector('.radio__errorblock') as HTMLElement;
                             radioError.textContent = "Укажите пол";
                             
+                            isFormCorrect = false;
                             e.preventDefault();
                         }
                         
-                        dispatch(fetchUser(email.value, password.value));
+                        if(isFormCorrect) {
+                            const isExist = await dispatch(checkUser(email.value));
 
-                        navigate('/hotels');
+                            if(isExist) {
+                                const errorBlock = (email.closest('.textField')?.querySelector('.textField__errorblock')) as HTMLElement;
+                                errorBlock.textContent = "Пользователь с таким адресом уже существует";
+
+                                return;
+                            }
+
+                            const user = {
+                                email: email.value, 
+                                password: password.value,
+                                name: name.value,
+                                surname: surname.value,
+                                datebirth: new Date(date.value.split(".").reverse().join("-")),
+                                gender: validObj.value === "man" ? true : false
+                            };
+
+                            await dispatch(createUser(user));
+                            await dispatch(fetchUser(user.email, user.password));
+                        }
                     }}/>
                 </div>
             </div>
