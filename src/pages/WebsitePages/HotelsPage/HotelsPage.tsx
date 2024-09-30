@@ -99,6 +99,8 @@ const hotelsPage: FC = () => {
         }
     }
 
+    comfort = comfort.slice(0, -1); 
+
     comfort = comfort.length > 0 ? "comfort=" + comfort : "";
 
     // FILTERS DROPDOWN
