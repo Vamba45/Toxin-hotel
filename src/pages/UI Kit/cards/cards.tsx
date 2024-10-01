@@ -15,17 +15,20 @@ import BookRoom from '../../../components/bookRoom/bookRoom';
 const Cards: FC = () => {
     return(
         <div className='cards uikit'>
-            <Room isLuxe={true} number={888} price={9900} reviews={145} starsName='1room' sliderItems={[card1, card2, card3, card4]} activeStars={5}/>
-            <Room isLuxe={false} number={840} price={9900} reviews={65} starsName='2room' sliderItems={[card1, card2, card3, card4]} activeStars={4}/>
-
-            <Login/>
-
-            <Registration/>
-
-            <SearchRoom/>
-
-            <BookRoom dayStart={new Date(2024, 8, 19)} dayEnd={new Date(2024, 8, 27)} advancedServiceMoney={100} number={888}
-                        price={5000} serviceMoney={250} dropdownValue={[{name: "взрослые", count: 4}, {name: "дети", count: 4}, {name: "младенцы", count: 4}]}/>
+            <div className="cards__row">
+                <div className="cards__column">
+                    <Login/>
+                    <Registration/>
+                </div>
+                <div className="cards__column">
+                    <SearchRoom buttonClick={() => {}}/>
+                    <BookRoom  advancedServiceMoney={100} number={888} price={5000} serviceMoney={250} dropdownValue={[{name: "взрослые", count: 4}, {name: "дети", count: 4}, {name: "младенцы", count: 4}]}/>
+                </div>
+                <div className="cards__column">
+                    <Room isLuxe={true} number={888} price={9900} reviews={145} starsName='1room' sliderItems={[card1, card2, card3, card4]} activeStars={5}/>
+                    <Room isLuxe={false} number={840} price={9900} reviews={65} starsName='2room' sliderItems={[card1, card2, card3, card4]} activeStars={4}/>
+                </div>
+            </div>
         </div>
     )
 }

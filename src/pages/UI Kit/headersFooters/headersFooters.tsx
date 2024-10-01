@@ -7,8 +7,6 @@ const HeadersFooters: FC = () => {
     return (
         <div className="headfoot">
             <Header/>
-            {/* <Header user="Юлий Цезарь"/> */}
-
             <Footer/>
         </div>
     )
