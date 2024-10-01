@@ -4,16 +4,14 @@ import Footer from "../footer/footer";
 import { Outlet } from "react-router";
 
 import './layout.scss';
-import { useAppDispatch, useAppSelector } from "../../hooks/useAppSelector";
-import { fetchUser } from "../../store/reducers/ActionCreators";
+import { useAppSelector } from "../../hooks/useAppSelector";
 
 const Layout: FC = () => {
     const {user} = useAppSelector(state => state.userReducer);
 
-
     return (
         <>
-            <Header username={user?.name + user?.surname}/>
+            <Header username={user ? user?.name + " " + user?.surname : undefined}/>
 
             <main>
                 <Outlet/>
