@@ -49,7 +49,7 @@ root.render(
                     <Route path='/registration' element={<Regpage />} />
                     <Route path='/login' element={<Loginpage />} />
                     <Route path='/hotels' element={<HostelsPage />} />
-                    <Route path='/room/:id'  element={<RoomPage images={[img2, img1, img3]} 
+                    <Route path='/room/:id'  element={<RoomPage  
                                                     diagram={{reviewCount: 260, categoryPercentage: [25, 25, 50]}}
                                                     checkBoxList={{type: "bullet", options: [{name: "Соблюдение тишины с 21:00"}, {name: "Без вечеринок и мероприятий"}, {name: "Время прибытия - после 13:00, а выезд до 12:00"}], title: "Правила"}}
                                                     comments={[{avatar: ava1, lastvisit: "5 дней назад", likes: 12, text: "Великолепный матрас на кровати в основной спальне! А пуфик вообще потрясающий. И стены, действительно, шумоподавляющие. Выкрикивал комплименты повару — никто не жаловался из соседей.", username: "Мурад Сарафанов"},
@@ -62,6 +62,7 @@ root.render(
                                                                     serviceMoney: 150,
                                                                     advancedServiceMoney: 250,
                                                                     dropdownValue: [{name: "Взросыле", count: 15}, {name: "Дети"}, {name: "Младенцы"}]}}/>} />
+                    
                 </Route>
             </Routes>
         </Router>

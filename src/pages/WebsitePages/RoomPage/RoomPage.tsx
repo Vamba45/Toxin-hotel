@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import './RoomPage.scss';
 
 import BookRoom, { IBookRoom } from "../../../components/bookRoom/bookRoom";
@@ -16,7 +16,7 @@ interface IRoomPage {
     comments: IComment[],
     diagram: IDiagram,
     checkBoxList: ICheckBoxList,
-    images: string[]
+    images?: string[]
 }
 
 const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, checkBoxList, images}) => {
@@ -25,37 +25,47 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
 
     let dropdownContent : any[] = [];
 
-    let babies : any = 0;
-    let children : any = 0;
-    let adults : any = 0;
+    let babies : any;
+    let children : any;
+    let adults : any;
 
     try {
         babies = useLocation().search.match(/babies=\d+/)[0].match(/\d+/)[0] || 0;
-    } catch {}
+    } catch {
+        babies = 0;
+    }
 
     try {
         children = useLocation().search.match(/children=\d+/)[0].match(/\d+/)[0] || 0;
-    } catch {}
+    } catch {
+        children = 0;
+    }
 
     try {
         adults = useLocation().search.match(/adult=\d+/)[0].match(/\d+/)[0] || 0;
-    } catch {}
+    } catch {
+        adults = 0;
+    }
 
     dropdownContent.push({name: 'взрослые', count: Number(adults)}, {name: 'дети', count: Number(children)}, {name: 'младенцы', count: Number(babies)});
 
     const {data} = roomsAPI.useFetchOneRoomQuery(`${id}`);
     
-    let daystart : any = undefined;
+    let daystart : any;
 
     try {
         daystart = useLocation().search.match(/dayStart=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
-    } catch {}
+    } catch {
+        daystart = undefined;
+    }
 
-    let dayend : any = undefined;
+    let dayend : any;
 
     try {
         dayend = useLocation().search.match(/dayEnd=\d*-\d*-\d*/)[0].match(/\d*-\d*-\d*/)[0];
-    } catch {}
+    } catch {
+        dayend = undefined;
+    }
 
     return (
         <div className="roomPage">
@@ -73,7 +83,6 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                 }
             </div>
             <div className="roomPage__slider">
-
                 {
                     data?.photos && <Slider items={data?.photos} width={550} height={320}/>
                 }
