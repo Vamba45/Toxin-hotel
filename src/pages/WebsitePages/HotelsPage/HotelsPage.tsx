@@ -90,7 +90,7 @@ const hotelsPage: FC = () => {
     const [champoo, setChampoo] = useState("");
 
     let arr = [smoke, pets, guests, coridor, helper, breakfast, table, chair, bed, TV, champoo];
-
+    
     let comfort = "";
 
     for(let i = 0; i < arr.length; i++) {
@@ -154,7 +154,7 @@ const hotelsPage: FC = () => {
                                             placeholder="Гости" commonName="Гостей"/>
                             </div>
                             <div className="filters__diapasone child">
-                                <RangeSlider defaultMax={17000} defaultMin={3000} maxValue={20000} priceGap={2500} title="Диапазон цены" 
+                                <RangeSlider defaultMax={18000} defaultMin={2000} maxValue={20000} priceGap={2500} title="Диапазон цены" 
                                 onMaxChange={debouncedMaxPrice} 
                                 onMinChange={debouncedMinPrice}/>
                             </div>
