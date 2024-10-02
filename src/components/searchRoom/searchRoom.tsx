@@ -3,14 +3,13 @@ import './searchRoom.scss';
 
 import RangePicker from '../rangePicker/RangePicker';
 import DropDown from '../dropdown/dropdown';
-import { useNavigate } from 'react-router';
 
 interface ISearchRoom {
     buttonClick: (event: React.MouseEvent) => void;
+    defaultDate?: [string, string] | undefined;
 }
 
-const SearchRoom : FC<ISearchRoom> = ({buttonClick}) => {
-    const navigate = useNavigate();
+const SearchRoom : FC<ISearchRoom> = ({buttonClick, defaultDate}) => {
     
     return (
         <form className="searchroom">
@@ -21,7 +20,7 @@ const SearchRoom : FC<ISearchRoom> = ({buttonClick}) => {
                     </h1>
                 </div>
                 <div className="searchroom__column">
-                    <RangePicker/>
+                    <RangePicker defaultValues={defaultDate}/>
                 </div>
                 <div className="searchroom__column">
                     <DropDown menuItems={[{name: "Взрослые"}, {name: "Дети"}, {name: "Младенцы"}]} placeholder='Гости' commonName='Гостей'/>
