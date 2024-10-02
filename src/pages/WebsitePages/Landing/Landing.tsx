@@ -2,8 +2,6 @@ import { FC } from "react";
 import './Landing.scss';
 import SearchRoom from "../../../components/searchRoom/searchRoom";
 import { useNavigate } from "react-router";
-import { useAppDispatch, useAppSelector } from "../../../hooks/useAppSelector";
-import { userSlice } from "../../../store/reducers/UserSlice";
 
 const Landing: FC = () => {
     const navigate = useNavigate();
@@ -13,7 +11,7 @@ const Landing: FC = () => {
             <div className="container">
                 <div className="landing__rows">
                     <div className="landing__column">
-                        <SearchRoom buttonClick={(e) => {
+                        <SearchRoom defaultDate={["2024-10-01", "2024-11-30"]} buttonClick={(e) => {
                             const globalParent = (e.target as HTMLElement).closest('.landing');
 
                             const dates = globalParent?.querySelectorAll('.ant-picker-input > input');
