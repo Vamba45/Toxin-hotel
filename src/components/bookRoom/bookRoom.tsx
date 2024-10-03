@@ -12,11 +12,12 @@ export interface IBookRoom {
     dayEnd?: string,
     serviceMoney: number,
     advancedServiceMoney: number,
-    dropdownValue: {name: string, count?: number}[]
+    dropdownValue: {name: string, count?: number}[],
+    buttonOnClick?: (e: React.MouseEvent) => void;
 }
 
 const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, dayStart, dayEnd, serviceMoney = 100, 
-    advancedServiceMoney = 250, dropdownValue
+    advancedServiceMoney = 250, dropdownValue, buttonOnClick
 }: IBookRoom) => {
     const [minDate, setMinDate] = useState<string>(dayStart ? dayStart.replaceAll('-', '.') : "");
     const [maxDate, setMaxDate] = useState<string>(dayEnd ? dayEnd.replaceAll('-', '.') : "");
@@ -81,7 +82,7 @@ const BookRoom : FC<IBookRoom> = ({isLuxe = true, price = 5000, number = 888, da
                     </div>
                 </div>
                 <div className="bookroom__column">
-                    <button className="bookroom__btn">забронировать</button>
+                    <button className="bookroom__btn" onClick={buttonOnClick}>забронировать</button>
                 </div>
             </div>
         </form>

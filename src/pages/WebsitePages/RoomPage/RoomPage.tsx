@@ -135,7 +135,8 @@ const RoomPage: FC<IRoomPage> = ({bookRoom, advantages, comments, diagram, check
                             number={Number(data?.number)}
                             price={Number(data?.price)}
                             serviceMoney={bookRoom.serviceMoney}
-                            isLuxe={Boolean(data?.luxe)}/>
+                            isLuxe={Boolean(data?.luxe)}
+                            buttonOnClick={(e) => { e.preventDefault(); }}/>
                     </div>
                 </div>
             </div>
